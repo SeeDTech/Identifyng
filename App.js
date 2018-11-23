@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import WelcomeScreen from './src/views/screens/WelcomeScreen'
+import WelcomeScreen from './src/views/screens/welcome/WelcomeScreen'
 
 
 export default class App extends Component {
