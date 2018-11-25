@@ -2,7 +2,7 @@ import React from 'react'
 import { View,Text } from 'react-native'
 
 
-const signupRequirementsPage=() =>{
+const SignupRequirementsPage=() =>{
   return (
     <View>
       <Text>Signup Requirement Page</Text> 
@@ -10,4 +10,4 @@ const signupRequirementsPage=() =>{
   )
 }
 
-export default signupRequirementsPage
+export default SignupRequirementsPage

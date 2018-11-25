@@ -7,18 +7,20 @@
  */
 
 import React, {Component} from 'react';
-import { createSwitchNavigator,
-  createStackNavigator,
-   createDrawerNavigator,
-   createBottomTabNavigator,
-  } from 'react-navigation';
-import {StyleSheet, View} from 'react-native';
-import {
-  WelcomeScreen,
-GuideScreen
-} from './src/views/navigations/navigation'
+// import { createSwitchNavigator,
+//   createStackNavigator,
+//    createDrawerNavigator,
+//    createBottomTabNavigator,
+//   } from 'react-navigation';
+import { StyleSheet,View} from 'react-native'
+import WelcomeScreen from './src/views/screens/welcomeScreen/WelcomeScreen'
+import Requirement from './src/views/screens/AuthScreens/signupRequirements/SignupRequirementsPage'
 
 
+// export default createSwitchNavigator({
+//   welcome: WelcomeScreen,
+//   Requirement:Requirement
+// });
 
 export default class App extends Component {
   render() {
