@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import {BaseColor} from '../../../theme/color'
   
  const welcome = StyleSheet.create({   
     container: {
@@ -19,21 +20,21 @@ import { StyleSheet } from 'react-native'
         fontSize: 21,
         fontFamily: 'Tahoma',
         fontWeight: 'normal',
-        color: "#097a34",
+        color: BaseColor.dark,
     },
     logoRule: {
         width: 70,
         borderBottomWidth: 0.5,
         marginTop: 2,
         marginRight: 10,
-        borderColor: "#097a34",
+        borderColor: BaseColor.dark,
     },
     footerSection:{
         marginBottom:'5%'
     },
     footerText:{
         fontSize:11,
-        color:'#097a34'
+        color:BaseColor.dark
     },
  })
  export default welcome

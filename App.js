@@ -7,8 +7,17 @@
  */
 
 import React, {Component} from 'react';
+import { createSwitchNavigator,
+  createStackNavigator,
+   createDrawerNavigator,
+   createBottomTabNavigator,
+  } from 'react-navigation';
 import {StyleSheet, View} from 'react-native';
-import WelcomeScreen from './src/views/screens/welcome/WelcomeScreen'
+import {
+  WelcomeScreen,
+GuideScreen
+} from './src/views/navigations/navigation'
+
 
 
 export default class App extends Component {

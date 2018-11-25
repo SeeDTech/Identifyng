@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import {BaseColor} from '../../theme/color'
   
  const styles = StyleSheet.create({   
    container: {                       
@@ -12,14 +13,14 @@ import { StyleSheet } from 'react-native'
    primary: {                         
     width: 300,
     height:50,
-    backgroundColor:'#097a34',
+    backgroundColor:BaseColor.dark,
     color:'#ffffff',
     justifyContent:'center',
     textAlign:'center',
     marginBottom:20,
     borderRadius:4,
     borderWidth:1,
-    borderColor: '#097a34',
+    borderColor: BaseColor.dark,
     
    },
    whitetext:{
@@ -39,13 +40,13 @@ import { StyleSheet } from 'react-native'
     marginBottom:20,
     borderRadius:4,
     borderWidth:1,
-    borderColor: '#097a34',
+    borderColor: BaseColor.dark,
     justifyContent:"center",
     
    },
    greenText:{
     fontSize: 18,
-    color:'#097a34',
+    color:BaseColor.dark,
     fontWeight: 'bold',
     textAlign:'center',
     alignContent:'center'

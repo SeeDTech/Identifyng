@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
     View,
     Text,
-    StyleSheet,
     StatusBar
 } from 'react-native';
 import {TransparentButton, Button} from '../../../components/buttons/Butons'
@@ -23,13 +22,11 @@ class WelcomeScreen extends Component {
                         <TextWithLetterSpacing spacing={4} textStyle={welcome.logoText}>IDentifyNG</TextWithLetterSpacing>
                         <View style={welcome.logoRule}></View>
                     </View>
+
                 </View>
                 <View style={welcome.buttonSection}>
-                       
-                            <Button title="Signup"/>
-                        
-                            <TransparentButton  title="Login"/>
-        
+                    <Button title="Signup"/> 
+                    <TransparentButton  title="Login"/>
                 </View>
                 <View style={welcome.footerSection}>
                     <Text style={welcome.footerText}>-IDentifyNG Copyright 2018-</Text>
@@ -38,6 +35,7 @@ class WelcomeScreen extends Component {
         )
     }
 }
+
 
 export default WelcomeScreen
 
