@@ -25,8 +25,8 @@ class WelcomeScreen extends Component {
 
                 </View>
                 <View style={welcome.buttonSection}>
-                    <Button title="Signup"/> 
-                    <TransparentButton  title="Login"/>
+                    <Button onPress={() => this.props.navigation.navigate('Requirement')} title="Signup"/> 
+                    <TransparentButton onPress={() => this.props.navigation.navigate('Requirement')} title="Login"/>
                 </View>
                 <View style={welcome.footerSection}>
                     <Text style={welcome.footerText}>-IDentifyNG Copyright 2018-</Text>

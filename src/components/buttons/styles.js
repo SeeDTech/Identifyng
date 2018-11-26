@@ -28,7 +28,7 @@ import {BaseColor} from '../../styles/theme/color'
     color:'#fff',
     fontWeight: 'bold',
     textAlign:'center',
-    alignContent:'center'
+    alignContent:'center',
 },
    transparent:{
     backgroundColor:'transparent',
@@ -50,7 +50,16 @@ import {BaseColor} from '../../styles/theme/color'
     fontWeight: 'bold',
     textAlign:'center',
     alignContent:'center'
-}
- })
+},
+circle:{
+  width:75,
+  height:75,
+  borderRadius:75,
+  backgroundColor:BaseColor.dark,
+  marginBottom:20,
+  alignItems:'center',
+  marginLeft:240,
+ }
+})
   
  export { styles, buttons }           

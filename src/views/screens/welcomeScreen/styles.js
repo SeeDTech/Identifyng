@@ -6,6 +6,7 @@ import {BaseColor} from '../../../styles/theme/color'
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
+        backgroundColor:"#ffffff",
     },
     logoSection: {
         marginTop:40,
