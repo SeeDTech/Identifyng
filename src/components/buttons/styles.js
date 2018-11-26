@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import {BaseColor} from '../../styles/theme/color'
+
   
  const styles = StyleSheet.create({   
    container: {                       

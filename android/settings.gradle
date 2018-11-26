@@ -1,5 +1,8 @@
 rootProject.name = 'Identifyng'
+include ':app'
 include ':react-native-svg'
+include ':react-native-vector-icons'
+project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
 project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
 
-include ':app'
+ 

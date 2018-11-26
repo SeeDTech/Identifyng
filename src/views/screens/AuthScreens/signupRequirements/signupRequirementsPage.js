@@ -4,7 +4,7 @@ import { Text, View, StatusBar } from 'react-native'
 import mainStyle from '../../../../styles/mainStyle';
 import requirement from './styles'
 import Steps from './Steps'
-import {NextButton} from '../../../../components/buttons/Butons'
+import { NextButton } from '../../../../components/buttons/Butons'
 import Logo from '../../../../components/logo/Logo'
 import PropTypes from 'prop-types'
 
@@ -16,16 +16,16 @@ export class SignupRequirementsPage extends Component {
   render() {
     return (
 
-      <View  style={requirement.base}>
+      <View style={requirement.base}>
         <StatusBar
           backgroundColor="#019a00"
           barStyle="light-content" />
-          <View>
-            <View style={requirement.upperLayer}>
+        <View>
+          <View style={requirement.upperLayer}>
             <View style={requirement.logoCircle}>
-            <Logo/>
-          </View>
+              <Logo />
             </View>
+          </View>
         </View>
         <View style={requirement.header}>
           <Text style={requirement.HeaderTitle}>Signup Requirements</Text>
@@ -34,7 +34,7 @@ export class SignupRequirementsPage extends Component {
         <Steps number={2}>BVN</Steps>
         <Steps number={3}>OTP</Steps>
         <Steps number={4}>Account generation</Steps>
-        <NextButton onPress={()=>alert("Are you ready?")} title={"ID"}/>
+        <NextButton onPress={() => alert("Are you ready?")} title={"ID"} />
       </View>
     )
   }

@@ -12,10 +12,9 @@ import { createSwitchNavigator,
    createDrawerNavigator,
    createBottomTabNavigator,
   } from 'react-navigation';
-
   import SignupRequirementsPage from './src/views/screens/AuthScreens/signupRequirements/SignupRequirementsPage'
-import WelcomeScreen from './src/views/screens/welcomeScreen/WelcomeScreen'
-
+  import WelcomeScreen from './src/views/screens/welcomeScreen/WelcomeScreen'
+  //import { View, StyleSheet } from 'react-native'
 
 export default createStackNavigator({
   welcome:{
