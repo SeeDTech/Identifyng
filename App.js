@@ -14,6 +14,7 @@ import { createSwitchNavigator,
   } from 'react-navigation';
   import SignupRequirementsPage from './src/views/screens/AuthScreens/signupRequirements/SignupRequirementsPage'
   import WelcomeScreen from './src/views/screens/welcomeScreen/WelcomeScreen'
+  import PhoneNumber from './src/views/screens/AuthScreens/PhoneNumber/PhoneNumber'
   //import { View, StyleSheet } from 'react-native'
 
 export default createStackNavigator({
@@ -29,7 +30,15 @@ export default createStackNavigator({
       
     headerTransparent:{},
        } 
-      }
+      },
+    PhoneNumber:{
+      screen:PhoneNumber,
+      navigationOptions:{
+      
+        headerTransparent:{},
+           }
+    }
+
   
 });
 

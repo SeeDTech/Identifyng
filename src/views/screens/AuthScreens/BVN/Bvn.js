@@ -1,12 +1,17 @@
-import React from 'react'
-import { View,Text } from 'react-native'
+import React, { Component } from 'react'
+import { Text, View } from 'react-native'
+import mainStyle from '../../../../styles/mainStyle'
 
-const Bvn= () =>{
-  return (
-    <View>
-      <Text>Bank Verification Number</Text>
-    </View>
-  )
+export class Bvn extends Component {
+  render() {
+    return (
+      <View style={mainStyle.container}>
+        <Text> BVN </Text>
+      </View>
+    )
+  }
 }
 
 export default Bvn
+
+

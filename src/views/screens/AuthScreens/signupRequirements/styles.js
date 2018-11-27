@@ -32,12 +32,14 @@ const requirement = StyleSheet.create({
     header:{
         alignSelf:'center',
         alignItems:'center',
-        marginTop:'20%',
+        marginTop:'22%',
+        paddingBottom:5
         },
     HeaderTitle:{
         fontSize:27,
         color:BaseColor.dark,
-        fontFamily:'Roboto',
+        fontFamily:'sans-serif-condensed',
+        fontWeight: 'bold'
     },
     steps:{
         flex:1,
@@ -64,7 +66,8 @@ const requirement = StyleSheet.create({
     },
     StepText:{
         fontSize:20,
-        color:BaseColor.dark
+        color:BaseColor.dark,
+        fontFamily:'sans-serif-condensed'
     }
 })
 

@@ -12,7 +12,6 @@ export class SignupRequirementsPage extends Component {
   static propTypes = {
 
   }
-
   render() {
     return (
 
@@ -34,7 +33,7 @@ export class SignupRequirementsPage extends Component {
         <Steps number={2}>BVN</Steps>
         <Steps number={3}>OTP</Steps>
         <Steps number={4}>Account generation</Steps>
-        <NextButton onPress={() => alert("Are you ready?")} title={"ID"} />
+        <NextButton onPress={() => this.props.navigation.navigate('PhoneNumber')} title={"ID"} />
       </View>
     )
   }
