@@ -53,13 +53,17 @@ import {BaseColor} from '../../styles/theme/color'
     alignContent:'center'
 },
 circle:{
-  width:75,
-  height:75,
-  borderRadius:75,
+  transform: [
+        {translateX:130},
+        {translateY:-10}
+     ],
+  width:60,
+  height:60,
+  borderRadius:60,
   backgroundColor:BaseColor.dark,
   marginBottom:20,
   alignItems:'center',
-  marginLeft:240,
+
  }
 })
   

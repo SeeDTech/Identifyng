@@ -1,7 +1,7 @@
 import { TouchableOpacity, Platform, View, Text, StyleSheet } from 'react-native'
 import React, { Component } from 'react';
 import Icon from '../Icons/Ionicon'
-import Icons from 'react-native-vector-icons/AntDesign'
+import {ArrowRight} from '../Icons/SvgIcons/Icons'
 import { styles, buttons } from './styles';
 
 
@@ -45,11 +45,9 @@ export const NextButton = (props) => {
             <TouchableOpacity onPress={handleOnPress} style={buttons.circle}
             >
                 
-                <Icons style={{marginTop:14}}
-                    name="arrowright"
-                    color="#fff"
-                    size={45}
-                />
+                <View style={{marginTop:14}}>
+                    <ArrowRight/>
+                    </View>
             </TouchableOpacity>
         </View>
     )

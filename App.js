@@ -15,6 +15,8 @@ import { createSwitchNavigator,
   import SignupRequirementsPage from './src/views/screens/AuthScreens/signupRequirements/SignupRequirementsPage'
   import WelcomeScreen from './src/views/screens/welcomeScreen/WelcomeScreen'
   import PhoneNumber from './src/views/screens/AuthScreens/PhoneNumber/PhoneNumber'
+  import Bvn from './src/views/screens/AuthScreens/BVN/Bvn'
+import OtpPage from './src/views/screens/AuthScreens/OTP/OtpPage';
   //import { View, StyleSheet } from 'react-native'
 
 export default createStackNavigator({
@@ -37,7 +39,22 @@ export default createStackNavigator({
       
         headerTransparent:{},
            }
+    },
+    BVN:{
+      screen:Bvn,
+      navigationOptions:{
+      
+        headerTransparent:{},
+           }
+    },
+    OTP:{
+      screen:OtpPage,
+      navigationOptions:{
+      
+        headerTransparent:{},
+           }
     }
+
 
   
 });

@@ -10,27 +10,36 @@ const phonenumber = StyleSheet.create({
         flexDirection:'column',
         backgroundColor:BaseColor.light,
     },
-    logoSection:{
-        marginTop:30,
-    },
     inputSection:{
-        flex:1,
         justifyContent: 'center',
         alignItems: 'center',
+        alignContent:'center',
         flexDirection:'row',
-        paddingBottom: 20,
-        width:300
+        marginBottom:50,
+        width:250
+    },
+    logoSection:{
+        marginTop:30
+    },
+    icon:{
+        paddingTop:15
+        
     },
     inputs: {
-       flex:1,
+        marginLeft:10,
+        width:'100%',
         fontSize:18,
         fontFamily:'sans-serif-condensed',
-        height: 45,
+        height: 28,
         marginBottom: 20,
-        borderColor: BaseColor.dark, 
+        borderColor:BaseColor.dark, 
         borderBottomWidth:.5,
-        color: BaseColor.dark,
-        paddingHorizontal: 10,
+        color:BaseColor.dark,
+        
+    },
+    btnSection:{
+        flexDirection:'row',
+        alignItems:'flex-end'
     }
 })
 export default phonenumber
