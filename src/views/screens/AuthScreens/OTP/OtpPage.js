@@ -20,21 +20,21 @@ state={
           <Logo />
         </View>
         <View style={{alignItems:'center',width:280,padding:10}}>
-          <Text style={{textAlign:'center', fontFamily:'serif',fontSize:18,color:BaseColor.dark}}>Please type the one time password (OTP) that was sent to you on 0903******5</Text>
+          <Text style={{textAlign:'center', fontFamily:'serif',fontSize:18,color:BaseColor.dark}}>Please type the one time password (OTP) sent to  0903******5</Text>
         </View>
         <View style={phonenumber.inputSection}>
         <FloatingLabelInput
         value={this.state.value}
         onChangeText={this.handleTextChange}
             label="OTP"
-            keyboardType="number-pad"
+            keyboardType="numeric"
           />
         </View>
         <View style={{alignItems:'center',width:280,marginBottom:30}}>
           <Text style={{opacity:.5,textAlign:'center', fontFamily:'serif',fontSize:18,color:'#424242'}}>Resend OTP?</Text>
         </View>
         <View>
-            <NextButton />
+            <NextButton onPress={()=>alert("You Cant go further")} />
         </View>
       </View>
     )
