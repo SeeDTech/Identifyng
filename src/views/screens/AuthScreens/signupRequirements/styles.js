@@ -30,6 +30,7 @@ const requirement = StyleSheet.create({
         borderRadius:170,
     },
     header:{
+        flexDirection:'column',
         alignSelf:'center',
         alignItems:'center',
         marginTop:'22%',
@@ -38,8 +39,8 @@ const requirement = StyleSheet.create({
     HeaderTitle:{
         fontSize:27,
         color:BaseColor.dark,
-        fontFamily:'sans-serif-condensed',
-        fontWeight: 'bold'
+        fontFamily:'HurmeGeometricSans1 Bold',
+        fontWeight: 'normal'
     },
     steps:{
         flex:1,
@@ -67,7 +68,7 @@ const requirement = StyleSheet.create({
     StepText:{
         fontSize:20,
         color:BaseColor.dark,
-        fontFamily:'sans-serif-condensed'
+        fontFamily:'Ubuntu-Regular'
     }
 })
 

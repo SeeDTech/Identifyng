@@ -9,9 +9,9 @@ import FloatingLabelInput from '../../../../components/FloatingLabelInput'
  class PhoneNumber extends Component {
 
   state={
-    value:null,
+    PhoneNumber:'',
   }
-    handleTextChange = (newText) => this.setState({ value: newText });
+    handleTextChange = (newText) => this.setState({ PhoneNumber: newText });
     
   render() {
     return (
@@ -24,8 +24,9 @@ import FloatingLabelInput from '../../../../components/FloatingLabelInput'
             <Phone />
           </View>
           <FloatingLabelInput
-          onChangeText={this.handleTextChange}
+          onChangeText={(newText) => this.setState({ PhoneNumber: newText })}
           value={this.state.value}
+          id="PhoneNumber"
             label="Phone Number"
             keyboardType="numeric"
           />

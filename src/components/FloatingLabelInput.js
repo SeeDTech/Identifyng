@@ -25,7 +25,7 @@ class FloatingLabelInput extends Component {
   }
   
   render() {
-    const { label, ...props } = this.props;
+    const { label, onChangeText, ...props } = this.props;
     const {isFocused} =this.state;
     const labelStyle = {
       position: 'absolute',
@@ -43,13 +43,16 @@ class FloatingLabelInput extends Component {
       }),
       color:this._animatedIsFocused.interpolate({
         inputRange:[0,1],
-        outputRange:['#9e9e9e','#424242'],
+        outputRange:['#9e9e9e','#656565'],
       })
     };
     const InputBorder = {
       borderBottomWidth: isFocused? 1.5:.5,
       borderBottomColor:isFocused?BaseColor.dark:'#9e9e9e',
     };
+    handleOnChangeText =(e)=>{
+      this.props.onChangeText()
+    }
     return (
       <View style={{ paddingTop: 10 }}>
         <Animated.Text style={labelStyle}>
@@ -57,6 +60,7 @@ class FloatingLabelInput extends Component {
         </Animated.Text>
         <TextInput
           {...props}
+          onChangeText={this.handleOnChangeText}
           style={[mainStyle.textInput, InputBorder]}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}

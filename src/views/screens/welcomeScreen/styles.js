@@ -1,19 +1,30 @@
 import { StyleSheet } from 'react-native'
 import {BaseColor} from '../../../styles/theme/color'
   
- const welcome = StyleSheet.create({   
+ const welcome = StyleSheet.create({  
+    
+        backgroundImage: {
+            flex: 1,
+            width: null,
+            height: null,
+            resizeMode: 'cover'
+        },
+    
     container: {
         flex: 1,
-        justifyContent: 'space-between',
+        justifyContent:'space-around',
         alignItems: 'center',
-        backgroundColor:"#ffffff",
+        backgroundColor:'rgba(0,0,0,0)',
     },
     logoSection: {
         marginTop:40,
         alignItems: "center",
     },
+    formInputsSection:{
+        marginTop:'5%',
+    },
     buttonSection:{
-    marginTop:'30%'
+    marginTop:'10%'
     },
     logoText: {
         alignItems: 'center',
@@ -23,18 +34,13 @@ import {BaseColor} from '../../../styles/theme/color'
         fontWeight: 'normal',
         color: BaseColor.dark,
     },
-    logoRule: {
-        width: 70,
-        borderBottomWidth: 0.5,
-        marginTop: 2,
-        marginRight: 10,
-        borderColor: BaseColor.dark,
-    },
+    
     footerSection:{
         marginBottom:'5%'
     },
     footerText:{
         fontSize:11,
+        fontFamily:'Ubuntu-Regular',
         color:BaseColor.dark
     },
  })

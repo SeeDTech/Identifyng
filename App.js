@@ -17,7 +17,7 @@ import { createSwitchNavigator,
   import PhoneNumber from './src/views/screens/AuthScreens/PhoneNumber/PhoneNumber'
   import Bvn from './src/views/screens/AuthScreens/BVN/Bvn'
 import OtpPage from './src/views/screens/AuthScreens/OTP/OtpPage';
-  //import { View, StyleSheet } from 'react-native'
+  import { View,Image, StyleSheet } from 'react-native'
 
 export default createStackNavigator({
   welcome:{
@@ -43,18 +43,42 @@ export default createStackNavigator({
     BVN:{
       screen:Bvn,
       navigationOptions:{
-      
-        headerTransparent:{},
-           }
+        headerStyle:{
+         backgroundColor:'#fff',
+        },
+       title:'IDentifyng',
+       headerTitleStyle: {
+         alignSelf: 'center',
+         textAlign: "center",
+         marginRight:70,
+         justifyContent: 'center',
+         flex: 1,
+         color:'#097a34',
+         fontWeight: 'bold',
+         textAlignVertical: 'center'
+         }
+       },
     },
     OTP:{
       screen:OtpPage,
       navigationOptions:{
-      
-        headerTransparent:{},
+       headerStyle:{
+        backgroundColor:'#fff',
+       },
+      title:'IDentifyng',
+      headerTitleStyle: {
+        alignSelf: 'center',
+        textAlign: "center",
+        marginRight:70,
+        justifyContent: 'center',
+        flex: 1,
+        color:'#097a34',
+        fontWeight: 'bold',
+        textAlignVertical: 'center'
+        }
+      },
            }
-    }
-
+    
 
   
 });

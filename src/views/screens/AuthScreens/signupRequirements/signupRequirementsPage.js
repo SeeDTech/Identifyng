@@ -6,6 +6,7 @@ import requirement from './styles'
 import Steps from './Steps'
 import { NextButton } from '../../../../components/buttons/Butons'
 import Logo from '../../../../components/logo/Logo'
+import {TextWithLetterSpacing} from '../../../../components/TextWithLetterSpacing'
 import PropTypes from 'prop-types'
 
 export class SignupRequirementsPage extends Component {
@@ -27,7 +28,8 @@ export class SignupRequirementsPage extends Component {
           </View>
         </View>
         <View style={requirement.header}>
-          <Text style={requirement.HeaderTitle}>Signup Requirements</Text>
+        <TextWithLetterSpacing spacing={2} textStyle={requirement.HeaderTitle}>SIGNUP</TextWithLetterSpacing>
+        <TextWithLetterSpacing spacing={2} textStyle={requirement.HeaderTitle}>REQUIREMENTS</TextWithLetterSpacing>         
         </View>
         <Steps number={1}>Active phone number</Steps>
         <Steps number={2}>BVN</Steps>
