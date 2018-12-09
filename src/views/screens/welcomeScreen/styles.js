@@ -36,8 +36,8 @@ import {BaseColor} from '../../../styles/theme/color'
     alignItems: 'center',
     justifyContent: 'space-evenly'
 },
-itemSection:{marginEnd:3,borderBottomColor:BaseColor.dark},
-InputLabel:{ fontFamily: 'Ubuntu-Regular', marginBottom: 20 },
+itemSection:{marginEnd:10,borderBottomColor:BaseColor.dark},
+InputLabel:{color:BaseColor.grey, fontFamily: 'Ubuntu-Regular', marginBottom: 20 },
 InputField:{marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-Regular", color: BaseColor.base},
     logoSection: {
         marginTop:40,
@@ -60,7 +60,7 @@ InputField:{marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-
         textAlign:'center',
         fontFamily:'HurmeGeometricSans1',
         fontSize: 13,
-        color:'#ccc',
+        color:BaseColor.grey,
     },
     btnStyle:{
         marginTop:30,
@@ -71,15 +71,7 @@ InputField:{marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-
         alignContent:'center',
        fontFamily:'HurmeGeometricSans1',
        fontSize: 13,
-       color:'#ccc',
+       color:BaseColor.grey,
       },
-    logoText: {
-        alignItems: 'center',
-        marginTop: 10,
-        fontSize: 21,
-        fontFamily: 'Tahoma',
-        fontWeight: 'normal',
-        color: BaseColor.dark,
-    }
  })
  export default welcome

@@ -26,7 +26,7 @@ export const Button = (props) => {
     }
     const { title,btnStyle } = props;
     return (
-        <View style={[styles.container, btnStyle]}>
+        <View style={styles.container}>
             <TouchableOpacity onPress={handleOnPress} style={buttons.primary}
             >
                 <Text style={buttons.whitetext}>{title}</Text>

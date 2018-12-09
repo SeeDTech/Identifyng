@@ -11,8 +11,21 @@ import {BaseColor} from '../../styles/theme/color'
  })
   
  const buttons = StyleSheet.create({  
-   
-  secondary: {                         
+   primary: {                         
+    width: 250,
+    margin:10,
+    height:55,
+    backgroundColor:BaseColor.base,
+    justifyContent:'center',
+    textAlign:'center',
+    marginBottom:20,
+
+    borderRadius:8,
+    borderWidth:1,
+    borderColor: BaseColor.dark,
+    
+   },
+   secondary: {                         
     width: 250,
     margin:10,
     height:55,
