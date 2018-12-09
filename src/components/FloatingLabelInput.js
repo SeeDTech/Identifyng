@@ -37,9 +37,10 @@ class FloatingLabelInput extends Component {
         inputRange: [0, 1],
         outputRange: [18, 0]
       }),
+      fontFamily:'HurmeGeometricSans2',
       fontSize:this._animatedIsFocused.interpolate({
         inputRange:[0,1],
-        outputRange:[20,12]
+        outputRange:[20,13]
       }),
       color:this._animatedIsFocused.interpolate({
         inputRange:[0,1],
@@ -47,8 +48,8 @@ class FloatingLabelInput extends Component {
       })
     };
     const InputBorder = {
-      borderBottomWidth: isFocused? 1.5:.5,
-      borderBottomColor:isFocused?BaseColor.dark:'#9e9e9e',
+      borderBottomWidth: isFocused? 1.5:1,
+      borderBottomColor:isFocused?BaseColor.dark:BaseColor.dark,
     };
     handleOnChangeText =(e)=>{
       this.props.onChangeText()

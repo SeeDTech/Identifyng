@@ -24,12 +24,58 @@ export const Button = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
+    const { title,btnStyle } = props;
+    return (
+        <View style={[styles.container, btnStyle]}>
+            <TouchableOpacity onPress={handleOnPress} style={buttons.primary}
+            >
+                <Text style={buttons.whitetext}>{title}</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+export const ButtonInverse = (props) => {
+    handleOnPress = (e) => {
+        props.onPress();
+    }
+    const { title,btnStyle } = props;
+    return (
+        <View key={title} style={[styles.container, btnStyle]}>
+            <TouchableOpacity onPress={handleOnPress} style={buttons.secondary}
+            >
+                <Text style={buttons.greenText}>{title}</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+
+export const ButtonNoBorder = (props) => {
+    handleOnPress = (e) => {
+        props.onPress();
+    }
     const { title } = props;
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={handleOnPress} style={buttons.primary}
+            <TouchableOpacity  onPress={handleOnPress} style={buttons.noBorder}
             >
-                <Text style={buttons.whitetext} >{title}</Text>
+                <Text style={buttons.greenText}>{title}</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+export const ButtonNoBorderInverse = (props) => {
+    handleOnPress = (e) => {
+        props.onPress();
+    }
+    const { title } = props;
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity  onPress={handleOnPress} style={buttons.noBorder}
+            >
+                <Text style={buttons.whitetext}>{title}</Text>
             </TouchableOpacity>
         </View>
     )

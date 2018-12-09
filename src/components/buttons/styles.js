@@ -11,15 +11,17 @@ import {BaseColor} from '../../styles/theme/color'
  })
   
  const buttons = StyleSheet.create({  
-   primary: {                         
-    width: 300,
-    height:50,
-    backgroundColor:BaseColor.dark,
-    color:'#ffffff',
+   
+  secondary: {                         
+    width: 250,
+    margin:10,
+    height:55,
+    backgroundColor:BaseColor.light,
     justifyContent:'center',
     textAlign:'center',
     marginBottom:20,
-    borderRadius:4,
+
+    borderRadius:8,
     borderWidth:1,
     borderColor: BaseColor.dark,
     
@@ -27,30 +29,40 @@ import {BaseColor} from '../../styles/theme/color'
    whitetext:{
     fontSize: 18,
     color:'#fff',
-    fontWeight: 'bold',
+    fontFamily:'HurmeGeometricSans1 Bold',
     textAlign:'center',
     alignContent:'center',
 },
    transparent:{
     backgroundColor:'transparent',
-    width: 300,
-    height:50,
-    color:'#097a34',
+    width: 250,
+    height:55,
+    color:BaseColor.dark,
     justifyContent:'center',
     textAlign:'center',
     marginBottom:20,
-    borderRadius:4,
+    borderRadius:8,
     borderWidth:1,
     borderColor: BaseColor.dark,
     justifyContent:"center",
-    
    },
    greenText:{
-    fontSize: 18,
+    fontSize: 20,
     color:BaseColor.dark,
-    fontWeight: 'bold',
     textAlign:'center',
+    fontFamily:'HurmeGeometricSans1 Bold',
     alignContent:'center'
+},
+noBorder:{
+  marginBottom:'3%',
+  margin:5,
+  borderWidth:0,
+  backgroundColor:'transparent',
+    width: 250,
+    fontSize:20,
+    height:65,
+    color:BaseColor.dark,
+    
 },
 circle:{
   transform: [
@@ -63,6 +75,7 @@ circle:{
   backgroundColor:BaseColor.dark,
   marginBottom:20,
   alignItems:'center',
+
 
  }
 })

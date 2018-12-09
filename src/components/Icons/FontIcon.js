@@ -1,6 +1,6 @@
 import React from "react";
 import { Platform } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default ({ name, ...props }) => (
   <Icon
