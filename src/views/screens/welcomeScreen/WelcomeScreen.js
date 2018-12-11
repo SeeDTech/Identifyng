@@ -10,6 +10,7 @@ import { TransparentButton, ButtonInverse, Button,ButtonNoBorderInverse, ButtonN
 import Logo, { MainLogoWhite, MainIdLogoGreen } from '../../../components/logo/Logo'
 import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing'
 import welcome from './styles'
+import {AsyncStorage} from 'react-native'
 import { BaseColor } from '../../../styles/theme/color';
 import Icon from "react-native-vector-icons/FontAwesome";
 class WelcomeScreen extends Component {
@@ -17,7 +18,17 @@ class WelcomeScreen extends Component {
         password: null,
         email: null,
     }
-    handleTextChange = (newText, e) => this.setState({ [e.target.id]: newText })
+
+    onSubmitForm = ()=>{
+        const {email, password} = this.state;
+        if(!email||!password){
+            alert("all input fields are required");
+        }else{
+            AsyncStorage.setItem('credentials', email+password)
+            this.props.navigation.navigate('Requirement');
+        }
+
+    }
     render() {
         return (
             <ImageBackground style={{ resizeMode: 'cover', width: '100%', height: '100%' }} source={require('../../../components/logo/images/whiteIdBackground.png')}>
@@ -38,6 +49,7 @@ class WelcomeScreen extends Component {
                             <MainIdLogoGreen />
                         </View>
                         <View
+                    
                          style={{
                              alignItems:"center",
                              justifyContent:'center',
@@ -59,7 +71,7 @@ class WelcomeScreen extends Component {
                                 <Label style={welcome.InputLabel}><Icon name="envelope" size={18} /> id@app.com</Label>
                                 <Input
                                     onChangeText={(newText) => this.setState({ email: newText })}
-                                    style={welcome.InputField} onChangeText={(newText) => this.setState({ password: newText })} />
+                                    style={welcome.InputField} />
                             </Item>
                             <Item 
                             style={{marginEnd:10, borderBottomColor:BaseColor.dark}}
@@ -69,12 +81,12 @@ class WelcomeScreen extends Component {
                                 secureTextEntry={true}
                                     onChangeText={(newText) => this.setState({ password: newText })}
                                    
-                                    style={welcome.InputField} onChangeText={(newText) => this.setState({ password: newText })} />
+                                    style={welcome.InputField}  />
                             </Item>
                             
                                 <TextWithLetterSpacing textStyle={welcome.forgotPassword} spacing={1}>FORGOT PASSWORD?</TextWithLetterSpacing>
                                 <View style={{marginTop:25}}>
-                                <Button onPress={() => alert("Please wait")} title="LOGIN" />
+                                <Button onPress={() => this.onSubmitForm()} title="LOGIN" />
                                 <Text style={welcome.askForSignup}>DON'T HAVE ACCOUNT?</Text>
                                 <ButtonNoBorder onPress={() => this.props.navigation.navigate('Requirement')}  title='SIGN UP' />
                                 </View>
