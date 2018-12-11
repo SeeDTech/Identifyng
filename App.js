@@ -7,6 +7,7 @@
  */
 
 import React, {Component} from 'react';
+import SplashScreen from 'react-native-splash-screen'
 import { createSwitchNavigator,
   createStackNavigator,
    createDrawerNavigator,
@@ -20,6 +21,7 @@ import OtpPage from './src/views/screens/AuthScreens/OTP/OtpPage';
   import { View,Image, StyleSheet } from 'react-native'
 
 export default createStackNavigator({
+ 
   welcome:{
    screen:WelcomeScreen,
    navigationOptions:{

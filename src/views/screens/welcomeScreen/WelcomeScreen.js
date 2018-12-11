@@ -10,15 +10,22 @@ import { TransparentButton, ButtonInverse, Button,ButtonNoBorderInverse, ButtonN
 import Logo, { MainLogoWhite, MainIdLogoGreen } from '../../../components/logo/Logo'
 import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing'
 import welcome from './styles'
+import SplashScreen from 'react-native-splash-screen'
 import {AsyncStorage} from 'react-native'
 import { BaseColor } from '../../../styles/theme/color';
 import Icon from "react-native-vector-icons/FontAwesome";
 class WelcomeScreen extends Component {
+
+
+
     state = {
         password: null,
         email: null,
     }
 
+    componentDidMount() {
+        SplashScreen.hide()
+      }
     onSubmitForm = ()=>{
         const {email, password} = this.state;
         if(!email||!password){
