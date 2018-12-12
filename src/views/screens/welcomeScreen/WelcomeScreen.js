@@ -26,13 +26,14 @@ class WelcomeScreen extends Component {
     componentDidMount() {
         SplashScreen.hide()
       }
+      
     onSubmitForm = ()=>{
         const {email, password} = this.state;
         if(!email||!password){
             alert("all input fields are required");
         }else{
-            AsyncStorage.setItem('credentials', email+password)
-            this.props.navigation.navigate('Requirement');
+            AsyncStorage.setItem('userToken', email+password)
+            this.props.navigation.navigate('App');
         }
 
     }
