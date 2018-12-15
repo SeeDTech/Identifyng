@@ -4,22 +4,14 @@ import {BaseColor} from '../../../../styles/theme/color'
 const phonenumber = StyleSheet.create({
     container:{
         flex:1,
-        justifyContent:'space-between',
-        alignContent:'center',
-        alignItems:'center',
-        flexDirection:'column',
-        backgroundColor:BaseColor.light,
+        width:'100%',
+        justifyContent:'center',
+        backgroundColor: 'transparent',
     },
-    inputSection:{
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent:'center',
-        flexDirection:'row',
-        marginBottom:50,
-        width:250
-    },
+   
     logoSection:{
-        marginTop:30
+        marginTop:30,
+        alignItems: "center",
     },
     icon:{
         paddingTop:15
@@ -29,7 +21,7 @@ const phonenumber = StyleSheet.create({
         marginLeft:10,
         width:'100%',
         fontSize:18,
-        fontFamily:'sans-serif-condensed',
+        fontFamily:'Ubuntu-Regular',
         height: 28,
         marginBottom: 20,
         borderColor:BaseColor.dark, 

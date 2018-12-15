@@ -52,7 +52,7 @@ export class SignupRequirementsPage extends Component {
             </View>
           </View>
         <View>
-          <Button title="GET STARTED" />
+          <Button onPress={()=>this.props.navigation.navigate('PhoneNumber')} title="GET STARTED" />
         </View>
           <View style={{ justifyContent:"flex-end", marginLeft:250}}>
             <ButtonNoBorder onPress={()=>this.props.navigation.navigate('Welcome')} title="SIGN IN" txtStyle={{fontSize:15}} />

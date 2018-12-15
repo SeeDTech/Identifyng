@@ -58,20 +58,9 @@ const AuthStackNavigator = createStackNavigator({
     BVN:{
       screen:Bvn,
       navigationOptions:{
-        headerStyle:{
-         backgroundColor:'#fff',
-        },
-       title:'IDentifyng',
-       headerTitleStyle: {
-         alignSelf: 'center',
-         textAlign: "center",
-         marginRight:70,
-         justifyContent: 'center',
-         flex: 1,
-         color:'#097a34',
-         fontWeight: 'bold',
-         textAlignVertical: 'center'
-         }
+       
+        headerTransparent:{},
+      
        },
     },
     OTP:{

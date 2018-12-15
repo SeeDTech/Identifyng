@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Spinner} from 'native-base'
 import { Text, View, ActivityIndicator,AsyncStorage } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 export class AuthLoading extends Component {
@@ -17,7 +18,7 @@ export class AuthLoading extends Component {
   render() {
     return (
       <View style={{flex:1, justifyContent:'center',alignContent:'center'}}>
-        <ActivityIndicator/>
+          <Spinner color="green" />
       </View>
     )
   }
