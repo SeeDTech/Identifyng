@@ -1,24 +1,48 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ImageBackground, Dimensions } from 'react-native'
 import { MainIdLogoGreen } from '../../../components/logo/Logo';
-import { Button, TransparentButton } from '../../../components/buttons/Butons';
+import { Button, TransparentButton, ButtonInverse } from '../../../components/buttons/Butons';
+import Swiper from 'react-native-swiper';
+import {Container, Content} from 'native-base'
+import { BaseColor } from '../../../styles/theme/color';
+import slides from './styles';
 
-
- class SlidingScreen extends Component {
+class SlidingScreen extends Component {
   render() {
+    
     return (
-      <View style={{backgroundColor:'#fff', alignContent:"center",justifyContent:'space-around', flex:1}}>
-      <View style={{alignContent:"center", alignItems:"center"}}>
+      <Container style={{flex:1, alignContent:'center'}}>
+      <Swiper showsPagination={true} autoplay={true} dotStyle={slides.dotstyle} activeDotStyle={slides.activeDotStlye}>
+        <ImageBackground style={slides.backgroundImage} source={require('../../../components/logo/images/welcomebackground.png')} >
+        <View style={slides.SlideTextSection} >
+        <View style={slides.slideoneSection}>
+          <Text style={slides.slideOneText}>Slide One</Text>
+        </View>
+        </View>
+          </ImageBackground>
+          <ImageBackground style={slides.backgroundImage} source={require('../../../components/logo/images/welcomebackgroundb.png')}>
+        <View style={slides.SlideTextSection}>
+        <View style={slides.slideoneSection}>
+          <Text style={slides.slideTwoText}>Slide Two</Text>
+        </View>
+          
+        </View>
+        </ImageBackground>
+        <ImageBackground style={slides.backgroundImage} source={require('../../../components/logo/images/welcomebackgroundc.png')}>
+
+        <View style={slides.SlideTextSection}>
+          <Text style={slides.slideThreeText}>Slide Three</Text>
+        </View>
+        </ImageBackground>
+      </Swiper>
+      <View style={slides.logoSection}>
+          <Text style={slides.logoText}>Welcome to</Text>
           <MainIdLogoGreen/>
       </View>
-      <View style={{alignContent:"center", alignItems:"center"}}>
-        <Text> Sliding Screen </Text>
+      <View style={slides.buttonSection}>
+          <ButtonInverse onPress={()=>{this.props.navigation.navigate('Welcome')}}  title="CHECK IN"/>
       </View>
-      <View style={{alignContent:"center",justifyContent:'space-around', flex:0}}>
-          <Button onPress={()=>{this.props.navigation.navigate('Welcome')}} title="LOGIN"/>
-          <TransparentButton onPress={()=>this.props.navigation.navigate('Requirement')} title="SIGN UP" />
-      </View>
-      </View>
+      </Container>
     )
   }
 }

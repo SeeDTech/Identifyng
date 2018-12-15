@@ -42,33 +42,58 @@ const requirement = StyleSheet.create({
         fontFamily:'HurmeGeometricSans1 Bold',
         fontWeight: 'normal'
     },
-    steps:{
-        flex:1,
-        flexDirection:'row',
-        marginTop:'5%',
-        height:200
+    logoSection: {
+        marginTop:20,
+        alignItems: "center"
     },
+    card:{
+        height:270,
+        borderRadius:5,
+        borderWidth:2,
+        borderColor: '#f1f1f1',
+        width:240,
+        backgroundColor:'#fff',
+        paddingTop:30,
+        paddingLeft:10,
+        paddingRight:10,
+        marginBottom:20,
+        
+    },
+    cardHeader:{
+        flex:0,
+        alignItems:"center",
+        },
+        ListSection:{
+            marginTop:20
+        },
+    steps:{
+        
+        flexDirection:'row',
+        marginTop:10,
+        
+    },
+
     items:{
-        width:21,
-        height:21,
-        borderRadius:21,
-        backgroundColor:BaseColor.dark,
-        marginLeft:'10%',
-        marginTop:4,
+        marginLeft:'5%',
         alignItems:'center'
     },
-    itemsText:{
-        color:BaseColor.light,
-        fontSize:14
-    },
+    
     StepContainer:{
         flex:1,
-        marginLeft:25,
+        marginLeft:10,
+    },
+    textSpace:{
+        
+        alignContent:'center',
+        fontSize:20,
+        color:BaseColor.base,
+        opacity:.8,
+        fontFamily:'HurmeGeometricSans1 Bold',
     },
     StepText:{
-        fontSize:20,
-        color:BaseColor.dark,
-        fontFamily:'Ubuntu-Regular'
+        fontSize:15,
+        color:BaseColor.grey,
+        fontFamily:'Ubuntu-Light'
     }
 })
 

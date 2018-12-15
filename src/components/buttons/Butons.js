@@ -55,12 +55,12 @@ export const ButtonNoBorder = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title } = props;
+    const { title, txtStyle } = props;
     return (
         <View style={styles.container}>
             <TouchableOpacity  onPress={handleOnPress} style={buttons.noBorder}
             >
-                <Text style={buttons.greenText}>{title}</Text>
+                <Text style={[buttons.greenText,txtStyle]}>{title}</Text>
             </TouchableOpacity>
         </View>
     )

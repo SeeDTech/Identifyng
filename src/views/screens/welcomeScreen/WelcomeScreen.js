@@ -48,7 +48,7 @@ class WelcomeScreen extends Component {
                 
                 }}>
                     <StatusBar
-                        backgroundColor="#107365"
+                        backgroundColor={BaseColor.base}
                         barStyle="light-content" />
                     <Content
                     

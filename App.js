@@ -100,16 +100,45 @@ const AuthStackNavigator = createStackNavigator({
 
 const AppTabNavigator = createBottomTabNavigator({
   Dashboard:{
-    screen:Dashboard
+    screen:Dashboard,
+    navigationOptions:({navigation})=>({
+      tabBarIcon: ({ tintColor }) => (
+        <Ionicon name="home" size={27} />
+      )
+      
+    })
   },
   Settings:{
-    screen:SettingsScreen
+    screen:SettingsScreen,
+    navigationOptions:({navigation})=>({
+      tabBarIcon: ({ tintColor }) => (
+        <Ionicon name="settings" size={27} />
+      )
+      
+    })
   },
   Search:{
-    screen:Search
+    screen:Search,
+    navigationOptions:({navigation})=>({
+      tabBarIcon: ({ tintColor }) => (
+        <Ionicon name="search" size={27} />
+
+      )
+    })
   },
   ID:{
-    screen:MyCards
+    screen:MyCards,
+    navigationOptions:({navigation})=>({
+      tabBarIcon: ({ tintColor }) => (
+        <Ionicon name="card" size={27}/>
+      ),
+      tabBarOptions: {
+        activeTintColor: BaseColor.dark,
+        labelStyle: {
+          fontSize: 12,
+        }
+      }
+    })
   },
 })
 
@@ -121,8 +150,18 @@ const AppStacknavigator = createStackNavigator({
     screen:AppTabNavigator,
 
     navigationOptions:({navigation})=>({
-       
+      tabBarLabel: 'Browse',
+      headerLeft:(
+<View style={{borderWidth:1, width:40,height:40,backgroundColor:'#f4f4f4',borderRadius:40, marginLeft:10,}}></View>
+      ),
       title:'IDentifyng',
+      headerTitleStyle:{
+        alignSelf:'center',
+        textAlign: 'center',
+        justifyContent:'center',
+        fontFamily: "Roboto",
+        width: '90%',
+        },
       headerRight:(
         <TouchableOpacity onPress={()=>navigation.toggleDrawer()} >
         <View style={{paddingHorizontal:10, color:BaseColor.grey}}>

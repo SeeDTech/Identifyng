@@ -1,14 +1,14 @@
 
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text,Image } from 'react-native'
 import requirement from './styles'
 
 const Steps = (props) => {
-    const {number,children}=props
+    const {children}=props
     return (
         <View style={requirement.steps}>
             <View style={requirement.items}>
-                <Text style={requirement.itemsText}>{number}</Text>
+                <Image style={{width:22,height:22}} source={require('../../../../components/logo/images/check.png')} />
             </View>
             <View style={requirement.StepContainer}>
                 <Text style={requirement.StepText}>{children}</Text>

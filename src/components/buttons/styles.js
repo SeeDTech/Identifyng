@@ -75,7 +75,6 @@ noBorder:{
     fontSize:20,
     height:65,
     color:BaseColor.dark,
-    
 },
 circle:{
   transform: [

@@ -1,15 +1,20 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
-
-
-class Search extends Component {
+import React, { Component } from 'react';
+import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
+export default class Search extends Component {
   render() {
     return (
-      <View style={{flex:1,justifyContent:'center', alignContent:'center', alignItems:'center', }}>
-        <Text> Search Screen </Text>
-      </View>
-    )
+      <Container>
+        <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="Search" />
+            <Icon name="ios-people" />
+          </Item>
+          <Button style={{marginTop:100}} transparent>
+            <Text>Search</Text>
+          </Button>
+        </Header>
+      </Container>
+    );
   }
 }
-
-export default Search
