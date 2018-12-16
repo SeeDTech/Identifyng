@@ -40,7 +40,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 
             <Item floatingLabel style={{marginEnd:10,borderBottomColor:BaseColor.dark, marginTop:40, width:'90%', alignContent:"center",}}>
               <Label style={{color:BaseColor.grey, fontFamily: 'Ubuntu-Regular',}}><Icon name="phone" size={20} /> Phone Number</Label>
-              <Input  onChangeText={(newText) => this.setState({ phonenumber: newText })} style={{padding:10,marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-Regular", color: BaseColor.base}} />
+              <Input maxLength={11} keyboardType='phone-pad' onChangeText={(newText) => this.setState({ phonenumber: newText })} style={{padding:10,marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-Regular", color: BaseColor.base}} />
             </Item>
             <View style={{flex:1,marginTop:'50%', alignSelf:"center"}}>
             <Button onPress={()=>this.props.navigation.navigate('BVN')} style={{width:250,borderColor:BaseColor.dark,justifyContent:'center'}}  bordered>

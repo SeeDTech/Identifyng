@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet,ImageBackground, View } from 'react-native'
+import { StyleSheet,ImageBackground,Image, View } from 'react-native'
 import Logo,{MainIdLogoGreen} from '../../../../components/logo/Logo'
 import phonenumber from '../PhoneNumber/styles'
 import {Input, Item, Label,Text, Button,Form, Container,Content} from 'native-base'
@@ -26,23 +26,24 @@ export class Bvn extends Component {
         </View>
           <Form
           style={{
-            flex: 0,
             alignContent:'center',
             flexDirection: "column",
             alignItems: 'center',
             justifyContent: 'center'
           }}
           >
-          <View style={{alignItems:"center", justifyContent:"center"}}>
-            <Text style={{fontFamily:'Ubuntu-Regular',opacity:0.7, fontSize:18, color:BaseColor.grey}}>Input your Bank Verification Number</Text>
+          <View style={{alignSelf:'center', alignItems:"center",maxWidth:'80%'}}>
+            <Text style={{fontFamily:'Ubuntu-Regular',opacity:0.7, fontSize:18, color:BaseColor.grey}}>Input your Bank Verification
+             Number</Text>
+             
           </View>
 
             <Item floatingLabel style={{marginEnd:10,borderBottomColor:BaseColor.dark, marginTop:40, width:'90%', alignContent:"center",}}>
-              <Label style={{color:BaseColor.grey, fontFamily: 'Ubuntu-Regular',}}><Icon name="phone" size={20} /> BVN</Label>
-              <Input  onChangeText={(newText) => this.setState({ bvn: newText })} style={{padding:10,marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-Regular", color: BaseColor.base}} />
+              <Label style={{color:BaseColor.grey, fontFamily: 'Ubuntu-Regular',}}><Image style={{width:35,height:15}} source={require('../../../../components/logo/images/bvn.png')} /> BVN</Label>
+              <Input keyboardType='numeric' maxLength={11} onChangeText={(newText) => this.setState({ bvn: newText })} style={{padding:10,marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-Regular", color: BaseColor.base}} />
             </Item>
             <View style={{flex:1,marginTop:'50%', alignSelf:"center"}}>
-            <Button style={{width:250,borderColor:BaseColor.dark, justifyContent:'center'}}  bordered>
+            <Button style={{width:250,borderColor:BaseColor, justifyContent:'center'}}  bordered>
             <Text style={{ fontSize:18,fontFamily:'HurmeGeometricSans1 Bold',color:BaseColor.dark,}}>VERIFY</Text>
           </Button>
             </View>
