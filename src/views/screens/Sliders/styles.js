@@ -30,7 +30,7 @@ import { BaseColor } from '../../../styles/theme/color';
         },
         slideOneText:{
             color: '#424242',
-            fontSize: 17,
+            fontSize: 22,
 
             fontFamily:'Ubuntu-Regular',
             
@@ -51,7 +51,6 @@ import { BaseColor } from '../../../styles/theme/color';
             color: '#434343',
             fontFamily:'Ubuntu-Regular',
             fontSize: 17,
-            
           },
           buttonSection:{alignContent:"center",justifyContent:'center', position:"absolute",top:450, alignSelf:"center", flex:1},
           logoSection:{position:"absolute", top:20, alignSelf:"center", alignItems:"center"},

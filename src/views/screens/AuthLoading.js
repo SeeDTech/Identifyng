@@ -17,7 +17,7 @@ export class AuthLoading extends Component {
     
   render() {
     return (
-      <View style={{flex:1, justifyContent:'center',alignContent:'center'}}>
+      <View style={{flex:1, justifyContent:'space-between',alignContent:'center'}}>
           <Spinner color="green" />
       </View>
     )

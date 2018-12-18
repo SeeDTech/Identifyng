@@ -66,20 +66,21 @@ const AuthStackNavigator = createStackNavigator({
     OTP:{
       screen:OtpPage,
       navigationOptions:{
-       headerStyle:{
-        backgroundColor:'#fff',
-       },
-      title:'IDentifyng',
-      headerTitleStyle: {
-        alignSelf: 'center',
-        textAlign: "center",
-        marginRight:70,
-        justifyContent: 'center',
-        flex: 1,
-        color:'#097a34',
-        fontWeight: 'bold',
-        textAlignVertical: 'center'
-        }
+        headerTransparent:{},
+      //  headerStyle:{
+      //   backgroundColor:'#fff',
+      //  },
+      // title:'IDentifyng',
+      // headerTitleStyle: {
+      //   alignSelf: 'center',
+      //   textAlign: "center",
+      //   marginRight:70,
+      //   justifyContent: 'center',
+      //   flex: 1,
+      //   color:'#097a34',
+      //   fontWeight: 'bold',
+      //   textAlignVertical: 'center'
+      //   }
       },
            }
     
@@ -153,7 +154,6 @@ const AppTabNavigator = createBottomTabNavigator({
   },
 },{
   navigationOptions:({navigation})=>({
-    
     tabBarOptions : {
       activeTintColor: BaseColor.light,
       inactiveTintColor:'#69f0ae',

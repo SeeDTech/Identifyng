@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper';
 import {Container, Content} from 'native-base'
 import { BaseColor } from '../../../styles/theme/color';
 import slides from './styles';
+import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing';
 
 class SlidingScreen extends Component {
   render() {
@@ -15,23 +16,22 @@ class SlidingScreen extends Component {
       <Swiper showsPagination={true} autoplay={true} dotStyle={slides.dotstyle} activeDotStyle={slides.activeDotStlye}>
         <ImageBackground style={slides.backgroundImage} source={require('../../../components/logo/images/welcomebackground.png')} >
         <View style={slides.SlideTextSection} >
-        <View style={slides.slideoneSection}>
-          <Text style={slides.slideOneText}>Slide One</Text>
-        </View>
+       
+          <TextWithLetterSpacing spacing={3} textStyle={slides.slideOneText}>Slide One</TextWithLetterSpacing>
         </View>
           </ImageBackground>
           <ImageBackground style={slides.backgroundImage} source={require('../../../components/logo/images/welcomebackgroundb.png')}>
         <View style={slides.SlideTextSection}>
-        <View style={slides.slideoneSection}>
-          <Text style={slides.slideTwoText}>Slide Two</Text>
-        </View>
-          
+        
+        <TextWithLetterSpacing spacing={3} textStyle={slides.slideOneText}>Slide Two</TextWithLetterSpacing>
+         
         </View>
         </ImageBackground>
         <ImageBackground style={slides.backgroundImage} source={require('../../../components/logo/images/welcomebackgroundc.png')}>
 
         <View style={slides.SlideTextSection}>
-          <Text style={slides.slideThreeText}>Slide Three</Text>
+        <TextWithLetterSpacing spacing={3} textStyle={slides.slideOneText}>Slide three</TextWithLetterSpacing>
+
         </View>
         </ImageBackground>
       </Swiper>

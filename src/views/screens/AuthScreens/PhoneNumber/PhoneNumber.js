@@ -26,25 +26,19 @@ import ProgressBar from '../ProgressBar/ProgressBar';
           <MainIdLogoGreen />
         </View>
           <Form
-          style={{
-            flex: 0,
-            alignContent:'center',
-            flexDirection: "column",
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
+          style={phonenumber.form}
           >
-          <View style={{alignItems:"center", justifyContent:"center"}}>
-            <Text style={{fontFamily:'Ubuntu-Regular',opacity:0.7, fontSize:18, color:BaseColor.grey}}>Input your phone number</Text>
+          <View style={phonenumber.instruction}>
+            <Text style={phonenumber.instructionText}>Input your phone number</Text>
           </View>
 
-            <Item floatingLabel style={{marginEnd:10,borderBottomColor:BaseColor.dark, marginTop:40, width:'90%', alignContent:"center",}}>
-              <Label style={{color:BaseColor.grey, fontFamily: 'Ubuntu-Regular',}}><Icon name="phone" size={20} /> Phone Number</Label>
-              <Input maxLength={11} keyboardType='phone-pad' onChangeText={(newText) => this.setState({ phonenumber: newText })} style={{padding:10,marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-Regular", color: BaseColor.base}} />
+            <Item floatingLabel style={phonenumber.item}>
+              <Label style={phonenumber.label}><Icon name="phone" size={20} /> Phone Number</Label>
+              <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ phonenumber: newText })} style={phonenumber.itemInput} />
             </Item>
-            <View style={{flex:1,marginTop:'50%', alignSelf:"center"}}>
-            <Button onPress={()=>this.props.navigation.navigate('BVN')} style={{width:250,borderColor:BaseColor.dark,justifyContent:'center'}}  bordered>
-            <Text style={{ fontSize:18,fontFamily:'HurmeGeometricSans1 Bold',color:BaseColor.dark,}}>VERIFY</Text>
+            <View style={phonenumber.btnSection}>
+            <Button onPress={()=>this.props.navigation.navigate('BVN')} style={phonenumber.btn}  bordered>
+            <Text style={phonenumber.btntext}>VERIFY</Text>
           </Button>
             </View>
 
