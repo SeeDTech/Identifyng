@@ -88,48 +88,89 @@ const AuthStackNavigator = createStackNavigator({
 });
 
 const AppTabNavigator = createBottomTabNavigator({
+  
   Dashboard:{
     screen:Dashboard,
     navigationOptions:({navigation})=>({
+      title:'Home',
       tabBarIcon: ({ tintColor }) => (
-        <Ionicon name="home" size={27} />
-      )
-      
+        <Ionicon name="home" size={27} color={tintColor} />
+      ),
+      // tabBarOptions: {
+      //   activeTintColor: BaseColor.light,
+      //   labelStyle: {
+      //     fontSize: 14,
+      //   }
+      // }
     })
   },
   Settings:{
     screen:SettingsScreen,
     navigationOptions:({navigation})=>({
+      title:'Settings',
       tabBarIcon: ({ tintColor }) => (
-        <Ionicon name="settings" size={27} />
-      )
+        <Ionicon name="settings" color={tintColor} size={27} c/>
+      ),
+      // tabBarOptions: {
+      //   activeTintColor: BaseColor.light,
+      //   labelStyle: {
+      //     fontSize: 14,
+      //   }
+      // }
       
     })
   },
   Search:{
     screen:Search,
     navigationOptions:({navigation})=>({
+      title:'Search',
       tabBarIcon: ({ tintColor }) => (
-        <Ionicon name="search" size={27} />
+        <Ionicon name="search" color={tintColor} size={27} />
 
-      )
+      ),
+      // tabBarOptions: {
+      //   activeTintColor: BaseColor.light,
+      //   labelStyle: {
+      //     fontSize: 14,
+      //   }
+      // }
     })
   },
   ID:{
     screen:MyCards,
     navigationOptions:({navigation})=>({
+      title:'My Cards',
       tabBarIcon: ({ tintColor }) => (
-        <Ionicon name="card" size={27}/>
+        <Ionicon name="card" color={tintColor} size={27}/>
       ),
-      tabBarOptions: {
-        activeTintColor: BaseColor.dark,
-        labelStyle: {
-          fontSize: 12,
-        }
-      }
+      // tabBarOptions: {
+      //   activeTintColor: BaseColor.light,
+      //   labelStyle: {
+      //     fontSize: 14,
+      //   }
+      // }
     })
   },
-})
+},{
+  navigationOptions:({navigation})=>({
+    
+    tabBarOptions : {
+      activeTintColor: BaseColor.light,
+      inactiveTintColor:'#69f0ae',
+      style: {
+        backgroundColor: BaseColor.base,
+      borderTopColor:BaseColor.light,
+borderTopWidth:2,
+      },
+      showLabel: false,
+
+    }
+  })
+});
+
+
+
+
 
 
 
@@ -143,12 +184,13 @@ const AppStacknavigator = createStackNavigator({
       headerLeft:(
 <View style={{borderWidth:1, width:40,height:40,backgroundColor:'#f4f4f4',borderRadius:40, marginLeft:10,}}></View>
       ),
-      title:'IDentifyng',
+      
       headerTitleStyle:{
         alignSelf:'center',
+        color:BaseColor.base,
         textAlign: 'center',
         justifyContent:'center',
-        fontFamily: "Roboto",
+        fontFamily: "Ubuntu-Regular",
         width: '90%',
         },
       headerRight:(

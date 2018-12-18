@@ -45,7 +45,6 @@ class WelcomeScreen extends Component {
                     width:'100%',
                     justifyContent:'center',
                     backgroundColor: 'transparent',
-                
                 }}>
                     <StatusBar
                         backgroundColor={BaseColor.base}
@@ -77,7 +76,7 @@ class WelcomeScreen extends Component {
                             floatingLabel>
                             
                                 <Label style={welcome.InputLabel}><Icon name="envelope" size={18} /> id@app.com</Label>
-                                <Input
+                                <Input keyboardType="email-address"
                                     onChangeText={(newText) => this.setState({ email: newText })}
                                     style={welcome.InputField} />
                             </Item>
