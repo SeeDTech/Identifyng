@@ -24,6 +24,7 @@ alert('OTP cannot be empty');
 }else{
   const otp = firstField+secondField+thirdField+fourthField;
   alert('OTP '+otp+' was entered correctly');
+  this.props.navigation.navigate('Registration');
 }
 }
   render() {

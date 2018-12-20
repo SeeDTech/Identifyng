@@ -3,50 +3,65 @@ import React, { Component } from 'react';
 import Icon from '../Icons/Ionicon'
 import {ArrowRight} from '../Icons/SvgIcons/Icons'
 import { styles, buttons } from './styles';
-
+import {Button} from 'native-base';
+//import {Button} from 'native-base';
 
 export const TransparentButton = (props) => {
     handleOnPress = (e) => {
         props.onPress()
     }
-    const { title } = props;
+    const { title,btnStyle,txtStyle } = props;
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={handleOnPress} style={buttons.transparent}
+        <Button bordered onPress ={handleOnPress} style={[buttons.transparent,btnStyle]}>
+        <Text style={[buttons.greenText,txtStyle]}>{title}</Text>
+        </Button>
+            {/* {<TouchableOpacity onPress={handleOnPress} style={buttons.transparent}
             >
                 <Text style={buttons.greenText} >{title}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>} */}
         </View>
     )
 }
-
-export const Button = (props) => {
+export const Btn =(props)=>{
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title,btnStyle } = props;
-    return (
+
+    const { title,btnStyle, txtStyle} = props;
+
+    return(
         <View style={styles.container}>
-            <TouchableOpacity onPress={handleOnPress} style={buttons.primary}
-            >
-                <Text style={buttons.whitetext}>{title}</Text>
-            </TouchableOpacity>
+        <Button onPress={handleOnPress}  success style={[buttons.primary,btnStyle]}>
+        <Text style={[buttons.whitetext,txtStyle]}>{title}</Text>
+        </Button>
         </View>
     )
 }
+// export const Button = (props) => {
+//     handleOnPress = (e) => {
+//         props.onPress();
+//     }
+//     const { title,btnStyle } = props;
+//     return (
+//         <View style={styles.container}>
+//             <TouchableOpacity onPress={handleOnPress} style={buttons.primary}
+//             >
+//                 <Text style={buttons.whitetext}>{title}</Text>
+//             </TouchableOpacity>
+//         </View>
+//     )
+// }
 
 export const ButtonInverse = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title,btnStyle } = props;
+    const { title,btnStyle,txtStyle } = props;
     return (
-        <View key={title} style={[styles.container, btnStyle]}>
-            <TouchableOpacity onPress={handleOnPress} style={buttons.secondary}
-            >
-                <Text style={buttons.greenText}>{title}</Text>
-            </TouchableOpacity>
-        </View>
+        <Button primary onPress={handleOnPress} style={[buttons.secondary,btnStyle]}>
+            <Text style={[buttons.greenText,txtStyle]}>{title}</Text>
+        </Button>
     )
 }
 
@@ -55,13 +70,10 @@ export const ButtonNoBorder = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title, txtStyle } = props;
+    const { title, txtStyle,btnStyle } = props;
     return (
         <View style={styles.container}>
-            <TouchableOpacity  onPress={handleOnPress} style={buttons.noBorder}
-            >
-                <Text style={[buttons.greenText,txtStyle]}>{title}</Text>
-            </TouchableOpacity>
+            <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder,btnStyle]} ><Text style={[buttons.greenText,txtStyle]} >{title}</Text></Button>
         </View>
     )
 }
@@ -70,13 +82,16 @@ export const ButtonNoBorderInverse = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title } = props;
+    const { title,txtStyle,btnStyle } = props;
     return (
         <View style={styles.container}>
-            <TouchableOpacity  onPress={handleOnPress} style={buttons.noBorder}
+         <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder,btnStyle]}>
+         <Text style={[buttons.whitetext,txtStyle ]}></Text>
+         </Button>
+            {/* <TouchableOpacity  onPress={handleOnPress} style={buttons.noBorder}
             >
                 <Text style={buttons.whitetext}>{title}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     )
 }

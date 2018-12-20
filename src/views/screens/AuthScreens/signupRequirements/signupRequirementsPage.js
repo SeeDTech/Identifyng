@@ -1,20 +1,17 @@
 
 import React, { Component } from 'react'
 import { Text, View, StatusBar, ImageBackground } from 'react-native'
-import mainStyle from '../../../../styles/mainStyle';
 import requirement from './styles'
 import { Container, Content, Item, Right } from 'native-base'
 import Steps from './Steps'
-import { NextButton, ButtonNoBorder, Button, ButtonInverse } from '../../../../components/buttons/Butons'
+import { NextButton, ButtonNoBorder, Btn, ButtonInverse } from '../../../../components/buttons/Butons'
 import Logo, { MainIdLogoGreen } from '../../../../components/logo/Logo'
 import { TextWithLetterSpacing } from '../../../../components/TextWithLetterSpacing'
 import PropTypes from 'prop-types'
 import { BaseColor } from '../../../../styles/theme/color';
 
 export class SignupRequirementsPage extends Component {
-  static propTypes = {
-
-  }
+ 
   render() {
     return (
       <ImageBackground style={{ resizeMode: 'cover', width: '100%', height: '100%' }} source={require('../../../../components/logo/images/whiteIdBackground.png')}>
@@ -52,7 +49,7 @@ export class SignupRequirementsPage extends Component {
             </View>
           </View>
         <View>
-          <Button onPress={()=>this.props.navigation.navigate('PhoneNumber')} title="GET STARTED" />
+          <Btn onPress={()=>this.props.navigation.navigate('PhoneNumber')} title="GET STARTED" />
         </View>
           <View style={{ justifyContent:"flex-end", marginLeft:250}}>
             <ButtonNoBorder onPress={()=>this.props.navigation.navigate('Welcome')} title="SIGN IN" txtStyle={{fontSize:15}} />

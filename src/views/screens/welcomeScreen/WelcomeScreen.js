@@ -6,7 +6,7 @@ import {
     StatusBar
 } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
-import { TransparentButton, ButtonInverse, Button,ButtonNoBorderInverse, ButtonNoBorder } from '../../../components/buttons/Butons'
+import { TransparentButton, ButtonInverse, Button,ButtonNoBorderInverse, ButtonNoBorder, Btn } from '../../../components/buttons/Butons'
 import Logo, { MainLogoWhite, MainIdLogoGreen } from '../../../components/logo/Logo'
 import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing'
 import welcome from './styles'
@@ -93,7 +93,8 @@ class WelcomeScreen extends Component {
                             
                                 <TextWithLetterSpacing textStyle={welcome.forgotPassword} spacing={1}>FORGOT PASSWORD?</TextWithLetterSpacing>
                                 <View style={{marginTop:25}}>
-                                <Button onPress={() => this.onSubmitForm()} title="LOGIN" />
+                                <Btn onPress={() => this.onSubmitForm()} title="SIGN IN"/>
+                                {/* <Button onPress={() => this.onSubmitForm()} title="LOGIN" /> */}
                                 <Text style={welcome.askForSignup}>DON'T HAVE ACCOUNT?</Text>
                                 <ButtonNoBorder onPress={() => this.props.navigation.navigate('Requirement')}  title='SIGN UP' />
                                 </View>

@@ -40,6 +40,7 @@ class SlidingScreen extends Component {
           <MainIdLogoGreen/>
       </View>
       <View style={slides.buttonSection}>
+      
           <ButtonInverse onPress={()=>{this.props.navigation.navigate('Welcome')}}  title="CHECK IN"/>
       </View>
       </Container>

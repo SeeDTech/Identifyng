@@ -3,7 +3,8 @@ import {BaseColor} from '../../styles/theme/color'
 
   
  const styles = StyleSheet.create({   
-   container: {                       
+   container: {  
+     justifyContent:'center',                     
     alignItems:"center",
     alignContent:"center",
      flexWrap: 'wrap'
@@ -15,16 +16,24 @@ import {BaseColor} from '../../styles/theme/color'
     width: 250,
     margin:10,
     height:55,
-    backgroundColor:BaseColor.base,
+    backgroundColor:BaseColor.dark,
     justifyContent:'center',
     textAlign:'center',
     marginBottom:20,
-
     borderRadius:8,
     borderWidth:1,
     borderColor: BaseColor.dark,
     
    },
+   inverse:{
+    flexWrap: 'wrap',
+    alignItems:'center',textAlign:'center', alignContent:"center",justifyContent:'center', backgroundColor:BaseColor.light,borderRadius:10,width:200
+   },
+   inverseText:{
+    flex:1,textAlign:'center', justifyContent:'center', fontFamily:'Ubuntu-Regular',alignSelf:'center', color:BaseColor.dark,fontSize:20,alignItems:"center"
+   },
+   main:{alignItems:'center',textAlign:'center', alignContent:"center",justifyContent:'center', backgroundColor:BaseColor.dark,borderRadius:10,width:200},
+   mainButtonText:{flex:1,textAlign:'center', justifyContent:'center', fontFamily:'Ubuntu-Regular',alignSelf:'center', color:BaseColor.light,fontSize:20,alignItems:"center"},
    secondary: {                         
     width: 250,
     margin:10,
@@ -33,10 +42,9 @@ import {BaseColor} from '../../styles/theme/color'
     justifyContent:'center',
     textAlign:'center',
     marginBottom:20,
-
     borderRadius:8,
     borderWidth:1,
-    borderColor: BaseColor.dark,
+    borderColor: BaseColor.light,
     
    },
    whitetext:{
@@ -66,14 +74,13 @@ import {BaseColor} from '../../styles/theme/color'
     fontFamily:'HurmeGeometricSans1 Bold',
     alignContent:'center'
 },
+
 noBorder:{
+  justifyContent:'center',
   marginBottom:'3%',
-  margin:5,
-  borderWidth:0,
-  backgroundColor:'transparent',
     width: 250,
     fontSize:20,
-    height:65,
+    height:55,
     color:BaseColor.dark,
 },
 circle:{

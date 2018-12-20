@@ -6,18 +6,19 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import { createSwitchNavigator,
+import React, { Component } from 'react';
+import {
+  createSwitchNavigator,
   createStackNavigator,
-   createDrawerNavigator,
-   createBottomTabNavigator,
-  } from 'react-navigation';
+  createDrawerNavigator,
+  createBottomTabNavigator,
+} from 'react-navigation';
 import SignupRequirementsPage from './src/views/screens/AuthScreens/signupRequirements/SignupRequirementsPage'
 import WelcomeScreen from './src/views/screens/welcomeScreen/WelcomeScreen'
 import PhoneNumber from './src/views/screens/AuthScreens/PhoneNumber/PhoneNumber'
 import Bvn from './src/views/screens/AuthScreens/BVN/Bvn'
 import OtpPage from './src/views/screens/AuthScreens/OTP/OtpPage';
-import { TouchableOpacity,Text,View } from 'react-native'
+import { TouchableOpacity, Text, View } from 'react-native'
 import SlidingScreen from './src/views/screens/Sliders/SlidingScreen';
 import Dashboard from './src/views/screens/Dashboard/Dashboard';
 import Search from './src/views/screens/Search/Search';
@@ -26,47 +27,48 @@ import Ionicon from './src/components/Icons/Ionicon';
 import SettingsScreen from './src/views/screens/Settings/SettingsScreen';
 import AuthLoading from './src/views/screens/AuthLoading';
 import { BaseColor } from './src/styles/theme/color';
+import AccountGeneration from './src/views/screens/AuthScreens/AccountGeneration/AccountGeneration';
 
 
 const AuthStackNavigator = createStackNavigator({
-  SlideScreen:{
-    screen:SlidingScreen,
-    navigationOptions:{
-      header:null
+  SlideScreen: {
+    screen: SlidingScreen,
+    navigationOptions: {
+      header: null
     }
   },
-  Welcome:{
-   screen:WelcomeScreen,
-   navigationOptions:{
-     header:null
-   }
+  Welcome: {
+    screen: WelcomeScreen,
+    navigationOptions: {
+      header: null
+    }
   },
-  Requirement:{
+  Requirement: {
     screen: SignupRequirementsPage,
-    navigationOptions:{
-      
-    headerTransparent:{},
-       } 
-      },
-    PhoneNumber:{
-      screen:PhoneNumber,
-      navigationOptions:{
-      
-        headerTransparent:{},
-           }
+    navigationOptions: {
+
+      headerTransparent: {},
+    }
+  },
+  PhoneNumber: {
+    screen: PhoneNumber,
+    navigationOptions: {
+
+      headerTransparent: {},
+    }
+  },
+  BVN: {
+    screen: Bvn,
+    navigationOptions: {
+
+      headerTransparent: {},
+
     },
-    BVN:{
-      screen:Bvn,
-      navigationOptions:{
-       
-        headerTransparent:{},
-      
-       },
-    },
-    OTP:{
-      screen:OtpPage,
-      navigationOptions:{
-        headerTransparent:{},
+  },
+  OTP: {
+    screen: OtpPage,
+    navigationOptions: {
+      headerTransparent: {},
       //  headerStyle:{
       //   backgroundColor:'#fff',
       //  },
@@ -81,19 +83,25 @@ const AuthStackNavigator = createStackNavigator({
       //   fontWeight: 'bold',
       //   textAlignVertical: 'center'
       //   }
-      },
-           }
-    
+    },
+  },
+  Registration: {
+    screen: AccountGeneration,
+    navigationOptions: {
+      headerTransparent: {},
+    }
+  }
 
-  
+
+
 });
 
 const AppTabNavigator = createBottomTabNavigator({
-  
-  Dashboard:{
-    screen:Dashboard,
-    navigationOptions:({navigation})=>({
-      title:'Home',
+
+  Dashboard: {
+    screen: Dashboard,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Home',
       tabBarIcon: ({ tintColor }) => (
         <Ionicon name="home" size={27} color={tintColor} />
       ),
@@ -105,12 +113,12 @@ const AppTabNavigator = createBottomTabNavigator({
       // }
     })
   },
-  Settings:{
-    screen:SettingsScreen,
-    navigationOptions:({navigation})=>({
-      title:'Settings',
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Settings',
       tabBarIcon: ({ tintColor }) => (
-        <Ionicon name="settings" color={tintColor} size={27} c/>
+        <Ionicon name="settings" color={tintColor} size={27} c />
       ),
       // tabBarOptions: {
       //   activeTintColor: BaseColor.light,
@@ -118,13 +126,13 @@ const AppTabNavigator = createBottomTabNavigator({
       //     fontSize: 14,
       //   }
       // }
-      
+
     })
   },
-  Search:{
-    screen:Search,
-    navigationOptions:({navigation})=>({
-      title:'Search',
+  Search: {
+    screen: Search,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Search',
       tabBarIcon: ({ tintColor }) => (
         <Ionicon name="search" color={tintColor} size={27} />
 
@@ -137,12 +145,12 @@ const AppTabNavigator = createBottomTabNavigator({
       // }
     })
   },
-  ID:{
-    screen:MyCards,
-    navigationOptions:({navigation})=>({
-      title:'My Cards',
+  ID: {
+    screen: MyCards,
+    navigationOptions: ({ navigation }) => ({
+      title: 'My Cards',
       tabBarIcon: ({ tintColor }) => (
-        <Ionicon name="card" color={tintColor} size={27}/>
+        <Ionicon name="card" color={tintColor} size={27} />
       ),
       // tabBarOptions: {
       //   activeTintColor: BaseColor.light,
@@ -152,21 +160,21 @@ const AppTabNavigator = createBottomTabNavigator({
       // }
     })
   },
-},{
-  navigationOptions:({navigation})=>({
-    tabBarOptions : {
-      activeTintColor: BaseColor.light,
-      inactiveTintColor:'#69f0ae',
-      style: {
-        backgroundColor: BaseColor.base,
-      borderTopColor:BaseColor.light,
-borderTopWidth:2,
-      },
-      showLabel: false,
+}, {
+    navigationOptions: ({ navigation }) => ({
+      tabBarOptions: {
+        activeTintColor: BaseColor.light,
+        inactiveTintColor: '#69f0ae',
+        style: {
+          backgroundColor: BaseColor.base,
+          borderTopColor: BaseColor.light,
+          borderTopWidth: 2,
+        },
+        showLabel: false,
 
-    }
-  })
-});
+      }
+    })
+  });
 
 
 
@@ -176,28 +184,28 @@ borderTopWidth:2,
 
 const AppStacknavigator = createStackNavigator({
 
-  AppTabNavigator:{
-    screen:AppTabNavigator,
+  AppTabNavigator: {
+    screen: AppTabNavigator,
 
-    navigationOptions:({navigation})=>({
+    navigationOptions: ({ navigation }) => ({
       tabBarLabel: 'Browse',
-      headerLeft:(
-<View style={{borderWidth:1, width:40,height:40,backgroundColor:'#f4f4f4',borderRadius:40, marginLeft:10,}}></View>
+      headerLeft: (
+        <View style={{ borderWidth: 1, width: 40, height: 40, backgroundColor: '#f4f4f4', borderRadius: 40, marginLeft: 10, }}></View>
       ),
-      
-      headerTitleStyle:{
-        alignSelf:'center',
-        color:BaseColor.base,
+
+      headerTitleStyle: {
+        alignSelf: 'center',
+        color: BaseColor.base,
         textAlign: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
         fontFamily: "Ubuntu-Regular",
         width: '90%',
-        },
-      headerRight:(
-        <TouchableOpacity onPress={()=>navigation.toggleDrawer()} >
-        <View style={{paddingHorizontal:10, color:BaseColor.grey}}>
-        <Ionicon name="menu" size={27} />
-        </View>
+      },
+      headerRight: (
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+          <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
+            <Ionicon name="menu" size={27} />
+          </View>
         </TouchableOpacity>
       )
     })
@@ -205,10 +213,10 @@ const AppStacknavigator = createStackNavigator({
 })
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Home:AppStacknavigator
+  Home: AppStacknavigator
 })
 export default createSwitchNavigator({
-  AuthLoading:AuthLoading,
-  Auth:AuthStackNavigator,
-  App:AppDrawerNavigator
+  AuthLoading: AuthLoading,
+  Auth: AuthStackNavigator,
+  App: AppDrawerNavigator
 })
