@@ -88,12 +88,14 @@ class AccountGeneration extends Component {
         maxDate="2019-06-01"
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
-        showIcon={false}
+        showIcon={true}
         customStyles={{
           dateIcon: {
+            height:20,
+            width:16,
             position: 'absolute',
-            left: 130,
-            top: 4,
+            left: 110,
+            top: 15,
             marginLeft: 0
           },
           placeholderText: {

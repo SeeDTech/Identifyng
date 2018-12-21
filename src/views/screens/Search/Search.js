@@ -6,6 +6,9 @@ export default class Search extends Component {
   render() {
     return (
       <Container>
+        <StatusBar
+                        backgroundColor={BaseColor.base}
+                        barStyle="light-content" />
         <Header searchBar rounded style={{backgroundColor:BaseColor.base}}>
           <Item>
             <Icon name="ios-search" />
@@ -16,9 +19,6 @@ export default class Search extends Component {
             <Text>Search</Text>
           </Button>
         </Header>
-        <StatusBar
-                        backgroundColor={BaseColor.base}
-                        barStyle="light-content" />
       </Container>
     );
   }
