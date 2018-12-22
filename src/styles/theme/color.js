@@ -3,5 +3,6 @@ export const BaseColor = {
     light: '#ffffff',
     base:'#119075',
     grey:'#656565',
+    red:'#e53935',
 };
  

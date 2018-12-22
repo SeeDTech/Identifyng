@@ -65,6 +65,17 @@ InputField:{marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-
     btnStyle:{
         marginTop:30,
     },
+    errorMessage:{
+    fontSize:15,
+    fontFamily:'Ubuntu-Regular',
+    color:BaseColor.red,
+    },
+
+    SuccessMessage:{
+        fontSize:15,
+        fontFamily:'HurmeGeometricSans1',
+        color:BaseColor.base,
+        },
     forgotPassword:{
         marginTop:15,
         textAlign:'center',
