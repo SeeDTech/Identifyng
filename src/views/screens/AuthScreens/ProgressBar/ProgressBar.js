@@ -1,31 +1,75 @@
 import React, { Component } from 'react'
-import { Text, View,Image } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import { BaseColor } from '../../../../styles/theme/color';
+import bar from './styles';
+
 
 export class ProgressBar extends Component {
+    constructor(props) {
+        super(props)
 
+    }
+
+    state = {
+        active: {
+            borderColor: BaseColor.dark,
+        }
+    }
     render() {
-        const renderCheckStep =(
-            <View  style={{alignItems:'center', width:20, height:20, borderRadius:20, borderWidth:1, borderColor:BaseColor.dark,backgroundColor:'transparent',justifyContent:'center'}}>
-                <Image source={require('../../../../components/logo/images/check-step.png')} style={{width:20,height:20}} /> 
-            {/* <Text style={{fontSize:12, fontFamily:'Ubuntu-Regular',color:BaseColor.grey}} >1</Text> */}
+        const checkStep = require('../../../../components/logo/images/check-step.png');
+        const { active } = this.state;
+        const {checkPhone,
+            activeBvn,
+        } = this.props;
+
+
+        const RenderCheckStepOne = ({ checked }) => {
+            return (
+                <View style={[bar.cirle, active]}>
+                    {checked ? <Image source={checkStep} style={{ width: 20, height: 20 }} /> : <Text style={bar.text} >1</Text>}
+                </View>
+            )
+        }
+        const RenderCheckStepTwo = () => {
+            return (
+                <View style={bar.cirle}>
+                    {/* <Image source={checkStep} style={{ width: 20, height: 20 }} /> */}
+                    <Text style={bar.text} >2</Text>
+                </View>
+            )
+        }
+        const RenderCheckStepThree = () => {
+            return (
+                <View style={bar.cirle}>
+                    {/* <Image source={checkStep} style={{ width: 20, height: 20 }} /> */}
+                    <Text style={bar.text} >3</Text>
+                </View>
+            )
+        }
+        const RenderCheckStepFour = () => {
+            return (
+                <View style={bar.cirle}>
+                    {/* <Image source={checkStep} style={{ width: 20, height: 20 }} /> */}
+                    <Text style={bar.text} >4</Text>
+                </View>
+            )
+        }
+        const RenderProgressLine = () => {
+
+            return <View style={bar.line} />
+        }
+        return (
+            <View style={bar.container}>
+                <RenderCheckStepOne activeBvn={activeBvn} checked={checkPhone} />
+                <RenderProgressLine />
+                <RenderCheckStepTwo />
+                <RenderProgressLine />
+                <RenderCheckStepThree />
+                <RenderProgressLine />
+                <RenderCheckStepFour />
             </View>
         )
-        const renderProgressLine =(
-            <View style={{justifyContent:'center', borderTopWidth:1,marginTop:10, width:25,borderTopColor:BaseColor.grey}}/>
-        )
-    return (
-      <View style={{flex:1,flexDirection:"row", justifyContent:'center',}}>
-       {renderCheckStep}
-       {renderProgressLine}
-       {renderCheckStep}
-       {renderProgressLine}
-       {renderCheckStep}
-       {renderProgressLine}
-       {renderCheckStep}
-      </View>
-    )
-  }
+    }
 }
 
 export default ProgressBar

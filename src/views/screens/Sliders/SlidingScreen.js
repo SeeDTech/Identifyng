@@ -7,6 +7,7 @@ import {Container, Content} from 'native-base'
 import { BaseColor } from '../../../styles/theme/color';
 import slides from './styles';
 import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing';
+import AnimLogo from '../../../components/buttons/AnimatedLogo';
 
 class SlidingScreen extends Component {
   render() {
@@ -38,6 +39,8 @@ class SlidingScreen extends Component {
       <View style={slides.logoSection}>
           <Text style={slides.logoText}>Welcome to</Text>
           <MainIdLogoGreen/>
+         {/* <AnimLogo color="#daa520"/> */}
+
       </View>
       <View style={slides.buttonSection}>
       

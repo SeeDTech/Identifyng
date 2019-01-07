@@ -5,12 +5,11 @@ import {
     ImageBackground,
     StatusBar
 } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
-import { TransparentButton, ButtonInverse, Button, ButtonNoBorderInverse, ButtonNoBorder, Btn } from '../../../components/buttons/Butons'
-import Logo, { MainLogoWhite, MainIdLogoGreen } from '../../../components/logo/Logo'
+import { Container,Content, Form, Item, Input, Label } from 'native-base';
+import {ButtonNoBorder, Btn } from '../../../components/buttons/Butons'
+import Logo, { MainIdLogoGreen } from '../../../components/logo/Logo'
 import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing'
 import welcome from './styles'
-import SplashScreen from 'react-native-splash-screen'
 import { AsyncStorage } from 'react-native'
 import { BaseColor } from '../../../styles/theme/color';
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -19,6 +18,7 @@ class WelcomeScreen extends Component {
 
 
     state = {
+        error:false,
         password: null,
         email: null,
     }
@@ -27,15 +27,17 @@ class WelcomeScreen extends Component {
     onSubmitForm = () => {
         const { email, password } = this.state;
         if (!email || !password) {
-            alert("all input fields are required");
+           this.setState({error:true})
         } else {
+            this.setState({error:false})
             AsyncStorage.setItem('userToken', email + password)
             this.props.navigation.navigate('App');
         }
 
     }
     render() {
-        const renderErrorMessage = erromessage => erromessage && <Text style={welcome.errorMessage}><Icon name='info-circle' style={{marginRight:5}} size={15}/> {erromessage}</Text>
+        const {error} = this.state;
+        const renderErrorMessage = erromessage => (erromessage && error) && <Text style={welcome.errorMessage}><Icon name='info-circle' style={{marginRight:5}} size={15}/> {erromessage}</Text>
         return (
             <ImageBackground style={{ resizeMode: 'cover', width: '100%', height: '100%' }} source={require('../../../components/logo/images/whiteIdBackground.png')}>
                 <Container style={{
@@ -61,7 +63,7 @@ class WelcomeScreen extends Component {
                             }}
                         >
 
-                            {renderErrorMessage("Error message")}
+                            {renderErrorMessage("Invalid Email or Password")}
                             <Form style={{
                                 width: '95%',
                                 flex: 0,
@@ -70,19 +72,25 @@ class WelcomeScreen extends Component {
                                 alignItems: 'center',
                                 justifyContent: 'center'
                             }}>
+                                   <Icon key={'email'} name="envelope" size={18} style={welcome.emailInputIcon} />
+                                                                                                      
                                 <Item
                                     style={welcome.itemSection}
                                     floatingLabel>
 
-                                    <Label style={welcome.InputLabel}><Icon name="envelope" size={18} /> id@app.com</Label>
+                                  
+                                   <Label style={welcome.InputLabel}> id@app.com</Label>
+                            
                                     <Input keyboardType="email-address"
                                         onChangeText={(newText) => this.setState({ email: newText })}
-                                        style={welcome.InputField} />
+                                        style={welcome.InputField} >
+                                  </Input>
                                 </Item>
+                                <Icon key={'password'} style={welcome.passwordInputIcon} name="unlock-alt" size={18} /> 
                                 <Item
                                     style={{ marginEnd: 10, borderBottomColor: BaseColor.dark }}
                                     floatingLabel>
-                                    <Label style={welcome.InputLabel}><Icon name="unlock-alt" size={18} />  Password</Label>
+                                    <Label style={welcome.InputLabel}> Password</Label>
                                     <Input
                                         secureTextEntry={true}
                                         onChangeText={(newText) => this.setState({ password: newText })}

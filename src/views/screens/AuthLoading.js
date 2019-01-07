@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Spinner} from 'native-base'
 import { Text, View, ActivityIndicator,AsyncStorage } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
+import AnimLogo from '../../components/buttons/AnimatedLogo';
+import { BaseColor } from '../../styles/theme/color';
 export class AuthLoading extends Component {
 
 
@@ -17,8 +19,8 @@ export class AuthLoading extends Component {
     
   render() {
     return (
-      <View style={{flex:1, justifyContent:'space-between',alignContent:'center'}}>
-          <Spinner color="green" />
+      <View style={{flex:1,alignItems:"center", justifyContent:'center',backgroundColor:BaseColor.dark,alignContent:'center'}}>
+         <AnimLogo/>
       </View>
     )
   }

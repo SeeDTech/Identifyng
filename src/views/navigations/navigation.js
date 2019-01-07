@@ -65,20 +65,6 @@ const AuthStackNavigator = createStackNavigator({
         screen: OtpPage,
         navigationOptions: {
             headerTransparent: {},
-            //  headerStyle:{
-            //   backgroundColor:'#fff',
-            //  },
-            // title:'IDentifyng',
-            // headerTitleStyle: {
-            //   alignSelf: 'center',
-            //   textAlign: "center",
-            //   marginRight:70,
-            //   justifyContent: 'center',
-            //   flex: 1,
-            //   color:'#097a34',
-            //   fontWeight: 'bold',
-            //   textAlignVertical: 'center'
-            //   }
         },
     },
     Registration: {
@@ -148,12 +134,7 @@ const AppTabNavigator = createBottomTabNavigator({
             tabBarIcon: ({ tintColor }) => (
                 <Ionicon name="card" color={tintColor} size={27} />
             ),
-            // tabBarOptions: {
-            //   activeTintColor: BaseColor.light,
-            //   labelStyle: {
-            //     fontSize: 14,
-            //   }
-            // }
+
         })
     },
 }, {
@@ -174,23 +155,21 @@ const AppTabNavigator = createBottomTabNavigator({
         })
     });
 
-
-
-
-
-
-
 const AppStacknavigator = createStackNavigator({
 
     AppTabNavigator: {
         screen: AppTabNavigator,
 
         navigationOptions: ({ navigation }) => ({
-            
+            title: 'Dashboard',
             tabBarLabel: 'Browse',
-            headerRight: (
-                <View style={{ borderWidth: 1, width: 40, height: 40, backgroundColor: '#f4f4f4', borderRadius: 40, margin: 10, }}></View>
-            ),
+            // headerRight: (
+            //     <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+            //         <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
+            //             <Ionicon name="menu" size={27} />
+            //         </View>
+            //     </TouchableOpacity>
+            // ),
 
             headerTitleStyle: {
                 alignSelf: 'center',
@@ -198,37 +177,41 @@ const AppStacknavigator = createStackNavigator({
                 textAlign: 'center',
                 justifyContent: 'center',
                 fontFamily: "Ubuntu-Regular",
-                width: '90%',
+                
             },
             headerLeft: (
-                <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
-                    <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
-                        <Ionicon name="menu" size={27} />
-                    </View>
+                <TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
+                    <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}></View>
                 </TouchableOpacity>
+
+                // <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+                //     <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
+                //         <Ionicon name="menu" size={27} />
+                //     </View>
+                // </TouchableOpacity>
             )
         })
     }
 })
 
 const AppDrawerNavigator = createDrawerNavigator({
-    Home:{
-        screen :AppStacknavigator,
+    Home: {
+        screen: AppStacknavigator,
         navigationOptions: ({ navigation }) => ({
-            
-            drawerIcon:(
-                <Ionicon name='home' size={20} style={{ color: BaseColor.dark}} />
+
+            drawerIcon: (
+                <Ionicon name='home' size={20} style={{ color: BaseColor.dark }} />
             ),
         })
     }
 
 }, {
-    contentOptions: {
-        labelStyle: {
-          fontFamily: 'HurmeGeometricSans1',
-          color: BaseColor.dark,
+        contentOptions: {
+            labelStyle: {
+                fontFamily: 'HurmeGeometricSans1',
+                color: BaseColor.dark,
+            },
         },
-      },
         drawerBackgroundColor: BaseColor.dark,
         contentComponent: Drawer,
     });

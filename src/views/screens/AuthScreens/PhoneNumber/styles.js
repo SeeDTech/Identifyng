@@ -8,7 +8,11 @@ const phonenumber = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'transparent',
     },
-
+    errorMessage:{
+        fontSize:15,
+        fontFamily:'Ubuntu-Regular',
+        color:BaseColor.red,
+        },
     logoSection: {
         marginTop: 30,
         alignItems: "center",
@@ -51,18 +55,26 @@ const phonenumber = StyleSheet.create({
         alignContent: "center",
     },
     label: {
+        marginStart:30,
         color: BaseColor.grey,
         fontFamily: 'Ubuntu-Regular'
     },
     itemInput: {
+        marginStart:20,
         padding: 10,
         marginTop: 4,
         borderBottomColor: BaseColor.dark,
         fontFamily: "Ubuntu-Regular",
         color: BaseColor.base,
     },
+    inputIcon:{
+        position:"absolute",
+        top:90,
+        color:BaseColor.dark, 
+        left:20
+    },
     btnSection: {
-        flex: 1, marginTop: '50%',
+        flex: 1, marginTop: '48%',
         alignSelf: "center",
     },
     btn: {

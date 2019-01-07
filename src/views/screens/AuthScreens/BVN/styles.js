@@ -25,7 +25,17 @@ const bvn = StyleSheet.create({
         marginTop: 40, width: '90%',
         alignContent: "center"
     },
+    input:{
+        padding:10,marginTop:4,
+         borderBottomColor: BaseColor.dark, 
+        fontFamily: "Ubuntu-Regular",marginStart:40,
+         color: BaseColor.base
+    },
+    inputIcon:{
+        position:"absolute",top:115,width:35,height:15, left:20
+    },
     label: {
+        marginStart:50,
         color: BaseColor.grey,
         fontFamily: 'Ubuntu-Regular'
     },

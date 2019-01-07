@@ -31,9 +31,10 @@ export class Bvn extends Component {
              Number</Text>
              
           </View>
+          <Image source={require('../../../../components/logo/images/bvn.png')} style={bvn.inputIcon} />
             <Item floatingLabel style={bvn.item}>
-              <Label style={bvn.label}><Image style={{width:35,height:15}} source={require('../../../../components/logo/images/bvn.png')} /> BVN</Label>
-              <Input keyboardType='numeric' maxLength={11} onChangeText={(newText) => this.setState({ bvn: newText })} style={{padding:10,marginTop:4, borderBottomColor: BaseColor.dark, fontFamily: "Ubuntu-Regular", color: BaseColor.base}} />
+              <Label style={bvn.label}>BVN</Label>
+              <Input keyboardType='numeric' maxLength={11} onChangeText={(newText) => this.setState({ bvn: newText })} style={bvn.input} />
             </Item>
             <View style={bvn.buttonSection}>
             <Button style={bvn.button} onPress={()=>this.props.navigation.navigate('OTP')} bordered>
