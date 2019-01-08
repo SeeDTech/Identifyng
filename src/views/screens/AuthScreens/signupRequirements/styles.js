@@ -43,7 +43,7 @@ const requirement = StyleSheet.create({
         fontWeight: 'normal'
     },
     logoSection: {
-        marginTop:20,
+        marginTop:40,
         alignItems: "center"
     },
     card:{
@@ -52,6 +52,7 @@ const requirement = StyleSheet.create({
         borderWidth:2,
         borderColor: '#f1f1f1',
         width:240,
+        marginTop:20,
         backgroundColor:'#fff',
         paddingTop:30,
         paddingLeft:10,

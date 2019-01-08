@@ -9,7 +9,10 @@ const phonenumber = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     errorMessage:{
-        fontSize:15,
+        
+        alignItems:'center',
+        textAlign:'center',
+        fontSize:12,
         fontFamily:'Ubuntu-Regular',
         color:BaseColor.red,
         },

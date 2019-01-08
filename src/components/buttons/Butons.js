@@ -1,21 +1,21 @@
 import { TouchableOpacity, Platform, View, Text, StyleSheet } from 'react-native'
 import React, { Component } from 'react';
 import Icon from '../Icons/Ionicon'
-import {ArrowRight} from '../Icons/SvgIcons/Icons'
+import { ArrowRight } from '../Icons/SvgIcons/Icons'
 import { styles, buttons } from './styles';
-import {Button} from 'native-base';
+import { Button } from 'native-base';
 //import {Button} from 'native-base';
 
 export const TransparentButton = (props) => {
     handleOnPress = (e) => {
         props.onPress()
     }
-    const { title,btnStyle,txtStyle } = props;
+    const { title, btnStyle, txtStyle } = props;
     return (
         <View style={styles.container}>
-        <Button bordered onPress ={handleOnPress} style={[buttons.transparent,btnStyle]}>
-        <Text style={[buttons.greenText,txtStyle]}>{title}</Text>
-        </Button>
+            <Button bordered onPress={handleOnPress} style={[buttons.transparent, btnStyle]}>
+                <Text style={[buttons.greenText, txtStyle]}>{title}</Text>
+            </Button>
             {/* {<TouchableOpacity onPress={handleOnPress} style={buttons.transparent}
             >
                 <Text style={buttons.greenText} >{title}</Text>
@@ -23,18 +23,18 @@ export const TransparentButton = (props) => {
         </View>
     )
 }
-export const Btn =(props)=>{
+export const Btn = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
 
-    const { title,btnStyle, txtStyle} = props;
+    const { title, btnStyle, txtStyle } = props;
 
-    return(
+    return (
         <View style={styles.container}>
-        <Button onPress={handleOnPress}  success style={[buttons.primary,btnStyle]}>
-        <Text style={[buttons.whitetext,txtStyle]}>{title}</Text>
-        </Button>
+            <Button onPress={handleOnPress} success style={[buttons.primary, btnStyle]}>
+                <Text style={[buttons.whitetext, txtStyle]}>{title}</Text>
+            </Button>
         </View>
     )
 }
@@ -57,10 +57,10 @@ export const ButtonInverse = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title,btnStyle,txtStyle } = props;
+    const { title, btnStyle, txtStyle } = props;
     return (
-        <Button primary onPress={handleOnPress} style={[buttons.secondary,btnStyle]}>
-            <Text style={[buttons.greenText,txtStyle]}>{title}</Text>
+        <Button primary onPress={handleOnPress} style={[buttons.secondary, btnStyle]}>
+            <Text style={[buttons.greenText, txtStyle]}>{title}</Text>
         </Button>
     )
 }
@@ -70,10 +70,10 @@ export const ButtonNoBorder = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title, txtStyle,btnStyle } = props;
+    const { title, txtStyle, btnStyle } = props;
     return (
         <View style={styles.container}>
-            <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder,btnStyle]} ><Text style={[buttons.greenText,txtStyle]} >{title}</Text></Button>
+            <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder, btnStyle]} ><Text style={[buttons.greenText, txtStyle]} >{title}</Text></Button>
         </View>
     )
 }
@@ -82,12 +82,12 @@ export const ButtonNoBorderInverse = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title,txtStyle,btnStyle } = props;
+    const { title, txtStyle, btnStyle } = props;
     return (
         <View style={styles.container}>
-         <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder,btnStyle]}>
-         <Text style={[buttons.whitetext,txtStyle ]}></Text>
-         </Button>
+            <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder, btnStyle]}>
+                <Text style={[buttons.whitetext, txtStyle]}></Text>
+            </Button>
             {/* <TouchableOpacity  onPress={handleOnPress} style={buttons.noBorder}
             >
                 <Text style={buttons.whitetext}>{title}</Text>
@@ -103,13 +103,11 @@ export const NextButton = (props) => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={handleOnPress} style={buttons.circle}
-            >
-                
-                <View style={{marginTop:14}}>
-                    <ArrowRight/>
-                    </View>
-            </TouchableOpacity>
+            <Button rounded onPress={handleOnPress} style={buttons.circle}>
+                <View style={{marginLeft:'30%'}}>
+                    <ArrowRight />
+                </View>
+            </Button>
         </View>
     )
 }

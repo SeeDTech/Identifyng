@@ -27,7 +27,7 @@ export class SignupRequirementsPage extends Component {
           barStyle="light-content" />
        
           <View style={requirement.logoSection}>
-          <Text style={{position:"absolute", top:30, opacity:.5,  fontFamily:'Ubuntu-Regular', color:BaseColor.grey, fontSize:18}}>
+          <Text style={{position:"absolute", top:-10, opacity:.5,  fontFamily:'Ubuntu-Regular', color:BaseColor.grey, fontSize:18}}>
               Welcome to
           </Text>
             <MainIdLogoGreen />
@@ -49,7 +49,7 @@ export class SignupRequirementsPage extends Component {
             </View>
           </View>
         <View>
-          <Btn onPress={()=>this.props.navigation.navigate('PhoneNumber')} title="GET STARTED" />
+          <Btn onPress={()=>this.props.navigation.navigate('Forms')} title="GET STARTED" />
         </View>
           <View style={{ justifyContent:"flex-end", marginLeft:250}}>
             <ButtonNoBorder onPress={()=>this.props.navigation.navigate('Welcome')} title="SIGN IN" txtStyle={{fontSize:15}} />

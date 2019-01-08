@@ -84,18 +84,18 @@ noBorder:{
     color:BaseColor.dark,
 },
 circle:{
-  transform: [
-        {translateX:130},
-        {translateY:-10}
-     ],
-  width:60,
-  height:60,
-  borderRadius:60,
+  // transform: [
+  //       {translateX:130},
+  //       {translateY:-10}
+  //    ],
+  width:55,
+  height:55,
+  borderRadius:55,
   backgroundColor:BaseColor.dark,
   marginBottom:20,
   alignItems:'center',
-
-
+  alignSelf:'flex-end',
+  marginEnd:'6%',
  }
 })
   

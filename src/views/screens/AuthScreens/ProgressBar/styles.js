@@ -5,7 +5,7 @@ const bar = StyleSheet.create({
     container:{
         flex: 1, 
         flexDirection: "row", 
-        justifyContent: 'center',
+        alignItems: 'center',
     },
     cirle:{
         alignItems: 'center', 
@@ -25,7 +25,7 @@ const bar = StyleSheet.create({
     line:{
         justifyContent: 'center', 
         borderTopWidth: 1, 
-        marginTop: 10, 
+        marginTop: 0, 
         width: 25, 
         borderTopColor: BaseColor.grey,
     }

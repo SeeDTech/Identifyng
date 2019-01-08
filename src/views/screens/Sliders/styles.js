@@ -53,8 +53,8 @@ import { BaseColor } from '../../../styles/theme/color';
             fontSize: 17,
           },
           buttonSection:{alignContent:"center",justifyContent:'center', position:"absolute",top:450, alignSelf:"center", flex:1},
-          logoSection:{position:"absolute", top:20, alignSelf:"center", alignItems:"center"},
-          logoText:{position:"absolute", top:25, opacity:.5,  fontFamily:'Ubuntu-Regular', color:BaseColor.grey, fontSize:18}
+          logoSection:{position:"absolute", top:40, alignSelf:"center", alignItems:"center"},
+          logoText:{position:"absolute", top:-10, opacity:.5,  fontFamily:'Ubuntu-Regular', color:BaseColor.grey, fontSize:18}
     })
 
     export default slides

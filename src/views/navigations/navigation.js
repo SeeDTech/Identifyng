@@ -21,6 +21,7 @@ import { BaseColor } from '../../styles/theme/color';
 import AuthLoading from '../screens/AuthLoading';
 import Dashboard from '../screens/Dashboard/Dashboard';
 import Drawer from '../screens/Drawer/Drawer';
+import AllForms from '../screens/AuthScreens/AllForms/AllForms'
 import Styles from './styles';
 import navigations from './styles';
 
@@ -44,6 +45,12 @@ const AuthStackNavigator = createStackNavigator({
         navigationOptions: {
 
             headerTransparent: {},
+        }
+    },
+    Forms:{
+        screen: AllForms,
+        navigationOptions: {
+            header:null,
         }
     },
     PhoneNumber: {

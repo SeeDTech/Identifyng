@@ -49,9 +49,7 @@ class WelcomeScreen extends Component {
                     <StatusBar
                         backgroundColor={BaseColor.base}
                         barStyle="light-content" />
-                    <Content
-
-                    >
+                    <Content>
                         <View style={welcome.logoSection}>
                             <MainIdLogoGreen />
                         </View>
@@ -60,6 +58,7 @@ class WelcomeScreen extends Component {
                             style={{
                                 alignItems: "center",
                                 justifyContent: 'center',
+                                marginTop:50,
                             }}
                         >
 
@@ -91,7 +90,7 @@ class WelcomeScreen extends Component {
                                     style={{ marginEnd: 10, borderBottomColor: BaseColor.dark }}
                                     floatingLabel>
                                     <Label style={welcome.InputLabel}> Password</Label>
-                                    <Input
+                                    <Input 
                                         secureTextEntry={true}
                                         onChangeText={(newText) => this.setState({ password: newText })}
 
@@ -101,7 +100,6 @@ class WelcomeScreen extends Component {
                                 <TextWithLetterSpacing textStyle={welcome.forgotPassword} spacing={1}>FORGOT PASSWORD?</TextWithLetterSpacing>
                                 <View style={{ marginTop: 25 }}>
                                     <Btn onPress={() => this.onSubmitForm()} title="SIGN IN" />
-                                    {/* <Button onPress={() => this.onSubmitForm()} title="LOGIN" /> */}
                                     <Text style={welcome.askForSignup}>DON'T HAVE ACCOUNT?</Text>
                                     <ButtonNoBorder onPress={() => this.props.navigation.navigate('Requirement')} title='SIGN UP' />
                                 </View>
