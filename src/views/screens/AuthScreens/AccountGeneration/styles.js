@@ -9,7 +9,7 @@ const account = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     logoSection: {
-        marginTop: 20,
+       
         alignItems: "center",
     },
     col6:{

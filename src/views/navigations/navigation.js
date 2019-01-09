@@ -7,10 +7,7 @@ import {
 } from 'react-navigation';
 import SlidingScreen from '../screens/Sliders/SlidingScreen';
 import WelcomeScreen from '../screens/welcomeScreen/WelcomeScreen';
-import SignupRequirementsPage from '../screens/AuthScreens/signupRequirements/SignupRequirementsPage';
-import PhoneNumber from '../screens/AuthScreens/PhoneNumber/PhoneNumber';
-import Bvn from '../screens/AuthScreens/BVN/Bvn';
-import OtpPage from '../screens/AuthScreens/OTP/OtpPage';
+import SignOutRequirement from '../screens/AuthScreens/signupRequirements/SignupRequirementsPage'
 import AccountGeneration from '../screens/AuthScreens/AccountGeneration/AccountGeneration';
 import Ionicon from '../../components/Icons/Ionicon';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
@@ -41,9 +38,8 @@ const AuthStackNavigator = createStackNavigator({
         }
     },
     Requirement: {
-        screen: SignupRequirementsPage,
+        screen:SignOutRequirement,
         navigationOptions: {
-
             headerTransparent: {},
         }
     },
@@ -53,36 +49,12 @@ const AuthStackNavigator = createStackNavigator({
             header:null,
         }
     },
-    PhoneNumber: {
-        screen: PhoneNumber,
-        navigationOptions: {
-
-            headerTransparent: {},
-        }
-    },
-    BVN: {
-        screen: Bvn,
-        navigationOptions: {
-
-            headerTransparent: {},
-
-        },
-    },
-    OTP: {
-        screen: OtpPage,
-        navigationOptions: {
-            headerTransparent: {},
-        },
-    },
     Registration: {
         screen: AccountGeneration,
         navigationOptions: {
             headerTransparent: {},
         }
-    }
-
-
-
+    },
 });
 
 const AppTabNavigator = createBottomTabNavigator({

@@ -15,14 +15,15 @@ const forms = StyleSheet.create({
         flexDirection: "column",
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop:50,
-        marginBottom:250,
+        marginTop:70,
+        
     },
     dynamicInput:{
         alignItems:'center',
     },
     button:{
-    top:0,
+    
+    marginTop:230,
     marginEnd:20,
     alignSelf: "flex-end",
     },

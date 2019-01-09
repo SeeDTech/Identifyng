@@ -163,7 +163,7 @@ class AccountGeneration extends Component {
       // <ImageBackground source={require('../../../../components/logo/images/whiteIdBackground.png')}  style={{width:'100%', height:'100%',resizeMode: 'cover',}}>
       <Container style={account.container}>
         <Content>
-          <View style={{ position: 'relative', top: 25 }}>
+          <View style={{marginTop:10, alignItems: "center", }}>
             <ProgressBar />
           </View>
           <View style={account.logoSection}>
