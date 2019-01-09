@@ -13,44 +13,63 @@ export class ProgressBar extends Component {
     state = {
         active: {
             borderColor: BaseColor.dark,
+            
+        },
+        inActive:{
+            borderColor: BaseColor.grey,
+        },
+        activeText:{
+            color:BaseColor.dark,
+        },
+        inActiveText:{
+            color:BaseColor.grey,
         }
     }
+//     componentDidMount = () => {
+//       this.props.isCheck;
+//     }
+//    componentDidUpdate = (prevProps, prevState) => {
+//      if(prevProps.isCheck !==this.props.isCheck){
+//          return this.props.isCheck
+//      }
+//    }
+   
+    
+    
     render() {
         const checkStep = require('../../../../components/logo/images/check-step.png');
-        const { active } = this.state;
-        const {checkPhone,
-            activeBvn,
-        } = this.props;
-
-
-        const RenderCheckStepOne = ({ checked }) => {
+        const { active,inActive, activeText,inActiveText } = this.state;
+        const {isCheck} = this.props;
+        
+        const RenderCheckStepOne = ({ isCheck }) => {
             return (
-                <View style={[bar.cirle, active]}>
-                    {checked ? <Image source={checkStep} style={{ width: 20, height: 20 }} /> : <Text style={bar.text} >1</Text>}
+                <View style={[bar.cirle,  isCheck >=0 ? active:inActive]}>
+                    {isCheck>0 ? <Image source={checkStep} style={{ width: 20, height: 20 }} /> : <Text style={[bar.text,isCheck >=0 ? activeText:inActiveText]} >1</Text>}
                 </View>
             )
         }
-        const RenderCheckStepTwo = () => {
+        const RenderCheckStepTwo = ({isCheck}) => {
             return (
-                <View style={bar.cirle}>
-                    {/* <Image source={checkStep} style={{ width: 20, height: 20 }} /> */}
-                    <Text style={bar.text} >2</Text>
+                <View style={[bar.cirle,isCheck >=1 ? active:inActive]}>
+                   { isCheck>1 ? <Image source={checkStep} style={{ width: 20, height: 20 }} /> :
+                    <Text style={[bar.text,isCheck >=1 ? activeText:inActiveText]} >2</Text>}
                 </View>
             )
         }
-        const RenderCheckStepThree = () => {
+        const RenderCheckStepThree = ({isCheck}) => {
             return (
-                <View style={bar.cirle}>
-                    {/* <Image source={checkStep} style={{ width: 20, height: 20 }} /> */}
-                    <Text style={bar.text} >3</Text>
+                <View style={[bar.cirle,isCheck >=2 ? active:inActive]}>
+                   { isCheck>2 ?<Image source={checkStep} style={{ width: 20, height: 20 }} /> :
+                    <Text style={[bar.text,isCheck >=2 ? activeText:inActiveText]} >3</Text>}
                 </View>
             )
         }
-        const RenderCheckStepFour = () => {
+        const RenderCheckStepFour = ({isCheck}) => {
+           
             return (
-                <View style={bar.cirle}>
-                    {/* <Image source={checkStep} style={{ width: 20, height: 20 }} /> */}
-                    <Text style={bar.text} >4</Text>
+                <View style={[bar.cirle,isCheck >=3 ? active:inActive]}>
+                   {isCheck>3 ? <Image source={checkStep} style={{ width: 20, height: 20 }} /> :
+                    <Text style={[bar.text, isCheck >=3 ? activeText:inActiveText]} >4</Text>}
                 </View>
             )
         }
@@ -60,13 +79,13 @@ export class ProgressBar extends Component {
         }
         return (
             <View style={bar.container}>
-                <RenderCheckStepOne activeBvn={activeBvn} checked={checkPhone} />
+                <RenderCheckStepOne  isCheck={isCheck} />
                 <RenderProgressLine />
-                <RenderCheckStepTwo />
+                <RenderCheckStepTwo isCheck={isCheck} />
                 <RenderProgressLine />
-                <RenderCheckStepThree />
+                <RenderCheckStepThree isCheck={isCheck}/>
                 <RenderProgressLine />
-                <RenderCheckStepFour />
+                <RenderCheckStepFour isCheck={isCheck}/>
             </View>
         )
     }

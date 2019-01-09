@@ -16,9 +16,7 @@ class AllForms extends Component {
     }
     state = {
         error: false,
-        isCheckPhone: false,
-        isCheckBvn: false,
-        isCheckOtp: false,
+        isCheck:0,
         firstField: '',
         secondField: '',
         thirdField: '',
@@ -34,23 +32,23 @@ class AllForms extends Component {
     }
 
     onSubmitOtp = () => {
-        const { firstField, secondField, thirdField, fourthField } = this.state;
+        const { firstField, secondField, thirdField, fourthField,isCheck } = this.state;
         if (!firstField || !secondField || !thirdField || !fourthField) {
           alert('OTP cannot be empty');
         } else {
           const otp = firstField + secondField + thirdField + fourthField;
-          this.setState({otp, isCheckOtp:true,error:false,})
+          this.setState({otp, isCheck:isCheck+1,error:false,})
           this.props.navigation.navigate('Registration');
         }
       }
 
     handlePhoneSubmit = () => {
-        const { phoneNumber, formKey } = this.state;
+        const { phoneNumber, formKey,isCheck } = this.state;
         if (!phoneNumber) {
             this.setState({ error: true })
         } else {
             this.setState({
-                isCheckPhone: true,
+                isCheck: isCheck+1,
                 error: false,
                 formKey: formKey + 1,
             });
@@ -58,15 +56,15 @@ class AllForms extends Component {
     }
 
     handleBvnSubmit = () => {
-        const { bvn,formKey } = this.state;
+        const { bvn,formKey, isCheck } = this.state;
         if (!bvn) return this.setState({ error: true })
         this.setState({
-            isCheckBvn: true,
+            isCheck: isCheck+1,
             error: false,
             formKey: formKey + 1,
         });
     }
-    //Choose onSubmit function base on form
+    //Choose onSubmit function base on form type
     formhandler = () => {
         const { formKey } = this.state;
         switch (formKey) {
@@ -80,7 +78,7 @@ class AllForms extends Component {
         }
     }
     render() {
-        const { formKey, error } = this.state;
+        const { formKey, error, isCheck } = this.state;
         const BackgroundImage = require('../../../../components/logo/images/whiteIdBackground.png');
         const RenderErrorMessage = () => { return error && <Text style={phonenumber.errorMessage}>Invalid Phone number</Text> }
         const { navigation } = this.props;
@@ -121,9 +119,7 @@ class AllForms extends Component {
                     <Text style={otp.instructionText}>sent to +234345******23</Text>
                 </View>
                 <View style={{ alignSelf:"center",alignItems:"center",alignContent:"center", flexDirection: 'row' }}>
-
                     <Item style={otp.itemSection}>
-
                         <Input
                             secureTextEntry={true}
                             ref={(input) => this.inputs[1] = input}
@@ -184,7 +180,7 @@ class AllForms extends Component {
                         barStyle="light-content" />
                     <Content>
                         <View style={{ flexDirection: "column", justifyContent: 'center', alignItems: 'center', marginTop: 30 }}>
-                            <ProgressBar />
+                            <ProgressBar isCheck={isCheck} />
                             <MainIdLogoGreen />
                         </View>
                         <Form style={forms.formSection}>
