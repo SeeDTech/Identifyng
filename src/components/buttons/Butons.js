@@ -57,9 +57,10 @@ export const ButtonInverse = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
+
     const { title, btnStyle, txtStyle } = props;
     return (
-        <Button primary onPress={handleOnPress} style={[buttons.secondary, btnStyle]}>
+        <Button  primary onPress={handleOnPress} style={[buttons.secondary, btnStyle]}>
             <Text style={[buttons.greenText, txtStyle]}>{title}</Text>
         </Button>
     )

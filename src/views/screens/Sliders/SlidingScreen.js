@@ -10,8 +10,15 @@ import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing
 import AnimLogo from '../../../components/buttons/AnimatedLogo';
 
 class SlidingScreen extends Component {
+
+  state={
+    pressStatus:false,
+    buttonPressStyle:{
+      backgroundColor:BaseColor.base,
+    }
+  }
   render() {
-    
+    const {pressStatus,buttonPressStyle}=this.state;
     return (
       <Container style={{flex:1, alignContent:'center'}}>
       <Swiper showsPagination={true} autoplay={true} dotStyle={slides.dotstyle} activeDotStyle={slides.activeDotStlye}>
@@ -44,7 +51,7 @@ class SlidingScreen extends Component {
       </View>
       <View style={slides.buttonSection}>
       
-          <ButtonInverse onPress={()=>{this.props.navigation.navigate('Welcome')}}  title="CHECK IN"/>
+          <ButtonInverse  onPress={()=>{this.props.navigation.navigate('Welcome')}}  title="CHECK IN" />
       </View>
       </Container>
     )

@@ -15,8 +15,6 @@ import { BaseColor } from '../../../styles/theme/color';
 import Icon from "react-native-vector-icons/FontAwesome";
 class WelcomeScreen extends Component {
 
-
-
     state = {
         error:false,
         password: null,

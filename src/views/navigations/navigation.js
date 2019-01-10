@@ -19,8 +19,9 @@ import AuthLoading from '../screens/AuthLoading';
 import Dashboard from '../screens/Dashboard/Dashboard';
 import Drawer from '../screens/Drawer/Drawer';
 import AllForms from '../screens/AuthScreens/AllForms/AllForms'
-import Styles from './styles';
+import Styles from './styles'
 import navigations from './styles';
+import TransitionConfiguration from './TransitionConfiguration';
 
 
 
@@ -55,6 +56,9 @@ const AuthStackNavigator = createStackNavigator({
             headerTransparent: {},
         }
     },
+   
+},{
+    transitionConfig: TransitionConfiguration,
 });
 
 const AppTabNavigator = createBottomTabNavigator({
@@ -117,6 +121,7 @@ const AppTabNavigator = createBottomTabNavigator({
         })
     },
 }, {
+    
         navigationOptions: ({ navigation }) => ({
             tabBarOptions: {
                 activeTintColor: BaseColor.light,
@@ -130,8 +135,8 @@ const AppTabNavigator = createBottomTabNavigator({
                 animationEnabled: true,
 
 
-            }
-        })
+            },
+        }),
     });
 
 const AppStacknavigator = createStackNavigator({
@@ -171,6 +176,8 @@ const AppStacknavigator = createStackNavigator({
             )
         })
     }
+},{
+    transitionConfig: TransitionConfiguration,
 })
 
 const AppDrawerNavigator = createDrawerNavigator({

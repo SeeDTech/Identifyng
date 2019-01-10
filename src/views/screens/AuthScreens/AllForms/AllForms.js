@@ -25,8 +25,17 @@ class AllForms extends Component {
         phoneNumber: null,
         bvn: '',
         otp: '',
+        bvnError:'Invalid BVN',
+        phoneError:'Invalid Phone number',
+        optError:'Invalid OTP',
+        errorBorder:{
+            borderBottomColor: BaseColor.red,
+        }
     }
 
+    static navigationOptions = ({ navigation }) => {
+        const screenNumber = navigation.state.params ? navigation.state.params.screenNumber : 0
+    }
     onChanghandler = (id) => {
         this.inputs[id]._root.focus();
     }
@@ -54,6 +63,7 @@ class AllForms extends Component {
             });
         }
     }
+    RenderErrorMessage = (message) => { return this.state.error && <Text style={phonenumber.errorMessage}>{message}</Text> }
 
     handleBvnSubmit = () => {
         const { bvn,formKey, isCheck } = this.state;
@@ -78,43 +88,49 @@ class AllForms extends Component {
         }
     }
     render() {
-        const { formKey, error, isCheck } = this.state;
+        const { formKey,
+            phoneError,
+             bvnError,
+            isCheck,
+            optError,
+            error,
+            errorBorder
+         } = this.state;
         const BackgroundImage = require('../../../../components/logo/images/whiteIdBackground.png');
-        const RenderErrorMessage = () => { return error && <Text style={phonenumber.errorMessage}>Invalid Phone number</Text> }
         const { navigation } = this.props;
 
         const RenderBvnForm = formKey === 1 && (
-            <View style={{ width: '100%' }}>
+            <View key={formKey} style={{ width: '100%' }}>
                 <View style={phonenumber.instruction}>
                     <Text style={[phonenumber.instructionText,]}>Input your Bvn</Text>
                 </View>
                 <Icon key={'phone'} name="phone" size={18} style={phonenumber.inputIcon} />
-                <Item floatingLabel style={phonenumber.item}>
+                <Item floatingLabel style={[phonenumber.item, error ? errorBorder:'']}>
                     <Label style={phonenumber.label}>Bvn</Label>
                     <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ bvn: newText })} style={phonenumber.itemInput} />
                 </Item>
-                <RenderErrorMessage />
+                {this.RenderErrorMessage(bvnError)}
             </View>
         )
 
 
         const RenderPhoneForm = formKey === 0 && (
-            <View style={{ width: '100%' }}>
+            <View key={formKey} style={{ width: '100%' }}>
                 <View style={phonenumber.instruction}>
                     <Text style={phonenumber.instructionText}>Input your phone number</Text>
                 </View>
                 <Icon key={'phone'} name="phone" size={18} style={phonenumber.inputIcon} />
-                <Item floatingLabel style={phonenumber.item}>
+                <Item floatingLabel style={[phonenumber.item, error ? errorBorder:'']}>
                     <Label style={phonenumber.label}>Phone Number</Label>
                     <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ phoneNumber: newText })} style={phonenumber.itemInput} />
                 </Item>
-                <RenderErrorMessage />
+                {this.RenderErrorMessage(phoneError)}
             </View>
         )
 
         const RenderOtpForm = formKey === 2 && (
             <View >
-                <View style={phonenumber.instruction}>
+                <View key={formKey} style={phonenumber.instruction}>
                     <Text style={otp.instructionText}>Input the One Time Password(OTP) </Text>
                     <Text style={otp.instructionText}>sent to +234345******23</Text>
                 </View>
@@ -167,7 +183,10 @@ class AllForms extends Component {
                     </Item>
 
                 </View>
-                <RenderErrorMessage />
+                {this.RenderErrorMessage(optError)}
+                <View style={{alignItems:'center',position:"relative",top:50}}>
+                    <Text>Resend OTP?</Text>
+                </View> 
             </View>
         )
 

@@ -11,6 +11,7 @@ class AccountGeneration extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isCheck:3,
       selected1: undefined,
       lga1: undefined,
       gender1:undefined,
@@ -164,7 +165,7 @@ class AccountGeneration extends Component {
       <Container style={account.container}>
         <Content>
           <View style={{marginTop:10, alignItems: "center", }}>
-            <ProgressBar />
+            <ProgressBar isCheck={this.state.isCheck} />
           </View>
           <View style={account.logoSection}>
             <MainIdLogoGreen />
@@ -208,7 +209,7 @@ class AccountGeneration extends Component {
               </Item>
             </View>
             <View style={{ marginBottom: '10%', marginTop: '20%' }}>
-              <Button success style={{ alignItems: 'center', textAlign: 'center', alignContent: "center", justifyContent: 'center', backgroundColor: BaseColor.dark, borderRadius: 10, width: 200, }}><Text style={{ flex: 1, textAlign: 'center', justifyContent: 'center', fontFamily: 'Ubuntu-Regular', alignSelf: 'center', color: BaseColor.light, fontSize: 20, alignItems: "center", }}> CREATE ID </Text></Button>
+              <Button onPress={()=>this.setState({isCheck:this.state.isCheck+1},()=>this.props.navigation.navigate('Dashboard'))} success style={{ alignItems: 'center', textAlign: 'center', alignContent: "center", justifyContent: 'center', backgroundColor: BaseColor.dark, borderRadius: 10, width: 200, }}><Text style={{ flex: 1, textAlign: 'center', justifyContent: 'center', fontFamily: 'Ubuntu-Regular', alignSelf: 'center', color: BaseColor.light, fontSize: 20, alignItems: "center", }}> CREATE ID </Text></Button>
             </View>
           </Form>
         </Content>
