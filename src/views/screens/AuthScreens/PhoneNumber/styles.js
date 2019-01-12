@@ -9,12 +9,19 @@ const phonenumber = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     errorMessage:{
-        
-        alignItems:'center',
+        alignItems:"center",
+        justifyContent:'center',
         textAlign:'center',
         fontSize:12,
+        alignSelf:'center',
         fontFamily:'Ubuntu-Regular',
         color:BaseColor.red,
+        backgroundColor:'#ffcdd2',
+        width:'100%',
+        paddingLeft:5,
+        paddingRight:5,
+        paddingBottom:2,
+        borderRadius:10,
         },
     logoSection: {
         marginTop: 30,
@@ -31,7 +38,7 @@ const phonenumber = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    instructionText: { fontFamily: 'Ubuntu-Regular', opacity: 0.7, fontSize: 18, color: BaseColor.grey },
+    instructionText: { fontFamily: 'Ubuntu-Regular', opacity: 0.7, fontSize: 14 , color: BaseColor.grey },
     form: {
         flex: 0,
         alignContent: 'center',

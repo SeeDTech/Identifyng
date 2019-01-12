@@ -47,8 +47,9 @@ const AuthStackNavigator = createStackNavigator({
     Forms:{
         screen: AllForms,
         navigationOptions: {
-            header:null,
+            header: null
         }
+
     },
     Registration: {
         screen: AccountGeneration,

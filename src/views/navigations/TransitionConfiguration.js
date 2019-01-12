@@ -3,7 +3,7 @@ import React from 'react';
 const TransitionConfiguration = () => {
     return {
         transitionSpec: {
-          duration: 750,
+          duration: 850,
           easing: Easing.out(Easing.poly(4)),
           timing: Animated.timing,
           useNativeDriver: true,

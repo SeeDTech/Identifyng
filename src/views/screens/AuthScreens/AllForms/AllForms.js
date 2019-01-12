@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, StatusBar, Platform } from 'react-native'
+import { Text, View, ImageBackground, StatusBar, Platform, Animated,Easing,Dimensions } from 'react-native'
 import { ButtonNoBorder, TransparentButton, NextButton } from '../../../../components/buttons/Butons';
 import { MainIdLogoGreen } from '../../../../components/logo/Logo';
 import { Container, Content, Form, Label, Item, Input } from 'native-base';
@@ -9,11 +9,44 @@ import forms from './styles';
 import Icon from "react-native-vector-icons/FontAwesome";
 import phonenumber from '../PhoneNumber/styles';
 import otp from '../OTP/styles';
+import SignupRequirementsPage from '../signupRequirements/SignupRequirementsPage';
+
+const ScreenWidth=Dimensions.get('window').width;
 class AllForms extends Component {
     constructor(props) {
         super(props)
         this.inputs = {}
+        this.animatedValue = new Animated.Value(0)
+        this.springValue = new Animated.Value(0.3)
     }
+
+  componentWillMount =()=>{
+     this.animate();
+      this.spring()
+    }
+    animate () {
+        this.animatedValue.setValue(0)
+        Animated.timing(
+          this.animatedValue,
+          {
+            toValue: 1,
+            duration: 750,
+            easing: Easing.linear
+          }
+        ).start()
+        
+        }
+        spring (){
+            this.springValue.setValue(0.3)
+            Animated.spring(
+                this.springValue,
+                {
+                delay:300,
+                toValue: 1,
+                friction: 1
+                }
+            ).start()
+            }
     state = {
         error: false,
         isCheck:0,
@@ -33,9 +66,14 @@ class AllForms extends Component {
         }
     }
 
-    static navigationOptions = ({ navigation }) => {
-        const screenNumber = navigation.state.params ? navigation.state.params.screenNumber : 0
-    }
+    // static navigationOptions = ({ navigation }) => {
+    //     const screenID = navigation.state.screenID ? navigation.state.screenID : 0;
+    // }
+    // goForward = (key) => { 
+    //     const params = { screenID: key+1 }
+    //      if (Math.random() > .75) params.plain = true
+    //     this.props.navigation.navigate('Forms',params)
+    //   }
     onChanghandler = (id) => {
         this.inputs[id]._root.focus();
     }
@@ -60,10 +98,11 @@ class AllForms extends Component {
                 isCheck: isCheck+1,
                 error: false,
                 formKey: formKey + 1,
-            });
+            },()=>this.animate());
+            // this.goForward(formKey)
         }
     }
-    RenderErrorMessage = (message) => { return this.state.error && <Text style={phonenumber.errorMessage}>{message}</Text> }
+    RenderErrorMessage = (message) => { this.spring(); return( this.state.error && <Text  style={[phonenumber.errorMessage,{transform: [{scale: this.springValue}]}]}><Text style={{marginRight:15}}><Icon name='info-circle' size={12}/></Text>{message}</Text> )}
 
     handleBvnSubmit = () => {
         const { bvn,formKey, isCheck } = this.state;
@@ -72,7 +111,8 @@ class AllForms extends Component {
             isCheck: isCheck+1,
             error: false,
             formKey: formKey + 1,
-        });
+        },()=>this.animate());
+        // this.goForward(formKey)
     }
     //Choose onSubmit function base on form type
     formhandler = () => {
@@ -88,6 +128,15 @@ class AllForms extends Component {
         }
     }
     render() {
+            const marginLeft = this.animatedValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [ScreenWidth*2, 0]
+              })
+       
+              const marginRight = this.animatedValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [ScreenWidth*2, 0]
+              })
         const { formKey,
             phoneError,
              bvnError,
@@ -96,11 +145,15 @@ class AllForms extends Component {
             error,
             errorBorder
          } = this.state;
-        const BackgroundImage = require('../../../../components/logo/images/whiteIdBackground.png');
-        const { navigation } = this.props;
 
+         
+
+        const BackgroundImage = require('../../../../components/logo/images/whiteIdBackground.png');
+        // const { navigation } = this.props;
+         //get screen parameter
+        //  const screenID = this.props.navigation.state.params ? this.props.navigation.state.params.screenID : 0
         const RenderBvnForm = formKey === 1 && (
-            <View key={formKey} style={{ width: '100%' }}>
+            <Animated.View style={{marginLeft,minWidth:'100%'}} key={formKey} >
                 <View style={phonenumber.instruction}>
                     <Text style={[phonenumber.instructionText,]}>Input your Bvn</Text>
                 </View>
@@ -110,12 +163,12 @@ class AllForms extends Component {
                     <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ bvn: newText })} style={phonenumber.itemInput} />
                 </Item>
                 {this.RenderErrorMessage(bvnError)}
-            </View>
+            </Animated.View>
         )
 
 
         const RenderPhoneForm = formKey === 0 && (
-            <View key={formKey} style={{ width: '100%' }}>
+            <Animated.View key={formKey} style={{marginRight,minWidth:'100%'}}>
                 <View style={phonenumber.instruction}>
                     <Text style={phonenumber.instructionText}>Input your phone number</Text>
                 </View>
@@ -125,11 +178,11 @@ class AllForms extends Component {
                     <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ phoneNumber: newText })} style={phonenumber.itemInput} />
                 </Item>
                 {this.RenderErrorMessage(phoneError)}
-            </View>
+            </Animated.View>
         )
 
         const RenderOtpForm = formKey === 2 && (
-            <View >
+            <Animated.View key={formKey} style={{marginLeft,minWidth:'100%'}}>
                 <View key={formKey} style={phonenumber.instruction}>
                     <Text style={otp.instructionText}>Input the One Time Password(OTP) </Text>
                     <Text style={otp.instructionText}>sent to +234345******23</Text>
@@ -160,7 +213,6 @@ class AllForms extends Component {
                         />
                     </Item>
                     <Item style={otp.itemSection}>
-
                         <Input secureTextEntry={true}
                             ref={(input) => this.inputs[3] = input}
                             id={3} onChange={() => this.onChanghandler(4)}
@@ -181,16 +233,16 @@ class AllForms extends Component {
                             style={otp.itemInput}
                         />
                     </Item>
-
                 </View>
                 {this.RenderErrorMessage(optError)}
                 <View style={{alignItems:'center',position:"relative",top:50}}>
-                    <Text>Resend OTP?</Text>
+                    <Text style={otp.instructionText}>Resend OTP?</Text>
                 </View> 
-            </View>
+                </Animated.View>
         )
 
         return (
+            
             <ImageBackground source={BackgroundImage} style={{ width: '100%', height: '100%', resizeMode: 'cover' }}>
                 <Container
                     style={forms.container}>
@@ -215,6 +267,7 @@ class AllForms extends Component {
                     </Content>
                 </Container>
             </ImageBackground>
+            
         )
     }
 }
