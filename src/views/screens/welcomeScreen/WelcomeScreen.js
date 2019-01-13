@@ -59,7 +59,6 @@ class WelcomeScreen extends Component {
                                 marginTop:50,
                             }}
                         >
-
                             {renderErrorMessage("Invalid Email or Password")}
                             <Form style={{
                                 width: '95%',
@@ -74,8 +73,6 @@ class WelcomeScreen extends Component {
                                 <Item
                                     style={welcome.itemSection}
                                     floatingLabel>
-
-                                  
                                    <Label style={welcome.InputLabel}> id@app.com</Label>
                             
                                     <Input keyboardType="email-address"
