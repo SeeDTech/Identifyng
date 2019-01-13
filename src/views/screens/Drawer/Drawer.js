@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StatusBar } from 'react-native'
+import { Text, View,StyleSheet, Image, StatusBar } from 'react-native'
 import { DrawerItems } from 'react-navigation'
 import { Container, Content, Header, Body } from 'native-base';
 import { BaseColor } from '../../../styles/theme/color';
 import Ionicon from '../../../components/Icons/Ionicon';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import LinearGradient from 'react-native-linear-gradient';
+import { styles } from '../../../components/buttons/styles';
 
 export class Drawer extends Component {
     
@@ -30,7 +32,6 @@ export class Drawer extends Component {
                                     <Icon name='envelope-o' size={16} style={{marginEnd:10,color:BaseColor.light}}></Icon>
                                     <Text style={{ fontSize: 16, fontFamily: 'Ubuntu-Regular', color: BaseColor.light, }}>Imb@app.id.com.ng</Text>
                                 </View>
-
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
                                 <Icon name="key" size={16} style={{ color: BaseColor.light }} />
@@ -40,8 +41,10 @@ export class Drawer extends Component {
                     </Body>
                 </Header>
                 <Content>
-                    <View>
+                   <View >
+                   <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={[BaseColor.dark,'#44bba1f3','#52dabc']} style={{flex:0}}>
                         <DrawerItems {...this.props} />
+                        </LinearGradient>
                     </View>
                 </Content>
             </Container>

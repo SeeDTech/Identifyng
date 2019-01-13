@@ -13,13 +13,14 @@ export class ProgressBar extends Component {
     state = {
         active: {
             borderColor: BaseColor.dark,
+            backgroundColor:BaseColor.base,
             
         },
         inActive:{
             borderColor: BaseColor.grey,
         },
         activeText:{
-            color:BaseColor.dark,
+            color:BaseColor.light,
         },
         inActiveText:{
             color:BaseColor.grey,

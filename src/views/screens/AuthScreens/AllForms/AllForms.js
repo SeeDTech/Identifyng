@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, StatusBar, Platform, Animated,Easing,Dimensions } from 'react-native'
+import { Text, View, ImageBackground, StatusBar, Platform, Animated, Easing, Dimensions } from 'react-native'
 import { ButtonNoBorder, TransparentButton, NextButton } from '../../../../components/buttons/Butons';
 import { MainIdLogoGreen } from '../../../../components/logo/Logo';
 import { Container, Content, Form, Label, Item, Input } from 'native-base';
@@ -11,45 +11,49 @@ import phonenumber from '../PhoneNumber/styles';
 import otp from '../OTP/styles';
 import SignupRequirementsPage from '../signupRequirements/SignupRequirementsPage';
 
-const ScreenWidth=Dimensions.get('window').width;
+const ScreenWidth = Dimensions.get('window').width;
 class AllForms extends Component {
     constructor(props) {
         super(props)
         this.inputs = {}
         this.animatedValue = new Animated.Value(0)
-        this.springValue = new Animated.Value(0.3)
+        this.springValue = new Animated.Value(0)
     }
-
-  componentWillMount =()=>{
-     this.animate();
-      this.spring()
+  
+    componentWillMount = () => {
+        this.animate();
+        this.spring()
     }
-    animate () {
+    animate() {
         this.animatedValue.setValue(0)
         Animated.timing(
-          this.animatedValue,
-          {
-            toValue: 1,
-            duration: 750,
-            easing: Easing.linear
-          }
-        ).start()
-        
-        }
-        spring (){
-            this.springValue.setValue(0.3)
-            Animated.spring(
-                this.springValue,
-                {
-                delay:300,
+            
+            this.animatedValue,
+            {
+                
                 toValue: 1,
-                friction: 1
-                }
-            ).start()
+                duration: 750,
+                easing: Easing.linear
             }
+        ).start()
+
+    }
+    spring() {
+        
+        Animated.spring(
+            this.springValue,
+            {
+                toValue: 1,
+                friction: 1,
+                tension:45,
+            }
+           
+        ).start()
+      
+    }
     state = {
         error: false,
-        isCheck:0,
+        isCheck: 0,
         firstField: '',
         secondField: '',
         thirdField: '',
@@ -58,10 +62,10 @@ class AllForms extends Component {
         phoneNumber: null,
         bvn: '',
         otp: '',
-        bvnError:'Invalid BVN',
-        phoneError:'Invalid Phone number',
-        optError:'Invalid OTP',
-        errorBorder:{
+        bvnError: 'Invalid BVN',
+        phoneError: 'Invalid Phone number',
+        optError: 'Invalid OTP',
+        errorBorder: {
             borderBottomColor: BaseColor.red,
         }
     }
@@ -79,39 +83,39 @@ class AllForms extends Component {
     }
 
     onSubmitOtp = () => {
-        const { firstField, secondField, thirdField, fourthField,isCheck } = this.state;
+        const { firstField, secondField, thirdField, fourthField, isCheck } = this.state;
         if (!firstField || !secondField || !thirdField || !fourthField) {
-          alert('OTP cannot be empty');
+            alert('OTP cannot be empty');
         } else {
-          const otp = firstField + secondField + thirdField + fourthField;
-          this.setState({otp, isCheck:isCheck+1,error:false,})
-          this.props.navigation.navigate('Registration');
+            const otp = firstField + secondField + thirdField + fourthField;
+            this.setState({ otp, isCheck: isCheck + 1, error: false, })
+            this.props.navigation.navigate('Registration');
         }
-      }
+    }
 
     handlePhoneSubmit = () => {
-        const { phoneNumber, formKey,isCheck } = this.state;
+        const { phoneNumber, formKey, isCheck } = this.state;
         if (!phoneNumber) {
             this.setState({ error: true })
         } else {
             this.setState({
-                isCheck: isCheck+1,
+                isCheck: isCheck + 1,
                 error: false,
                 formKey: formKey + 1,
-            },()=>this.animate());
+            }, () => this.animate());
             // this.goForward(formKey)
         }
     }
-    RenderErrorMessage = (message) => { this.spring(); return( this.state.error && <Text  style={[phonenumber.errorMessage,{transform: [{scale: this.springValue}]}]}><Text style={{marginRight:15}}><Icon name='info-circle' size={12}/></Text>{message}</Text> )}
+    RenderErrorMessage = (message) => { this.spring(); return (this.state.error && <Text style={[phonenumber.errorMessage, { transform: [{ scale: 0.8 }] }]}><Text style={{ marginRight: 15 }}><Icon name='info-circle' size={12} /></Text>{message}</Text>) }
 
     handleBvnSubmit = () => {
-        const { bvn,formKey, isCheck } = this.state;
+        const { bvn, formKey, isCheck } = this.state;
         if (!bvn) return this.setState({ error: true })
         this.setState({
-            isCheck: isCheck+1,
+            isCheck: isCheck + 1,
             error: false,
             formKey: formKey + 1,
-        },()=>this.animate());
+        }, () => this.animate());
         // this.goForward(formKey)
     }
     //Choose onSubmit function base on form type
@@ -128,37 +132,38 @@ class AllForms extends Component {
         }
     }
     render() {
-            const marginLeft = this.animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [ScreenWidth*2, 0]
-              })
-       
-              const marginRight = this.animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [ScreenWidth*2, 0]
-              })
+        const marginLeft = this.animatedValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [ScreenWidth * 2, 0]
+        })
+
+        const marginRight = this.animatedValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [ScreenWidth * 2, 0]
+        })
+        
         const { formKey,
             phoneError,
-             bvnError,
+            bvnError,
             isCheck,
             optError,
             error,
             errorBorder
-         } = this.state;
+        } = this.state;
 
-         
+
 
         const BackgroundImage = require('../../../../components/logo/images/whiteIdBackground.png');
-        // const { navigation } = this.props;
-         //get screen parameter
+         const errorStyle  = error?errorBorder:'';
+        //get screen parameter
         //  const screenID = this.props.navigation.state.params ? this.props.navigation.state.params.screenID : 0
         const RenderBvnForm = formKey === 1 && (
-            <Animated.View style={{marginLeft,minWidth:'100%'}} key={formKey} >
+            <Animated.View style={{ marginLeft, minWidth: '100%' }} key={formKey} >
                 <View style={phonenumber.instruction}>
                     <Text style={[phonenumber.instructionText,]}>Input your Bvn</Text>
                 </View>
                 <Icon key={'phone'} name="phone" size={18} style={phonenumber.inputIcon} />
-                <Item floatingLabel style={[phonenumber.item, error ? errorBorder:'']}>
+                <Item floatingLabel style={[phonenumber.item,errorStyle]}>
                     <Label style={phonenumber.label}>Bvn</Label>
                     <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ bvn: newText })} style={phonenumber.itemInput} />
                 </Item>
@@ -168,12 +173,12 @@ class AllForms extends Component {
 
 
         const RenderPhoneForm = formKey === 0 && (
-            <Animated.View key={formKey} style={{marginRight,minWidth:'100%'}}>
+            <Animated.View key={formKey} style={{ marginLeft, minWidth: '100%' }}>
                 <View style={phonenumber.instruction}>
                     <Text style={phonenumber.instructionText}>Input your phone number</Text>
                 </View>
                 <Icon key={'phone'} name="phone" size={18} style={phonenumber.inputIcon} />
-                <Item floatingLabel style={[phonenumber.item, error ? errorBorder:'']}>
+                <Item floatingLabel style={[phonenumber.item,errorStyle]}>
                     <Label style={phonenumber.label}>Phone Number</Label>
                     <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ phoneNumber: newText })} style={phonenumber.itemInput} />
                 </Item>
@@ -182,12 +187,12 @@ class AllForms extends Component {
         )
 
         const RenderOtpForm = formKey === 2 && (
-            <Animated.View key={formKey} style={{marginLeft,minWidth:'100%'}}>
+            <Animated.View key={formKey} style={{ marginLeft, minWidth: '100%' }}>
                 <View key={formKey} style={phonenumber.instruction}>
                     <Text style={otp.instructionText}>Input the One Time Password(OTP) </Text>
                     <Text style={otp.instructionText}>sent to +234345******23</Text>
                 </View>
-                <View style={{ alignSelf:"center",alignItems:"center",alignContent:"center", flexDirection: 'row' }}>
+                <View style={{ alignSelf: "center", alignItems: "center", alignContent: "center", flexDirection: 'row' }}>
                     <Item style={otp.itemSection}>
                         <Input
                             secureTextEntry={true}
@@ -235,14 +240,14 @@ class AllForms extends Component {
                     </Item>
                 </View>
                 {this.RenderErrorMessage(optError)}
-                <View style={{alignItems:'center',position:"relative",top:50}}>
+                <View style={{ alignItems: 'center', position: "relative", top: 50 }}>
                     <Text style={otp.instructionText}>Resend OTP?</Text>
-                </View> 
-                </Animated.View>
+                </View>
+            </Animated.View>
         )
 
         return (
-            
+
             <ImageBackground source={BackgroundImage} style={{ width: '100%', height: '100%', resizeMode: 'cover' }}>
                 <Container
                     style={forms.container}>
@@ -267,7 +272,7 @@ class AllForms extends Component {
                     </Content>
                 </Container>
             </ImageBackground>
-            
+
         )
     }
 }

@@ -6,10 +6,8 @@ const account = StyleSheet.create({
         flex: 1,
         width: '100%',
         justifyContent: 'center',
-        backgroundColor: '#ffffff',
     },
     logoSection: {
-       
         alignItems: "center",
     },
     col6:{
@@ -28,7 +26,7 @@ const account = StyleSheet.create({
     instructionText: {
          fontFamily: 'Ubuntu-Regular', 
          opacity: 0.7,
-          fontSize: 18, 
+          fontSize: 14, 
          color: BaseColor.grey,
         },
     form: {

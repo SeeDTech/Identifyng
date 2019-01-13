@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ImageBackground, Image } from 'react-native'
+import { View, Text, ImageBackground, Image,Animated,Easing } from 'react-native'
 import { Container, Content, Picker, Form, Item, Label, Input, Button, Icon } from 'native-base';
 import account from './styles';
 import { MainIdLogoGreen } from '../../../../components/logo/Logo';
@@ -10,11 +10,15 @@ import { BaseColor } from '../../../../styles/theme/color';
 class AccountGeneration extends Component {
   constructor(props) {
     super(props);
+    this.animatedValue = new Animated.Value(0)
     this.state = {
-      isCheck:3,
+      firstColor :'rgba(16, 214, 155, 0.07)',
+       secondColor:'rgba(16, 214, 155, 0.5)',
+       thirdColor:'rgba(16, 214, 155, 1)',
+      isCheck: 3,
       selected1: undefined,
       lga1: undefined,
-      gender1:undefined,
+      gender1: undefined,
       States: [
         { id: 0, name: 'STATE' },
         { id: 1, name: 'Abia' },
@@ -32,7 +36,7 @@ class AccountGeneration extends Component {
         { id: 5, name: 'Kachia' },
         { id: 6, name: 'Dala' },
       ],
-      gender:[
+      gender: [
         { id: 0, name: 'Gender' },
         { id: 1, name: 'Male' },
         { id: 1, name: 'Female' },
@@ -40,9 +44,26 @@ class AccountGeneration extends Component {
     };
   }
 
+  componentDidMount = () => {
+    this.animate()
+  }
+  animate() {
+    this.animatedValue.setValue(0)
+    Animated.timing(
+
+      this.animatedValue,
+      {
+        delay:500,
+        toValue: 1,
+        duration: 2000,
+        easing: Easing.linear
+      }
+    ).start(()=>this.animate())
+  }
+
   onLgaChange(value) {
     this.setState({
-      gender1: value
+      lga1: value
     })
   }
   onStateChange(value) {
@@ -51,31 +72,36 @@ class AccountGeneration extends Component {
     });
   }
 
-  onGenderChange (value){
+  onGenderChange(value) {
     this.setState({
-      gender1:value
+      gender1: value
     })
   }
   render() {
+     const {firstColor,secondColor,thirdColor}= this.state;
+    const backgroundColor = this.animatedValue.interpolate({
+      inputRange: [0, 0.25,0.5,0.75,1],
+      outputRange: [firstColor,secondColor,thirdColor,secondColor,firstColor]
+  })
     const renderGender = (
-      <Item picker style={[account.Item, account.col6, {marginTop:23}]} >
-               <Picker
-        mode='dropdown'
-        iosIcon={<Image style={{ width: 30, height: 40 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
-        style={{ width: '45%', height: 40, position: 'relative', top: 10, left: 0 }}
-        placeholderStyle={{ color: "#bfc6ea" }}
-        placeholderIconColor="#007aff"
-        selectedValue={this.state.gender1}
-        onValueChange={(value) => this.onLgaChange(value)}
-      >
-        {this.state.gender.map((gd, i) => {
-          return (
-            <Picker.Item label={gd.name} value={gd.name} key={i} />
-          );
-        }
-        )}
-      </Picker>
-              </Item>
+      <Item picker style={[account.Item, account.col6, { marginTop: 23 }]} >
+        <Picker
+          mode='dropdown'
+          iosIcon={<Image style={{ width: 30, height: 40 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
+          style={{ width: '45%', height: 40, position: 'relative', top: 10, left: 0 }}
+          placeholderStyle={{ color: "#bfc6ea" }}
+          placeholderIconColor="#007aff"
+          selectedValue={this.state.gender1}
+          onValueChange={(value) => this.onGenderChange(value)}
+        >
+          {this.state.gender.map((gd, i) => {
+            return (
+              <Picker.Item label={gd.name} value={gd.name} key={i} />
+            );
+          }
+          )}
+        </Picker>
+      </Item>
     )
     const renderDatepicker = (
       <DatePicker
@@ -92,8 +118,8 @@ class AccountGeneration extends Component {
         showIcon={true}
         customStyles={{
           dateIcon: {
-            height:20,
-            width:16,
+            height: 20,
+            width: 16,
             position: 'absolute',
             left: 110,
             top: 15,
@@ -110,7 +136,7 @@ class AccountGeneration extends Component {
             fontSize: 20,
             alignItems: 'flex-start',
             borderWidth: 0,
-            borderBottomColor:BaseColor.base,
+            borderBottomColor: BaseColor.base,
             borderBottomWidth: 1,
             marginRight: 10
           }
@@ -120,51 +146,51 @@ class AccountGeneration extends Component {
     )
     const renderStatePicker = (
       <Item picker style={[account.Item, account.col6]} >
-      <Picker
-        mode='dropdown'
-        iosIcon={<Image style={{ width: 30, height: 0 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
-        style={{ width: '43%', height: 60, position: 'relative', top: 10, left: 0 }}
+        <Picker
+          mode='dropdown'
+          iosIcon={<Image style={{ width: 30, height: 0 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
+          style={{ width: '43%', height: 60, position: 'relative', top: 10, left: 0 }}
 
-        placeholderStyle={{ color: "#bfc6ea" }}
-        placeholderIconColor="#007aff"
-        selectedValue={this.state.selected1}
-        onValueChange={(value) => this.onStateChange(value)}
-      >
-        {this.state.States.map((state, i) => {
-          return (
-            <Picker.Item label={state.name} value={state.name} key={i} />
-          );
-        }
-        )}
+          placeholderStyle={{ color: "#bfc6ea" }}
+          placeholderIconColor="#007aff"
+          selectedValue={this.state.selected1}
+          onValueChange={(value) => this.onStateChange(value)}
+        >
+          {this.state.States.map((state, i) => {
+            return (
+              <Picker.Item label={state.name} value={state.name} key={i} />
+            );
+          }
+          )}
 
-      </Picker>
+        </Picker>
       </Item>
     )
     const renderLgaPicker = (
-      <Item picker style={[account.Item, account.col6,{marginLeft:10}]} >
-      <Picker
-        mode='dropdown'
-        iosIcon={<Image style={{ width: 30, height: 40 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
-        style={{ width: '45%', height: 40, position: 'relative', top: 10, left: 0 }}
-        placeholderStyle={{ color: "#bfc6ea" }}
-        placeholderIconColor="#007aff"
-        selectedValue={this.state.lga1}
-        onValueChange={(value) => this.onLgaChange(value)}
-      >
-        {this.state.Lga.map((lg, i) => {
-          return (
-            <Picker.Item label={lg.name} value={lg.name} key={i} />
-          );
-        }
-        )}
-      </Picker>
+      <Item picker style={[account.Item, account.col6, { marginLeft: 10 }]} >
+        <Picker
+          mode='dropdown'
+          iosIcon={<Image style={{ width: 30, height: 40 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
+          style={{ width: '45%', height: 40, position: 'relative', top: 10, left: 0 }}
+          placeholderStyle={{ color: "#bfc6ea" }}
+          placeholderIconColor="#007aff"
+          selectedValue={this.state.lga1}
+          onValueChange={(value) => this.onLgaChange(value)}
+        >
+          {this.state.Lga.map((lg, i) => {
+            return (
+              <Picker.Item label={lg.name} value={lg.name} key={i} />
+            );
+          }
+          )}
+        </Picker>
       </Item>
     )
     return (
       // <ImageBackground source={require('../../../../components/logo/images/whiteIdBackground.png')}  style={{width:'100%', height:'100%',resizeMode: 'cover',}}>
-      <Container style={account.container}>
+      <Animated.View style={[account.container,{backgroundColor}]}>
         <Content>
-          <View style={{marginTop:10, alignItems: "center", }}>
+          <View style={{ marginTop: 10, alignItems: "center", }}>
             <ProgressBar isCheck={this.state.isCheck} />
           </View>
           <View style={account.logoSection}>
@@ -186,9 +212,9 @@ class AccountGeneration extends Component {
               </Item>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
-                {renderStatePicker}
-              
-                {renderLgaPicker}
+              {renderStatePicker}
+
+              {renderLgaPicker}
             </View>
             <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
               {renderDatepicker}
@@ -209,11 +235,11 @@ class AccountGeneration extends Component {
               </Item>
             </View>
             <View style={{ marginBottom: '10%', marginTop: '20%' }}>
-              <Button onPress={()=>this.setState({isCheck:this.state.isCheck+1},()=>this.props.navigation.navigate('Dashboard'))} success style={{ alignItems: 'center', textAlign: 'center', alignContent: "center", justifyContent: 'center', backgroundColor: BaseColor.dark, borderRadius: 10, width: 200, }}><Text style={{ flex: 1, textAlign: 'center', justifyContent: 'center', fontFamily: 'Ubuntu-Regular', alignSelf: 'center', color: BaseColor.light, fontSize: 20, alignItems: "center", }}> CREATE ID </Text></Button>
+              <Button onPress={() => this.setState({ isCheck: this.state.isCheck + 1 }, () => this.props.navigation.navigate('Dashboard'))} success style={{ alignItems: 'center', textAlign: 'center', alignContent: "center", justifyContent: 'center', backgroundColor: BaseColor.dark, borderRadius: 10, width: 200, }}><Text style={{ flex: 1, textAlign: 'center', justifyContent: 'center', fontFamily: 'Ubuntu-Regular', alignSelf: 'center', color: BaseColor.light, fontSize: 20, alignItems: "center", }}> CREATE ID </Text></Button>
             </View>
           </Form>
         </Content>
-      </Container>
+      </Animated.View>
       /* </ImageBackground> */
     )
   }

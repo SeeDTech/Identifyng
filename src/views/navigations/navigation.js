@@ -11,7 +11,7 @@ import SignOutRequirement from '../screens/AuthScreens/signupRequirements/Signup
 import AccountGeneration from '../screens/AuthScreens/AccountGeneration/AccountGeneration';
 import Ionicon from '../../components/Icons/Ionicon';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
-import { TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity, View,TextInput } from 'react-native'
 import Search from '../screens/Search/Search';
 import MyCards from '../screens/MyCards/MyCards';
 import { BaseColor } from '../../styles/theme/color';
@@ -22,8 +22,12 @@ import AllForms from '../screens/AuthScreens/AllForms/AllForms'
 import Styles from './styles'
 import navigations from './styles';
 import TransitionConfiguration from './TransitionConfiguration';
+import ProfilePage from '../screens/ProfileScreens/ProfilePage';
+import SearchBar from '../../components/SearchBar';
 
 
+
+const searchBar =<SearchBar/>
 
 const AuthStackNavigator = createStackNavigator({
     SlideScreen: {
@@ -79,50 +83,23 @@ const AppTabNavigator = createBottomTabNavigator({
             // }
         })
     },
-    Settings: {
-        screen: SettingsScreen,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Settings',
-            tabBarIcon: ({ tintColor }) => (
-                <Ionicon name="settings" color={tintColor} size={27} c />
-            ),
-            // tabBarOptions: {
-            //   activeTintColor: BaseColor.light,
-            //   labelStyle: {
-            //     fontSize: 14,
-            //   }
-            // }
-
-        })
-    },
-    Search: {
-        screen: Search,
-        navigationOptions: ({ navigation }) => ({
-            title: 'Search',
-            tabBarIcon: ({ tintColor }) => (
-                <Ionicon name="search" color={tintColor} size={27} />
-
-            ),
-            // tabBarOptions: {
-            //   activeTintColor: BaseColor.light,
-            //   labelStyle: {
-            //     fontSize: 14,
-            //   }
-            // }
-        })
-    },
+    
+   
+   
     ID: {
         screen: MyCards,
         navigationOptions: ({ navigation }) => ({
-            title: 'My Cards',
-            tabBarIcon: ({ tintColor }) => (
-                <Ionicon name="card" color={tintColor} size={27} />
+           
+            tabBarIcon: ({tintColor})=> (
+                <Ionicon name="card" color={tintColor}  size={27} />
             ),
 
         })
     },
-}, {
     
+}, {
+    lazyLoad: true,
+    backBehavior: 'none',
         navigationOptions: ({ navigation }) => ({
             tabBarOptions: {
                 activeTintColor: BaseColor.light,
@@ -148,13 +125,7 @@ const AppStacknavigator = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'Dashboard',
             tabBarLabel: 'Browse',
-            // headerRight: (
-            //     <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
-            //         <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
-            //             <Ionicon name="menu" size={27} />
-            //         </View>
-            //     </TouchableOpacity>
-            // ),
+            headerRight: searchBar ,
 
             headerTitleStyle: {
                 alignSelf: 'center',
@@ -164,17 +135,16 @@ const AppStacknavigator = createStackNavigator({
                 fontFamily: "Ubuntu-Regular",
                 
             },
-            headerLeft: (
-                <TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
-                    <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}></View>
-                </TouchableOpacity>
+            headerLeft:(<TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
+            <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}></View>
+        </TouchableOpacity>)
 
                 // <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
                 //     <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
                 //         <Ionicon name="menu" size={27} />
                 //     </View>
                 // </TouchableOpacity>
-            )
+           
         })
     }
 },{
@@ -185,18 +155,48 @@ const AppDrawerNavigator = createDrawerNavigator({
     Home: {
         screen: AppStacknavigator,
         navigationOptions: ({ navigation }) => ({
-
+            drawerLabel: 'Dashboard',
             drawerIcon: (
-                <Ionicon name='home' size={20} style={{ color: BaseColor.dark }} />
+                <Ionicon name='home' size={20} style={{color:BaseColor.light}} />
             ),
         })
-    }
+    },
+    ID: {
+        screen: MyCards,
+        navigationOptions: ({ navigation }) => ({
+            drawerLabel: 'My ID',
+            drawerIcon: (
+                <Ionicon name="card" style={{color:BaseColor.light}}  size={20} />
+            ),
+
+        })
+    },
+    Profile:{
+        screen:ProfilePage,
+        navigationOptions: ({ navigation }) => ({
+            
+            drawerIcon: (
+                <Ionicon name="book"style={{color:BaseColor.light}} size={20}  />
+            ),
+        })
+    },
+    Settings: {
+        screen: SettingsScreen,
+        title:'Settings',
+        navigationOptions: ({ navigation }) => ({
+            
+            drawerIcon:(
+                <Ionicon name="settings"style={{color:BaseColor.light}} size={20}  />
+            ),
+
+        })
+    },
 
 }, {
         contentOptions: {
             labelStyle: {
                 fontFamily: 'HurmeGeometricSans1',
-                color: BaseColor.dark,
+                color: BaseColor.light,
             },
         },
         drawerBackgroundColor: BaseColor.dark,

@@ -19,7 +19,7 @@ const bar = StyleSheet.create({
     text:{
         fontSize:12, 
         fontFamily:'Ubuntu-Regular',
-        
+        marginBottom:2,
     },
 
     line:{
