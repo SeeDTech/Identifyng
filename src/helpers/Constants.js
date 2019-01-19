@@ -16,4 +16,11 @@ export const ACTION = {
     GENERATE_USER_REQUEST: 'GENERATE_USER_REQUEST',
     GENERATE_USER:'GENERATE_USER',
     GENERATE_USER_SUCCESS:'GENERATE_USER_SUCCESS',
+
+   
 };
+export const REG_EXPRESSION={
+    
+     EMAIL:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+     PASSWORD: /^[a-z]+$/,
+}

@@ -11,22 +11,23 @@ const {
 } = ACTION;
 
 
-export const fetchLogin = (payload) => {
-    return {
-        type: LOGIN,
-        payload
-    }
-}
-export const loginSuccessMessage = () => {
+// export const fetchLogin = (payload) => {
+//     return {
+//         type: LOGIN,
+//         payload
+//     }
+// }
+export const loginSuccessMessage = (payload) => {
+    console.warn("success1")
     return {
         type: LOGIN_SUCCESS,
+        payload
     }
 }
 
-export const fetchLoginrequest = (payload) => {
+export const fetchLoginrequest = () => {
     return {
         type: LOGIN_REQUEST,
-        payload
     }
 }
 
@@ -46,6 +47,7 @@ export const logoutErrorMessage = () => {
 export const loginError = () => {
     return {
         type: LOGIN_ERROR,
+       
        
     }
 }
