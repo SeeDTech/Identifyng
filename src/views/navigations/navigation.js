@@ -125,7 +125,7 @@ const AppStacknavigator = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'Dashboard',
             tabBarLabel: 'Browse',
-            headerRight: searchBar ,
+            // headerRight: searchBar ,
 
             headerTitleStyle: {
                 alignSelf: 'center',

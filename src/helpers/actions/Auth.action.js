@@ -8,17 +8,19 @@ const {
     LOGOUT_SUCCESS,
     LOGOUT_ERROR,
     LOGOUT,
+    FETCH_USER_ERROR,
+    FETCH_USER_SUCCESS
 } = ACTION;
 
 
-// export const fetchLogin = (payload) => {
-//     return {
-//         type: LOGIN,
-//         payload
-//     }
-// }
+export const fetchLogin = (payload) => {
+    return {
+        type: LOGIN,
+        payload
+    }
+}
 export const loginSuccessMessage = (payload) => {
-    console.warn("success1")
+ 
     return {
         type: LOGIN_SUCCESS,
         payload
@@ -31,10 +33,10 @@ export const fetchLoginrequest = () => {
     }
 }
 
-export const fetchLogout = (id) => {
+export const fetchLogout = () => {
     return {
         type: LOGOUT,
-        payload:id
+        
     }
 }
 
@@ -44,10 +46,24 @@ export const logoutErrorMessage = () => {
     }
 }
 
-export const loginError = () => {
+export const fetchedUserSuccess = (payload)=>{
+    return{
+        type: FETCH_USER_SUCCESS,
+        payload,
+    }
+}
+
+export const fetchedUserError = (payload)=>{
+    return{
+        type: FETCH_USER_ERROR,
+        payload,
+    }
+}
+
+
+export const loginError = (payload) => {
     return {
         type: LOGIN_ERROR,
-       
-       
+        payload:payload !==undefined? payload:"Connection failed"
     }
 }

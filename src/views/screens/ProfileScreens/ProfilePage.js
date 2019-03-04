@@ -42,19 +42,6 @@ class ProfilePage extends Component{
        data: responseJson
     })
  })
-    //  .then(this.ApiUtils.checkStatus)
-    //  .then(res => res.json())
-    //  .then(res=>{this.setState({data:res})})
-    //  .catch(e=>e)
-  
-  //    const response = await fetch(URL,{
-  //     method:'GET',
-  //   headers: {
-  //     // "Accept": 'application/json',
-  //     'Content-Type': 'application/json',
-  //   },
-  
-  // })
   
 }
 

@@ -5,6 +5,7 @@
     <item android:width="100dp"
         android:drawable="@mipmap/splashicon"
         android:gravity="center"
-        android:height="80dp" />
+        android:height="80dp"
+    />
 
 </layer-list>

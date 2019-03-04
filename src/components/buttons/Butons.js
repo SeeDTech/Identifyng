@@ -74,7 +74,9 @@ export const ButtonNoBorder = (props) => {
     const { title, txtStyle, btnStyle } = props;
     return (
         <View style={styles.container}>
-            <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder, btnStyle]} ><Text style={[buttons.greenText, txtStyle]} >{title}</Text></Button>
+            <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder, btnStyle]} >
+            <Text style={[buttons.greenText, txtStyle]} >{title}</Text>
+            </Button>
         </View>
     )
 }
@@ -105,8 +107,8 @@ export const NextButton = (props) => {
     return (
         <View style={styles.container}>
             <Button rounded onPress={handleOnPress} style={buttons.circle}>
-                <View style={{marginLeft:'30%'}}>
-                    <ArrowRight />
+                <View style={{marginLeft:'18%'}}>
+                    {props.children}
                 </View>
             </Button>
         </View>
