@@ -1,35 +1,33 @@
 import React from 'react'
-import { API } from '../services/api/constants';
+import { API, bvnChecker } from '../services/api/constants';
+import Axios from 'axios';
 
 
 const  {url, paths}= API
 
-const headers = {
- 
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            
-  
-}
 
-
+/*Validate and return token */
 export const loginUser = (credentials)=>{
-    const loginURL = url+paths.LOGIN
-    console.log(loginURL)
-    const method = 'POST'
-    return fetch(loginURL,{
-        method,
-        headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify({
-            email:credentials.email,
-            password:credentials.password
-        })
+     const loginURL = url+paths.LOGIN
+    // console.log(loginURL)
+    return Axios.post(loginURL,{
+        email:credentials.email,
+        password:credentials.password
     })
+    
 }
 
+/**
+    to get the auth user data
+**/
+export const fetchUser=(usertoken)=>{
+    const UserDataURL = url+paths.AUTHUSER
+   return Axios.get(UserDataURL,{
+        headers: {
+            'Authorization':'Bearer'+usertoken
+        }
+      })
+}
 export const SignUpUser = (credentials)=>{
     const signUpURL = url+paths.SIGNUP
     const method = 'POST'
@@ -42,4 +40,24 @@ export const SignUpUser = (credentials)=>{
             password:credentials.password,
         })
     })
+}
+
+export const validateBVN =(bvn)=>{
+ 
+    const status = response =>{
+        if(response.status===200){
+             return response;
+        }else{
+            Promise.reject(response)
+        }
+    }
+
+const json = response => response.json();
+    return Axios.get(`https://api.paystack.co/bank/resolve_bvn/${bvn}`,{
+        headers:{
+            'Authorization':'Bearer sk_test_139ee724b1683368b9b61ce2f17e3535af40db29'
+        }
+    })
+            .then(status)
+            
 }

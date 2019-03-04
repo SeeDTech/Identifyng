@@ -2,16 +2,22 @@ import React, { Component } from 'react'
 import { Text, View, ImageBackground, StatusBar, Platform, Animated, Easing, Dimensions } from 'react-native'
 import { ButtonNoBorder, TransparentButton, NextButton } from '../../../../components/buttons/Butons';
 import { MainIdLogoGreen } from '../../../../components/logo/Logo';
-import { Container, Content, Form, Label, Item, Input } from 'native-base';
+import { Container, Content, Form, Label, Item, Input, Spinner } from 'native-base';
 import { BaseColor } from '../../../../styles/theme/color';
 import ProgressBar from '../ProgressBar/ProgressBar'
 import forms from './styles';
 import Icon from "react-native-vector-icons/FontAwesome";
 import phonenumber from '../PhoneNumber/styles';
-import otp from '../OTP/styles';
-import SignupRequirementsPage from '../signupRequirements/SignupRequirementsPage';
+import otp from '../OTP/styles'
+import {connect} from 'react-redux'
+import { validatePhone } from '../../../../helpers/form.helper';
+import { ERROR_CONST } from '../../../../helpers/Constants';
+import { ArrowRight } from '../../../../components/Icons/SvgIcons/Icons';
+import { addPhoneBvn } from '../../../../helpers/InitSignUp.helper';
 
 const ScreenWidth = Dimensions.get('window').width;
+const {PHONE,OTP,BVN} = ERROR_CONST;
+
 class AllForms extends Component {
     constructor(props) {
         super(props)
@@ -21,6 +27,7 @@ class AllForms extends Component {
     }
   
     componentWillMount = () => {
+        setTimeout(()=>this.setState({loader:false}),750)
         this.animate();
         this.spring()
     }
@@ -32,7 +39,7 @@ class AllForms extends Component {
             {
                 
                 toValue: 1,
-                duration: 750,
+                duration: 650,
                 easing: Easing.linear
             }
         ).start()
@@ -49,8 +56,8 @@ class AllForms extends Component {
             }
            
         ).start()
-      
     }
+   
     state = {
         error: false,
         isCheck: 0,
@@ -58,31 +65,48 @@ class AllForms extends Component {
         secondField: '',
         thirdField: '',
         fourthField: '',
+        loader:false,
         formKey: 0,
-        phoneNumber: null,
+        phoneNumber: '',
         bvn: '',
         otp: '',
-        bvnError: 'Invalid BVN',
-        phoneError: 'Invalid Phone number',
-        optError: 'Invalid OTP',
         errorBorder: {
             borderBottomColor: BaseColor.red,
         }
     }
 
-    // static navigationOptions = ({ navigation }) => {
-    //     const screenID = navigation.state.screenID ? navigation.state.screenID : 0;
-    // }
-    // goForward = (key) => { 
-    //     const params = { screenID: key+1 }
-    //      if (Math.random() > .75) params.plain = true
-    //     this.props.navigation.navigate('Forms',params)
-    //   }
+   
+    componentDidUpdate=(prevProps)=>{
+    const {isCheck,formKey}=this.state
+        if(prevProps.bvnIsValid !==this.props.bvnIsValid){
+            if(this.props.bvnIsValid===true){
+                this.setState({
+                    isCheck: isCheck + 1,
+                    error: false,
+                    formKey: formKey + 1,
+                }, () => this.animate());
+            }
+        }
+        if(prevProps.bvnError!==this.props.bvnError){
+            if(this.props.bvnError===true){
+                this.setState({error:this.props.bvnError})
+            }
+        }
+    }
+
     onChanghandler = (id) => {
         this.inputs[id]._root.focus();
     }
 
+    handlePhoneChange =(phoneInput)=>{
+        const {error, phoneValue} = validatePhone(phoneInput)
+        this.setState({
+            phoneNumber:phoneValue,
+            error
+        })
+      }
     onSubmitOtp = () => {
+        this.setState({loader:false})
         const { firstField, secondField, thirdField, fourthField, isCheck } = this.state;
         if (!firstField || !secondField || !thirdField || !fourthField) {
             alert('OTP cannot be empty');
@@ -93,9 +117,21 @@ class AllForms extends Component {
         }
     }
 
+    bvnChangeHandler =(bvnInput)=>{
+      
+            this.setState({ bvn: bvnInput },()=>{
+                if(this.state.bvn.length!==11){
+                    this.setState({error:true})
+                }else{
+                   this.setState({
+                       error:false
+                   }) 
+                }
+            })
+    }
     handlePhoneSubmit = () => {
-        const { phoneNumber, formKey, isCheck } = this.state;
-        if (!phoneNumber) {
+        const { phoneNumber,error, formKey, isCheck } = this.state;
+        if (!phoneNumber||error) {
             this.setState({ error: true })
         } else {
             this.setState({
@@ -103,23 +139,27 @@ class AllForms extends Component {
                 error: false,
                 formKey: formKey + 1,
             }, () => this.animate());
-            // this.goForward(formKey)
+            
         }
+        setTimeout(()=>this.setState({loader:false}),750) 
     }
-    RenderErrorMessage = (message) => { this.spring(); return (this.state.error && <Text style={[phonenumber.errorMessage, { transform: [{ scale: 0.8 }] }]}><Text style={{ marginRight: 15 }}><Icon name='info-circle' size={12} /></Text>{message}</Text>) }
+    RenderErrorMessage = (message) => { this.spring(); return ((this.state.error)&& <Text style={[phonenumber.errorMessage, { transform: [{ scale: 0.8 }] }]}><Text style={{ marginRight: 15 }}><Icon name='info-circle' size={12} /></Text> {message}</Text>) }
 
     handleBvnSubmit = () => {
-        const { bvn, formKey, isCheck } = this.state;
-        if (!bvn) return this.setState({ error: true })
-        this.setState({
-            isCheck: isCheck + 1,
-            error: false,
-            formKey: formKey + 1,
-        }, () => this.animate());
+       setTimeout(()=>this.setState({loader:false}),750) 
+        const { bvn } = this.state;
+        if (!bvn  ||this.state.bvn.length !==11) return this.setState({ error: true })
+        let phoneBvn ={
+            phone:this.state.phoneNumber,
+            bvn:this.state.bvn,
+        }
+        this.props.addPhoneBvn(phoneBvn)
+    
         // this.goForward(formKey)
     }
     //Choose onSubmit function base on form type
     formhandler = () => {
+        this.setState({loader:true})
         const { formKey } = this.state;
         switch (formKey) {
             case 0:
@@ -132,6 +172,8 @@ class AllForms extends Component {
         }
     }
     render() {
+        const{loader, bvn} =this.state;
+        const {isLoading,bvnError}= this.props
         const marginLeft = this.animatedValue.interpolate({
             inputRange: [0, 1],
             outputRange: [ScreenWidth * 2, 0]
@@ -143,8 +185,6 @@ class AllForms extends Component {
         })
         
         const { formKey,
-            phoneError,
-            bvnError,
             isCheck,
             optError,
             error,
@@ -152,7 +192,7 @@ class AllForms extends Component {
         } = this.state;
 
 
-
+        
         const BackgroundImage = require('../../../../components/logo/images/whiteIdBackground.png');
          const errorStyle  = error?errorBorder:'';
         //get screen parameter
@@ -165,9 +205,9 @@ class AllForms extends Component {
                 <Icon key={'phone'} name="phone" size={18} style={phonenumber.inputIcon} />
                 <Item floatingLabel style={[phonenumber.item,errorStyle]}>
                     <Label style={phonenumber.label}>Bvn</Label>
-                    <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ bvn: newText })} style={phonenumber.itemInput} />
+                    <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => {this.bvnChangeHandler(newText)}} style={phonenumber.itemInput} />
                 </Item>
-                {this.RenderErrorMessage(bvnError)}
+                {this.RenderErrorMessage(bvn.length?BVN.INVALID:BVN.EMPTY_STRING)}
             </Animated.View>
         )
 
@@ -180,9 +220,9 @@ class AllForms extends Component {
                 <Icon key={'phone'} name="phone" size={18} style={phonenumber.inputIcon} />
                 <Item floatingLabel style={[phonenumber.item,errorStyle]}>
                     <Label style={phonenumber.label}>Phone Number</Label>
-                    <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.setState({ phoneNumber: newText })} style={phonenumber.itemInput} />
+                    <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.handlePhoneChange(newText)} style={phonenumber.itemInput} />
                 </Item>
-                {this.RenderErrorMessage(phoneError)}
+                {this.RenderErrorMessage(PHONE.INVALID)}
             </Animated.View>
         )
 
@@ -256,7 +296,7 @@ class AllForms extends Component {
                         barStyle="light-content" />
                     <Content>
                         <View style={{ flexDirection: "column", justifyContent: 'center', alignItems: 'center', marginTop: 30 }}>
-                            <ProgressBar isCheck={isCheck} />
+                            {/* <ProgressBar  isCheck={isCheck} /> */}
                             <MainIdLogoGreen />
                         </View>
                         <Form style={forms.formSection}>
@@ -265,16 +305,34 @@ class AllForms extends Component {
                                 {RenderBvnForm}
                                 {RenderOtpForm}
                             </View>
+                           <View style={{position:'absolute',top:'30%'}}>
+                                {(loader ||isLoading)&& <Spinner color={BaseColor.base}/>}
+                            </View>
                             <View style={Platform.OS === "ios" ? [forms.button, forms.shadowIOs] : [forms.button, forms.shadowAndroid]}>
-                                <NextButton onPress={() => this.formhandler()} />
+                                <NextButton onPress={() => this.formhandler()} >
+                                {loader? <Spinner color={BaseColor.light}/>:<ArrowRight/>}
+                                </NextButton>
                             </View>
                         </Form>
                     </Content>
+                   
                 </Container>
             </ImageBackground>
 
         )
     }
 }
+const mapStateToProps = (state) => {
+    return{
+        bvnIsValid: state.InitSignUp.bvnIsValid,
+       bvnError:state.InitSignUp.error,
+       isLoading:state.InitSignUp.isLoading
+    }
+}
 
-export default AllForms
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPhoneBvn: (phoneData) => dispatch(addPhoneBvn(phoneData))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(AllForms)

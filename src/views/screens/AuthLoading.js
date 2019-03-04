@@ -8,14 +8,13 @@ import { BaseColor } from '../../styles/theme/color';
 export class AuthLoading extends Component {
 
 
-    loading = async()=>{
-      const token = this.props.userToken;
-        const userToken = await AsyncStorage.getItem(token);
-    this.props.navigation.navigate(userToken ?'App':'Auth');
+    loading = ()=>{
+      const {isLoggedIn}=this.props
+    this.props.navigation.navigate(isLoggedIn ?'App':'Auth');
     }
     componentDidMount = () => {
        SplashScreen.hide()
-      this.loading()
+     setTimeout(()=>{this.loading()},700) 
     }
     
   render() {
@@ -29,7 +28,7 @@ export class AuthLoading extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      userToken:state.Auth.userToken,
+    isLoggedIn:state.Auth.isLoggedIn
   }
 }
 
