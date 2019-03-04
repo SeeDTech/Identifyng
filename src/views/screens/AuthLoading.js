@@ -11,7 +11,7 @@ export class AuthLoading extends Component {
     loading = async()=>{
       const token = this.props.userToken;
         const userToken = await AsyncStorage.getItem(token);
-    this.props.navigation.navigate(userToken ?'App':'Auth');
+    this.props.navigation.navigate(userToken ?'Auth':'App');
     }
     componentDidMount = () => {
        SplashScreen.hide()

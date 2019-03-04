@@ -47,7 +47,8 @@ class PhoneNumber extends Component {
         <Icon key={'phone'} name="phone" size={18} style={Phonenumber.inputIcon} />
         <Item floatingLabel style={phonenumber.item}>
           <Label style={phonenumber.label}>Phone Number</Label>
-          <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => { () => this.setState({phonenumber: newText}) }} style={phonenumber.itemInput} />
+          <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => { () => this.setState({phonenumber: newText}) }} 
+          style={phonenumber.itemInput} />
         </Item>
       </View>
     )

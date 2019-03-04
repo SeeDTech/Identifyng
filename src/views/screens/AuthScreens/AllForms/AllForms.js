@@ -9,7 +9,7 @@ import forms from './styles';
 import Icon from "react-native-vector-icons/FontAwesome";
 import phonenumber from '../PhoneNumber/styles';
 import otp from '../OTP/styles';
-import SignupRequirementsPage from '../signupRequirements/SignupRequirementsPage';
+import SignupRequirements from '../SignUp/SignupRequirements';
 
 const ScreenWidth = Dimensions.get('window').width;
 class AllForms extends Component {

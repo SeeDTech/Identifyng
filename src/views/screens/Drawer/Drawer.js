@@ -16,7 +16,8 @@ export class Drawer extends Component {
                 <StatusBar
                     backgroundColor={BaseColor.base}
                     barStyle="light-content" />
-                <Header style={{ width: '100%', backgroundColor: BaseColor.dark, height: 180 }}>
+                <Header iosStatusbar="light-content"
+                androidStatusBarColor='#0b755e' style={{ width: '100%', backgroundColor: BaseColor.dark, height: 180 }}>
                     <Body>
                         <View style={{ alignItems: 'flex-start', flexDirection: "column", padding: 10 }}>
                             <View style={{ width: 70, height: 70, borderRadius: 70, borderBottomColor: BaseColor.light, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(10,50,10,0.2)' }}>

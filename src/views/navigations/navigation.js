@@ -7,7 +7,7 @@ import {
 } from 'react-navigation';
 import SlidingScreen from '../screens/Sliders/SlidingScreen';
 import WelcomeScreen from '../screens/welcomeScreen/WelcomeScreen';
-import SignOutRequirement from '../screens/AuthScreens/signupRequirements/SignupRequirementsPage'
+import SignUpRequirement from '../screens/AuthScreens/SignUp/SignupRequirements'
 import AccountGeneration from '../screens/AuthScreens/AccountGeneration/AccountGeneration';
 import Ionicon from '../../components/Icons/Ionicon';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
@@ -43,7 +43,7 @@ const AuthStackNavigator = createStackNavigator({
         }
     },
     Requirement: {
-        screen:SignOutRequirement,
+        screen:SignUpRequirement,
         navigationOptions: {
             headerTransparent: {},
         }
@@ -66,8 +66,11 @@ const AuthStackNavigator = createStackNavigator({
     transitionConfig: TransitionConfiguration,
 });
 
-const AppTabNavigator = createBottomTabNavigator({
 
+
+const AppStacknavigator = createStackNavigator({
+
+    
     Dashboard: {
         screen: Dashboard,
         navigationOptions: ({ navigation }) => ({
@@ -96,57 +99,6 @@ const AppTabNavigator = createBottomTabNavigator({
 
         })
     },
-    
-}, {
-    lazyLoad: true,
-    backBehavior: 'none',
-        navigationOptions: ({ navigation }) => ({
-            tabBarOptions: {
-                activeTintColor: BaseColor.light,
-                inactiveTintColor: '#69f0ae',
-                style: {
-                    backgroundColor: BaseColor.base,
-                    borderTopColor: BaseColor.light,
-                    borderTopWidth: 2,
-                },
-                showLabel: false,
-                animationEnabled: true,
-
-
-            },
-        }),
-    });
-
-const AppStacknavigator = createStackNavigator({
-
-    AppTabNavigator: {
-        screen: AppTabNavigator,
-
-        navigationOptions: ({ navigation }) => ({
-            title: 'Dashboard',
-            tabBarLabel: 'Browse',
-            headerRight: searchBar ,
-
-            headerTitleStyle: {
-                alignSelf: 'center',
-                color: BaseColor.base,
-                textAlign: 'center',
-                justifyContent: 'center',
-                fontFamily: "Ubuntu-Regular",
-                
-            },
-            headerLeft:(<TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
-            <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}></View>
-        </TouchableOpacity>)
-
-                // <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
-                //     <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
-                //         <Ionicon name="menu" size={27} />
-                //     </View>
-                // </TouchableOpacity>
-           
-        })
-    }
 },{
     transitionConfig: TransitionConfiguration,
 })
@@ -205,6 +157,6 @@ const AppDrawerNavigator = createDrawerNavigator({
 const Routes = createSwitchNavigator({
     AuthLoading: AuthLoading,
     Auth: AuthStackNavigator,
-    App: AppDrawerNavigator
+    App: AppDrawerNavigator,
 })
 export default Routes
