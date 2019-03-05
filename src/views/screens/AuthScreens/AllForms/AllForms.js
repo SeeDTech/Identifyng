@@ -147,15 +147,19 @@ class AllForms extends Component {
 
     handleBvnSubmit = () => {
        setTimeout(()=>this.setState({loader:false}),750) 
-        const { bvn } = this.state;
+        const { bvn,isCheck,formKey} = this.state;
         if (!bvn  ||this.state.bvn.length !==11) return this.setState({ error: true })
         let phoneBvn ={
             phone:this.state.phoneNumber,
             bvn:this.state.bvn,
         }
-        this.props.addPhoneBvn(phoneBvn)
+        // this.props.addPhoneBvn(phoneBvn)
     
-        // this.goForward(formKey)
+        this.setState({
+            isCheck: isCheck + 1,
+            error: false,
+            formKey: formKey + 1,
+        }, () => this.animate());
     }
     //Choose onSubmit function base on form type
     formhandler = () => {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, ImageBackground, Image,Animated,Easing } from 'react-native'
-import { Container, Content, Picker, Form, Item, Label, Input, Button, Icon } from 'native-base';
+import { Container, Content, Picker, Form, Item, Label, Input, Button, Icon, Grid, Row, Col } from 'native-base';
 import account from './styles';
 import { MainIdLogoGreen } from '../../../../components/logo/Logo';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import DatePicker from 'react-native-datepicker'
 import { BaseColor } from '../../../../styles/theme/color';
+import { Btn } from '../../../../components/buttons/Butons';
 
 class AccountGeneration extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class AccountGeneration extends Component {
       lga1: undefined,
       gender1: undefined,
       States: [
-        { id: 0, name: 'STATE' },
+        { id: 0, name: 'State Of Origin' },
         { id: 1, name: 'Abia' },
         { id: 2, name: 'Adamawa' },
         { id: 3, name: 'Akwaibom' },
@@ -78,17 +79,13 @@ class AccountGeneration extends Component {
     })
   }
   render() {
-     const {firstColor,secondColor,thirdColor}= this.state;
-    const backgroundColor = this.animatedValue.interpolate({
-      inputRange: [0, 0.25,0.5,0.75,1],
-      outputRange: [firstColor,secondColor,thirdColor,secondColor,firstColor]
-  })
+
     const renderGender = (
-      <Item picker style={[account.Item, account.col6, { marginTop: 23 }]} >
+      <Item picker style={[{width:'85%',alignSelf:'flex-start',borderBottomColor: BaseColor.dark}]} >
         <Picker
           mode='dropdown'
-          iosIcon={<Image style={{ width: 30, height: 40 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
-          style={{ width: '45%', height: 40, position: 'relative', top: 10, left: 0 }}
+          iosIcon={<Image style={{ width: 30, height: 20 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
+          style={{ width: '45%',color:BaseColor.grey, height: 50, position: 'relative', top: 10, left: 0 }}
           placeholderStyle={{ color: "#bfc6ea" }}
           placeholderIconColor="#007aff"
           selectedValue={this.state.gender1}
@@ -105,54 +102,57 @@ class AccountGeneration extends Component {
     )
     const renderDatepicker = (
       <DatePicker
-        style={[account.datePicker, account.col6]}
+      style={{width:'90%',height:50, marginStart:20,borderBottomColor: BaseColor.dark}}
         date={this.state.date}
         mode='date'
         placeholder="DOB"
         placeholderColor={BaseColor.grey}
         format="YYYY-MM-DD"
-        minDate="1990-01-01"
+        minDate="1920-01-01"
         maxDate="2019-06-01"
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         showIcon={true}
+        
         customStyles={{
           dateIcon: {
             height: 20,
             width: 16,
             position: 'absolute',
-            left: 110,
-            top: 15,
+            left: '80%',
+            top: 23,
             marginLeft: 0
           },
           placeholderText: {
             marginTop: 5,
-            right: 0,
+            left: 0,
             color: BaseColor.grey,
             fontSize: 17,
           },
+          
           dateInput: {
             padding: 0,
             fontSize: 20,
+            paddingHorizontal:10,
+            fontFamily:'Ubuntu-Regular',
             alignItems: 'flex-start',
             borderWidth: 0,
+            color:BaseColor.grey,
             borderBottomColor: BaseColor.base,
-            borderBottomWidth: 1,
-            marginRight: 10
+            borderBottomWidth: 0.5,
+            marginRight: 10,
+            height: 40, position: 'relative', top: 10, left: 0 
           }
         }}
-        onDateChange={(date) => { this.setState({ date: date }) }}
+        onDateChange={(date) => { this.setState({ date }) }}
       />
     )
     const renderStatePicker = (
-      <Item picker style={[account.Item, account.col6]} >
+      <Item picker style={{width:'85%',marginStart:20,height:50,borderBottomColor: BaseColor.dark}}>
         <Picker
           mode='dropdown'
           iosIcon={<Image style={{ width: 30, height: 0 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
-          style={{ width: '43%', height: 60, position: 'relative', top: 10, left: 0 }}
-
-          placeholderStyle={{ color: "#bfc6ea" }}
-          placeholderIconColor="#007aff"
+          style={{ height: 50,color:BaseColor.grey, position: 'relative', top: 10, left: 0 }}
           selectedValue={this.state.selected1}
           onValueChange={(value) => this.onStateChange(value)}
         >
@@ -167,13 +167,13 @@ class AccountGeneration extends Component {
       </Item>
     )
     const renderLgaPicker = (
-      <Item picker style={[account.Item, account.col6, { marginLeft: 10 }]} >
+      <Item picker style={[{width:'85%',alignSelf:'flex-start',height:50,borderBottomColor: BaseColor.dark}]} >
         <Picker
           mode='dropdown'
           iosIcon={<Image style={{ width: 30, height: 40 }} source={require('../../../../components/logo/images/down-arrow.png')} />}
-          style={{ width: '45%', height: 40, position: 'relative', top: 10, left: 0 }}
-          placeholderStyle={{ color: "#bfc6ea" }}
-          placeholderIconColor="#007aff"
+          style={{ height: 50,color:BaseColor.grey, position: 'relative', top: 10, left: 0 }}
+          placeholderStyle={account.label}
+          itemTextStyle={{ color: '#788ad2' }}
           selectedValue={this.state.lga1}
           onValueChange={(value) => this.onLgaChange(value)}
         >
@@ -188,11 +188,11 @@ class AccountGeneration extends Component {
     )
     return (
       // <ImageBackground source={require('../../../../components/logo/images/whiteIdBackground.png')}  style={{width:'100%', height:'100%',resizeMode: 'cover',}}>
-      <Animated.View style={[account.container,{backgroundColor}]}>
+      <Animated.View style={[account.container]}>
         <Content>
-          <View style={{ marginTop: 10, alignItems: "center", }}>
+          {/* <View style={{ marginTop: 10, alignItems: "center", }}>
             <ProgressBar isCheck={this.state.isCheck} />
-          </View>
+          </View> */}
           <View style={account.logoSection}>
             <MainIdLogoGreen />
           </View>
@@ -201,41 +201,61 @@ class AccountGeneration extends Component {
             <Text style={account.instructionText}>to generate your account</Text>
           </View>
           <Form style={account.form}>
-            <View>
-              <Item style={account.Item} floatingLabel >
-                <Label style={account.label}>FIRST NAME</Label>
+          <Grid>
+            <Row>
+            <Item style={account.Item} floatingLabel >
+                <Label style={account.label}>First Name</Label>
                 <Input style={account.itemInput} />
               </Item>
+            </Row>
+            <Row>
               <Item style={account.Item} floatingLabel>
-                <Label style={account.label}>LAST NAME</Label>
+                <Label style={account.label}>Last Name</Label>
                 <Input style={account.itemInput} />
               </Item>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
+            </Row>
+            </Grid>
+            <Grid>
+            <Col size={2}>
               {renderStatePicker}
-
+            </Col >
+            <Col size={2}>
               {renderLgaPicker}
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
-              {renderDatepicker}
-              {renderGender}
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-              <Item style={[account.Item,]} floatingLabel >
-                <Label style={account.label}>EMAIL ADDRESS</Label>
-                <Input keyboardType='email-address' />
+            </Col>
+            </Grid>
+            <Grid>
+            <Col size={2}>
+            {renderDatepicker}
+            </Col>
+            <Col size={2}>
+            {renderGender}
+            </Col>
+            </Grid>
+            <Grid>
+            <Row>
+            <Item style={[account.Item]} floatingLabel >
+                <Label style={account.label}>Email</Label>
+                <Input style={account.itemInput} keyboardType='email-address' />
               </Item>
-              <Item style={[account.Item,]} floatingLabel>
-                <Label style={account.label}>PASSWORD</Label>
-                <Input secureTextEntry={true} />
+            </Row>
+            <Row>
+            <Item style={[account.Item,]} floatingLabel>
+                <Label style={account.label}>Password</Label>
+                <Input style={account.itemInput} secureTextEntry={true} />
               </Item>
-              <Item style={[account.Item,]} floatingLabel>
-                <Label style={account.label}>CONFIRM PASSWORD</Label>
-                <Input secureTextEntry={true} />
+            </Row>
+            <Row>
+            <Item style={[account.Item,]} floatingLabel>
+                <Label style={account.label}>Confirm Password</Label>
+                <Input style={account.itemInput} secureTextEntry={true} />
               </Item>
-            </View>
+            </Row>
+          </Grid>
+           
+            
             <View style={{ marginBottom: '10%', marginTop: '20%' }}>
-              <Button onPress={() => this.setState({ isCheck: this.state.isCheck + 1 }, () => this.props.navigation.navigate('Dashboard'))} success style={{ alignItems: 'center', textAlign: 'center', alignContent: "center", justifyContent: 'center', backgroundColor: BaseColor.dark, borderRadius: 10, width: 200, }}><Text style={{ flex: 1, textAlign: 'center', justifyContent: 'center', fontFamily: 'Ubuntu-Regular', alignSelf: 'center', color: BaseColor.light, fontSize: 20, alignItems: "center", }}> CREATE ID </Text></Button>
+            <Btn onPress={() => this.setState({ isCheck: this.state.isCheck + 1 }, () => this.props.navigation.navigate('Dashboard'))} title="Create ID" />
+              {/* <Button onPress={() => this.setState({ isCheck: this.state.isCheck + 1 }, () => this.props.navigation.navigate('Dashboard'))} success style={{ alignItems: 'center', textAlign: 'center', alignContent: "center", justifyContent: 'center', backgroundColor: BaseColor.dark, borderRadius: 10, width: 200, }}><Text style={{ flex: 1, textAlign: 'center', justifyContent: 'center', fontFamily: 'HurmeGeometricSans1 Bold', alignSelf: 'center', color: BaseColor.light, fontSize: 20, alignItems: "center", }}> CREATE ID </Text></Button> */}
             </View>
           </Form>
         </Content>

@@ -30,6 +30,12 @@ import SearchBar from '../../components/SearchBar';
 const searchBar =<SearchBar/>
 
 const AuthStackNavigator = createStackNavigator({
+    Registration: {
+        screen: AccountGeneration,
+        navigationOptions: {
+            headerTransparent: {},
+        }
+    },
     SlideScreen: {
         screen: SlidingScreen,
         navigationOptions: {
@@ -55,12 +61,7 @@ const AuthStackNavigator = createStackNavigator({
         }
 
     },
-    Registration: {
-        screen: AccountGeneration,
-        navigationOptions: {
-            headerTransparent: {},
-        }
-    },
+   
    
 },{
     transitionConfig: TransitionConfiguration,
