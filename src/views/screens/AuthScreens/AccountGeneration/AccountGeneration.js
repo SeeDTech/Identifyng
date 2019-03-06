@@ -7,7 +7,8 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import DatePicker from 'react-native-datepicker'
 import { BaseColor } from '../../../../styles/theme/color';
 import { Btn } from '../../../../components/buttons/Butons';
-
+import NaijaStates from 'naija-state-local-government';
+ 
 class AccountGeneration extends Component {
   constructor(props) {
     super(props);
@@ -17,26 +18,12 @@ class AccountGeneration extends Component {
        secondColor:'rgba(16, 214, 155, 0.5)',
        thirdColor:'rgba(16, 214, 155, 1)',
       isCheck: 3,
+      lgaIsEnabled:false,
       selected1: undefined,
       lga1: undefined,
       gender1: undefined,
-      States: [
-        { id: 0, name: 'State Of Origin' },
-        { id: 1, name: 'Abia' },
-        { id: 2, name: 'Adamawa' },
-        { id: 3, name: 'Akwaibom' },
-        { id: 4, name: 'Anambra' },
-        { id: 5, name: 'Bauchi' },
-      ],
-      Lga: [
-        { id: 0, name: 'LGA' },
-        { id: 1, name: 'Abia north' },
-        { id: 2, name: 'ugboklo' },
-        { id: 3, name: 'bobola' },
-        { id: 4, name: 'obajana' },
-        { id: 5, name: 'Kachia' },
-        { id: 6, name: 'Dala' },
-      ],
+      States: [],
+      Lga: ['Select LGA'],
       gender: [
         { id: 0, name: 'Gender' },
         { id: 1, name: 'Male' },
@@ -46,7 +33,20 @@ class AccountGeneration extends Component {
   }
 
   componentDidMount = () => {
+    let States=NaijaStates.states()
     this.animate()
+    this.setState({States:['State Of Origin', ...States]})
+  }
+
+  componentDidUpdate=(prevProps,PrevState)=>{
+    if(PrevState.selected1 !==this.state.selected1){
+      if(this.state.selected1 !==(undefined||this.state.States[0])){
+        let stateLgas =NaijaStates.lgas(this.state.selected1);
+        this.setState({Lga:[...stateLgas['lgas']]},()=>{
+          this.setState({lgaIsEnabled:true})
+        })
+      }
+    }
   }
   animate() {
     this.animatedValue.setValue(0)
@@ -158,7 +158,7 @@ class AccountGeneration extends Component {
         >
           {this.state.States.map((state, i) => {
             return (
-              <Picker.Item label={state.name} value={state.name} key={i} />
+              <Picker.Item label={state} value={state} key={i} />
             );
           }
           )}
@@ -174,12 +174,13 @@ class AccountGeneration extends Component {
           style={{ height: 50,color:BaseColor.grey, position: 'relative', top: 10, left: 0 }}
           placeholderStyle={account.label}
           itemTextStyle={{ color: '#788ad2' }}
+          enabled={this.state.lgaIsEnabled}
           selectedValue={this.state.lga1}
           onValueChange={(value) => this.onLgaChange(value)}
         >
           {this.state.Lga.map((lg, i) => {
-            return (
-              <Picker.Item label={lg.name} value={lg.name} key={i} />
+            return (       
+              <Picker.Item label={lg} value={lg} key={i} />
             );
           }
           )}
@@ -253,8 +254,8 @@ class AccountGeneration extends Component {
           </Grid>
            
             
-            <View style={{ marginBottom: '10%', marginTop: '20%' }}>
-            <Btn onPress={() => this.setState({ isCheck: this.state.isCheck + 1 }, () => this.props.navigation.navigate('Dashboard'))} title="Create ID" />
+            <View style={{ marginBottom: '10%', marginTop: '10%' }}>
+            <Btn txtStyle={{fontSize:23}} onPress={() => this.setState({ isCheck: this.state.isCheck + 1 }, () => this.props.navigation.navigate('Dashboard'))} title="Create ID" />
               {/* <Button onPress={() => this.setState({ isCheck: this.state.isCheck + 1 }, () => this.props.navigation.navigate('Dashboard'))} success style={{ alignItems: 'center', textAlign: 'center', alignContent: "center", justifyContent: 'center', backgroundColor: BaseColor.dark, borderRadius: 10, width: 200, }}><Text style={{ flex: 1, textAlign: 'center', justifyContent: 'center', fontFamily: 'HurmeGeometricSans1 Bold', alignSelf: 'center', color: BaseColor.light, fontSize: 20, alignItems: "center", }}> CREATE ID </Text></Button> */}
             </View>
           </Form>

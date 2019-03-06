@@ -35,7 +35,8 @@ const account = StyleSheet.create({
         alignContent: 'center',
         flexDirection: "column",
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingTop:50,
     },
     Item: {
         alignItems: 'center',
@@ -49,7 +50,7 @@ const account = StyleSheet.create({
     itemInput:{
 fontFamily:'Ubuntu-Regular',
 color:BaseColor.grey,
-fontSize:16,
+fontSize:15,
     },
     label: {
         fontSize:14,
