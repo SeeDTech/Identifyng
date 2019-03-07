@@ -1,10 +1,11 @@
 export const API = {
-url:'http://377a0948.ngrok.io/api/v1',
+url:' https://046af74b.ngrok.io/api/v1',
 paths:{
     TEST:'/test',
     LOGIN:'/login',
     AUTHUSER:'/user',
     SIGNUP:'/register',
+    SENDOTP:'/sendotp',
 }
 }
 

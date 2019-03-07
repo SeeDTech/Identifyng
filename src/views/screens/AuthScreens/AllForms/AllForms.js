@@ -13,7 +13,7 @@ import {connect} from 'react-redux'
 import { validatePhone } from '../../../../helpers/form.helper';
 import { ERROR_CONST } from '../../../../helpers/Constants';
 import { ArrowRight } from '../../../../components/Icons/SvgIcons/Icons';
-import { addPhoneBvn } from '../../../../helpers/InitSignUp.helper';
+import { addPhoneBvn, getUserOTP, validateOTP } from '../../../../helpers/InitSignUp.helper';
 
 const ScreenWidth = Dimensions.get('window').width;
 const {PHONE,OTP,BVN} = ERROR_CONST;
@@ -26,7 +26,7 @@ class AllForms extends Component {
         this.springValue = new Animated.Value(0)
     }
   
-    componentWillMount = () => {
+    componentDidMount = () => {
         setTimeout(()=>this.setState({loader:false}),750)
         this.animate();
         this.spring()
@@ -70,13 +70,30 @@ class AllForms extends Component {
         phoneNumber: '',
         bvn: '',
         otp: '',
+        otpCounter:false,
         errorBorder: {
             borderBottomColor: BaseColor.red,
         }
     }
 
+    validateOtpOnsupmit =()=>{
+        const { firstField, secondField, thirdField, fourthField, isCheck } = this.state;
+        const otp = firstField + secondField + thirdField + fourthField;
+        this.setState({ otp, isCheck: isCheck + 1, error: false, })
+     return  this.props.validateOTP(otp);
+    }
    
-    componentDidUpdate=(prevProps)=>{
+    callOTP=()=>{
+        setTimeout(()=>{this.setState({otpCounter:true})},20000)
+        const {phoneNumber,bvn}= this.state;
+        let credentials ={
+            phone:phoneNumber,
+            bvn
+        }
+        return this.props.getUserOTP(credentials)
+    }
+    componentDidUpdate=(prevProps,prevState)=>{
+        
     const {isCheck,formKey}=this.state
         if(prevProps.bvnIsValid !==this.props.bvnIsValid){
             if(this.props.bvnIsValid===true){
@@ -84,13 +101,19 @@ class AllForms extends Component {
                     isCheck: isCheck + 1,
                     error: false,
                     formKey: formKey + 1,
-                }, () => this.animate());
+                }, () => {this.animate(),
+                    this.callOTP()}
+                );
             }
         }
         if(prevProps.bvnError!==this.props.bvnError){
             if(this.props.bvnError===true){
                 this.setState({error:this.props.bvnError})
             }
+        }
+        if(prevProps.isValidOTP !==this.props.isValidOTP){
+            if(this.props.isValidOTP===true)
+            this.props.navigation.navigate('Registration');
         }
     }
 
@@ -106,14 +129,12 @@ class AllForms extends Component {
         })
       }
     onSubmitOtp = () => {
-        this.setState({loader:false})
         const { firstField, secondField, thirdField, fourthField, isCheck } = this.state;
+        this.setState({loader:false})
         if (!firstField || !secondField || !thirdField || !fourthField) {
-            alert('OTP cannot be empty');
-        } else {
-            const otp = firstField + secondField + thirdField + fourthField;
-            this.setState({ otp, isCheck: isCheck + 1, error: false, })
-            this.props.navigation.navigate('Registration');
+            alert(OTP.EMPTY_STRING);
+        } else {      
+           this.validateOtpOnsupmit()
         }
     }
 
@@ -153,13 +174,9 @@ class AllForms extends Component {
             phone:this.state.phoneNumber,
             bvn:this.state.bvn,
         }
-        // this.props.addPhoneBvn(phoneBvn)
+         this.props.addPhoneBvn(phoneBvn)
     
-        this.setState({
-            isCheck: isCheck + 1,
-            error: false,
-            formKey: formKey + 1,
-        }, () => this.animate());
+        
     }
     //Choose onSubmit function base on form type
     formhandler = () => {
@@ -223,8 +240,8 @@ class AllForms extends Component {
                 </View>
                 <Icon key={'phone'} name="phone" size={18} style={phonenumber.inputIcon} />
                 <Item floatingLabel style={[phonenumber.item,errorStyle]}>
-                    <Label style={phonenumber.label}>Phone Number</Label>
-                    <Input maxLength={11} keyboardType='numeric' onChangeText={(newText) => this.handlePhoneChange(newText)} style={phonenumber.itemInput} />
+                    <Label style={phonenumber.label}>Phone number</Label>
+                    <Input maxLength={14} keyboardType='phone-pad' onChangeText={(newText) => this.handlePhoneChange(newText)} style={phonenumber.itemInput} />
                 </Item>
                 {this.RenderErrorMessage(PHONE.INVALID)}
             </Animated.View>
@@ -234,7 +251,7 @@ class AllForms extends Component {
             <Animated.View key={formKey} style={{ marginLeft, minWidth: '100%' }}>
                 <View key={formKey} style={phonenumber.instruction}>
                     <Text style={otp.instructionText}>Input the One Time Password(OTP) </Text>
-                    <Text style={otp.instructionText}>sent to +234345******23</Text>
+                    <Text style={otp.instructionText}>sent to <>{this.state.phoneNumber}</></Text>
                 </View>
                 <View style={{ alignSelf: "center", alignItems: "center", alignContent: "center", flexDirection: 'row' }}>
                     <Item style={otp.itemSection}>
@@ -283,9 +300,9 @@ class AllForms extends Component {
                         />
                     </Item>
                 </View>
-                {this.RenderErrorMessage(optError)}
+                {this.RenderErrorMessage(OTP.INVALID)}
                 <View style={{ alignItems: 'center', position: "relative", top: 50 }}>
-                    <Text style={otp.instructionText}>Resend OTP?</Text>
+              {this.state.otpCounter && <ButtonNoBorder onPress={()=>this.callOTP()}  txtStyle={otp.instructionText} title='Resend OTP'/>}
                 </View>
             </Animated.View>
         )
@@ -330,13 +347,16 @@ const mapStateToProps = (state) => {
     return{
         bvnIsValid: state.InitSignUp.bvnIsValid,
        bvnError:state.InitSignUp.error,
-       isLoading:state.InitSignUp.isLoading
+       isLoading:state.InitSignUp.isLoading,
+       isValidOTP:state.InitSignUp.isValidOTP
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addPhoneBvn: (phoneData) => dispatch(addPhoneBvn(phoneData))
+        addPhoneBvn: (phoneData) => dispatch(addPhoneBvn(phoneData)),
+        getUserOTP:(phoneBvn) =>dispatch(getUserOTP(phoneBvn)),
+        validateOTP:(otp)=>dispatch(validateOTP(otp))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(AllForms)

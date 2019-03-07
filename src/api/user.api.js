@@ -52,12 +52,26 @@ export const validateBVN =(bvn)=>{
         }
     }
 
-const json = response => response.json();
     return Axios.get(`https://api.paystack.co/bank/resolve_bvn/${bvn}`,{
         headers:{
-            'Authorization':'Bearer sk_test_139ee724b1683368b9b61ce2f17e3535af40db29'
+            'Authorization':'Bearer sk_live_b88d24fb83f84e6580d8d85d72416fc4a007bc9b'
         }
     })
-            .then(status)
+    .then(status)
             
+}
+
+export const getOTP =(credentials)=>{
+    const status = response =>{
+        if(response.status===200){
+             return response;
+        }else{
+            Promise.reject(response)
+        }
+    }
+    const userOTPUrl = url+paths.SENDOTP
+  return  Axios.post(userOTPUrl,{
+       phone:credentials.phone,
+       bvn:credentials.bvn 
+    }).then(status)
 }
