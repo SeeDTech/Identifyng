@@ -9,16 +9,22 @@ const {
     ADD_PHONE_BVN,
     SIGN_UP_OTP_VALIDATION_REQUEST,
     SIGN_UP_OTP_VALIDATION,
+    GET_OTP,
+    GET_OTP_ERROR,
+    SIGN_UP_OTP_VALIDATION_ERROR,
+    GET_OTP_REQUEST,
     ADD_PHONE_NUMBER_ERROR,
 } = ACTION
 const initState = {
     bvnIsValid:false,
     successMessage:null,
     isLoading:false,
+    isValidOTP:false,
     error:false,
     userData:{
         phone:'',
         bvn:'',
+        otp:'',
     },
     bvnData:{},
 }
@@ -45,8 +51,8 @@ const initState = {
                     userData:{
                         phone:'',
                         bvn:'',
-                    },
-                    bvnIsValid:false,
+                        bvnIsValid:false,
+                    }
                 }
                 case PHONE_BVN_SUCCESS:
                 return{
@@ -61,6 +67,26 @@ const initState = {
                     bvnData:{...state.bvnData,...action.payload},
                     bvnIsValid:true,
                 }
+                case GET_OTP:
+                return{
+                    ...state,
+                    userData:{
+                        ...state.userData,
+                        otp:action.payload.otp
+                    },
+                    isLoading:false,
+                }
+                case GET_OTP_REQUEST:
+                return{
+                    ...state,
+                    isLoading:true,
+                }
+                case GET_OTP_ERROR:
+                return{
+                    ...state,
+                    isLoading:false,
+                    error:true,
+                }
                 case SIGN_UP_OTP_VALIDATION_REQUEST:
                 return{
                     ...state,
@@ -72,7 +98,15 @@ const initState = {
                     ...state,
                     isLoading:false,
                     error:false,
-                    
+                    isValidOTP:true,
+                }
+                case SIGN_UP_OTP_VALIDATION_ERROR:
+                return{
+                    ...state,
+                    isloading:false,
+                    error:true,
+                    isValidOTP:false,
+                    isLoading:false,
                 }
             default:
             return state

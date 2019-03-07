@@ -30,6 +30,7 @@ import SearchBar from '../../components/SearchBar';
 const searchBar =<SearchBar/>
 
 const AuthStackNavigator = createStackNavigator({
+    
     SlideScreen: {
         screen: SlidingScreen,
         navigationOptions: {

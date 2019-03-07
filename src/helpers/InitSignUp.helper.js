@@ -4,8 +4,14 @@ import {
     fetchAddPhoneBvn,
     fetchphoneBvnSuccess,
     fetchphoneBvnError,
+    getuserOtpReguest,
+    getuserOtp,
+    getuserOtpError,
+    fetchValidateOtpReguest,
+    fetchValidateOtp,
+    fetchValidateOtpError,
 } from './actions/InitSignUp.action'
-import { validateBVN } from '../api/user.api';
+import { validateBVN, getOTP } from '../api/user.api';
 
 
 export  const addPhoneBvn = (phoneBvn) => {
@@ -15,19 +21,45 @@ export  const addPhoneBvn = (phoneBvn) => {
         if (phoneBvn.bvn) {
            return validateBVN(phoneBvn.bvn)
            .then(data=>{
-               console.log(data)
+
                dispatch(fetchBvnValidation(data.data))
                const {bvnIsValid} =getState().InitSignUp
                if(bvnIsValid===true){
-                   dispatch(fetchphoneBvnSuccess())
-               return dispatch(fetchAddPhoneBvn(phoneBvn))
+                return   dispatch(fetchphoneBvnSuccess())
                }
            })
-           .catch(err=>{
-               console.log(err)
+           .catch(error=>{
              return  dispatch(fetchphoneBvnError())
            })
         }
     }
     
+}
+
+export  const getUserOTP = (phoneBvn) => {
+    return(dispatch,getState)=>{
+        dispatch(getuserOtpReguest())
+        if(phoneBvn){
+          return  getOTP(phoneBvn)
+            .then(data=>{
+               
+                dispatch(getuserOtp(data))
+            })
+            .catch(error=>{
+                dispatch(getuserOtpError())
+            })
+        }
+        
+    }
+}
+
+export const validateOTP = (otp)=>{
+    return(dispatch,getState)=>{
+        dispatch(fetchValidateOtpReguest())
+        if(otp){
+            const {userData} = getState().InitSignUp
+            if(userData.otp ===otp) return dispatch(fetchValidateOtp())
+            return dispatch(fetchValidateOtpError())
+        }
+    }
 }

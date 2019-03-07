@@ -96,7 +96,7 @@ class WelcomeScreen extends Component {
             })
             this.props.userLogin(this.state.credentials)
             if (this.props.isLoggedIn===true) {
-                console.warn(this.props.isLoggedIn)
+              
             }
 
         }

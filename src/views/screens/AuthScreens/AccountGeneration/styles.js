@@ -6,6 +6,7 @@ const account = StyleSheet.create({
         flex: 1,
         width: '100%',
         justifyContent: 'center',
+        backgroundColor:BaseColor.light,
     },
     logoSection: {
         alignItems: "center",
@@ -34,17 +35,22 @@ const account = StyleSheet.create({
         alignContent: 'center',
         flexDirection: "column",
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingTop:50,
     },
     Item: {
+        alignItems: 'center',
+        justifyContent: 'center',
         marginEnd: 10,
+        height:50,
         borderBottomColor: BaseColor.dark,
-         width: '85%',
+         width: '90%',
+         
     },
     itemInput:{
 fontFamily:'Ubuntu-Regular',
-color:BaseColor.dark,
-fontSize:18,
+color:BaseColor.grey,
+fontSize:15,
     },
     label: {
         fontSize:14,
@@ -52,6 +58,7 @@ fontSize:18,
         fontFamily: 'Ubuntu-Regular'
     },
     datePicker:{
+        
         position:'relative',
         top:25,
         left:10,
