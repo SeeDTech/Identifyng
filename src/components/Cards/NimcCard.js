@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Image,  Animated, Easing, Dimensions, ImageBackground  } from 'react-native'
+import {View, Image,  Animated, Easing, Dimensions, ImageBackground, TouchableOpacity,TouchableWithoutFeedback  } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Left, Right, Body, Text, Button,
         Grid, Row, Col, H1, H3} from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -15,21 +15,50 @@ class NimcCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            cardHeight: new Animated.Value(0),
+            cardHeight: new Animated.Value(0.25),
             isOpen: false,
             testh: "100px"
 
         }
     }
 
+    componentDidUpdate = (prevProps)=>{
+        if(this.props.hidden !== prevProps.hidden) {
+            if(this.props.hidden) {
+                Animated.timing(
+                    this.state.cardHeight,
+                    {
+                        toValue: 0,
+                        duration: 700,
+                        easing: Easing.linear,
+                        // useNativeDriver: true
+                    }
+                ).start()
+            } else {
+                Animated.timing(
+                    this.state.cardHeight,
+                    {
+                        toValue: 0.25,
+                        duration: 500,
+                        easing: Easing.linear,
+                        // useNativeDriver: true
+                    }
+                ).start()
+            }
+        }
+    }
+
     expandCard = () => {
-        this.setState({isOpen: !this.state.isOpen,})
+        this.setState(prevState=>({isOpen: !prevState.isOpen,}))
+        const activeCard=this.state.isOpen ? 6 : 1;
+        this.props.setActiveCard(activeCard);
         Animated.timing(
             this.state.cardHeight,
             {
-                toValue: this.state.isOpen ? 0 : 1,
-                duration: 500,
+                toValue: this.state.isOpen ? 0.25 : 1,
+                duration: 700,
                 easing: Easing.linear,
+                // useNativeDriver: true
             }
         ).start()
     }
@@ -38,22 +67,27 @@ class NimcCard extends Component {
         const {name, imgLink} = this.props
         const {width, height} = Dimensions.get('window')
         const cardHeight = this.state.cardHeight.interpolate({
-            inputRange: [0, 1],
-            outputRange: [(height-110)/4, height-100]
+            inputRange: [0, 0.25, 1],
+            outputRange: [0, (height-110)/4, height-100]
         })
 
         const itemOpacity = this.state.cardHeight.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1]
+            inputRange: [0, 0.25, 1],
+            outputRange: [0, 0, 1]
         })
         const itemOpacityb = this.state.cardHeight.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 0]
+            inputRange: [0, 0.25, 1],
+            outputRange: [1, 1, 0]
+        })
+        const margin = this.state.cardHeight.interpolate({
+            inputRange: [0, 0.25, 1],
+            outputRange: [0, 4, 4]
         })
         const avatar = '../../assests/img/avatar.png'
         return (
+            <TouchableWithoutFeedback onPress={()=>!isOpen && this.expandCard()}>
             <Animated.View>
-            <AnimatedCard  height={cardHeight} bgColor="#0b755e">
+            <AnimatedCard  height={cardHeight} margin={margin} bgColor="#0b755e">
             {
             // <View style={{ flex:1, position: 'absolute',  opacity: 0.3}}>
             // <IDBackground/>
@@ -61,7 +95,7 @@ class NimcCard extends Component {
             }
             <Grid>
             <Row style={CardStyle.row}>
-            <Text style={{margin:0, padding:0}}>National Identity Card</Text>
+            <Text style={{...CardStyle.cardHeader}}>National Identity Card</Text>
             <Thumbnail style={{ marginLeft: "auto"}} square resizeMode="contain"  source={require('../../assests/img/nimc.png')}/>
             </Row>
             <AnimatedView style={{ opacity:itemOpacityb, height:"auto", }}>
@@ -115,11 +149,12 @@ class NimcCard extends Component {
                 // </AnimatedRow>
             }
             <Button style={CardStyle.expandButton} 
-            onPress={()=>this.expandCard()}><Icon name={isOpen ? "expand-less" : "expand-more"} size={25} color="#000"/>
+            onPress={()=>this.expandCard()}><Icon name={isOpen ? "close" : "expand-more"} size={25} color="#fff"/>
             {/*<Text style={{color:"#000"}}>{isOpen? "Less": "M0re"}</Text>*/}
             </Button>
             </AnimatedCard>
             </Animated.View>
+            </TouchableWithoutFeedback>
         )
     }
 }

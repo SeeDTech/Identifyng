@@ -42,6 +42,12 @@ export const CardStyle = StyleSheet.create({
         alignItems: "center"
     },
 
+    cardHeader : {
+        margin:0,
+         padding:0,
+         color:"#ffffff" 
+    }
+
 
 })
 
@@ -51,4 +57,6 @@ font-size: ${props => props.isKey ? 11 : 15 };
 margin-left: 2;
 margin-right: 2;
 `
+// export const StyledText = styled.Text `
+// `
 

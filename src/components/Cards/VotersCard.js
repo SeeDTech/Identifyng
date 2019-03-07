@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Image,  Animated, Easing, Dimensions, ImageBackground, TouchableWithoutFeedback  } from 'react-native'
+import {View, Image,  Animated, Easing, Dimensions, ImageBackground  } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Left, Right, Body, Text, Button,
         Grid, Row, Col, H1, H3} from 'native-base'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -11,7 +11,7 @@ import IDBackground from '../Backgrounds/Spiral';
 const AnimatedCard = Animated.createAnimatedComponent(StyledCard)
 const AnimatedView = Animated.createAnimatedComponent(View)
 const AnimatedRow = Animated.createAnimatedComponent(Row)
-class DriversLicense extends Component {
+class VotersCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -21,6 +21,7 @@ class DriversLicense extends Component {
 
         }
     }
+
     componentDidUpdate = (prevProps)=>{
         if(this.props.hidden !== prevProps.hidden) {
             if(this.props.hidden) {
@@ -46,10 +47,9 @@ class DriversLicense extends Component {
             }
         }
     }
-
     expandCard = () => {
         this.setState(prevState=>({isOpen: !prevState.isOpen,}))
-        const activeCard=this.state.isOpen ? 6 : 2;
+        const activeCard=this.state.isOpen ? 6 : 4;
         this.props.setActiveCard(activeCard);
         Animated.timing(
             this.state.cardHeight,
@@ -78,15 +78,15 @@ class DriversLicense extends Component {
             inputRange: [0, 0.25, 1],
             outputRange: [1, 1, 0]
         })
+
         const margin = this.state.cardHeight.interpolate({
             inputRange: [0, 0.25, 1],
             outputRange: [0, 4, 4]
         })
         const avatar = '../../assests/img/avatar.png'
         return (
-            <TouchableWithoutFeedback onPress={()=>!isOpen && this.expandCard()}>
             <Animated.View>
-            <AnimatedCard  height={cardHeight} margin={margin} bgColor="#039be5">
+            <AnimatedCard  height={cardHeight} margin={margin} bgColor="#4db6ac">
             {
             // <View style={{ flex:1, position: 'absolute',  opacity: 0.3}}>
             // <IDBackground/>
@@ -94,7 +94,7 @@ class DriversLicense extends Component {
             }
             <Grid>
             <Row style={CardStyle.row}>
-            <Text style={{...CardStyle.cardHeader}}>{"Driver's License"}</Text>
+            <Text style={{...CardStyle.cardHeader}}>Voters Card</Text>
             <Thumbnail style={{ marginLeft: "auto"}} square resizeMode="contain"  source={require('../../assests/img/nimc.png')}/>
             </Row>
             <AnimatedView style={{ opacity:itemOpacityb, height:"auto", }}>
@@ -147,14 +147,13 @@ class DriversLicense extends Component {
                 // </AnimatedRow>
             }
             <Button style={CardStyle.expandButton} 
-            onPress={()=>this.expandCard()}><Icon name={isOpen ? "close" : "expand-more"} size={25} color="#fff"/>
+            onPress={()=>this.expandCard()}><Icon name={isOpen ? "expand-less" : "expand-more"} size={25} color="#000"/>
             {/*<Text style={{color:"#000"}}>{isOpen? "Less": "M0re"}</Text>*/}
             </Button>
             </AnimatedCard>
             </Animated.View>
-            </TouchableWithoutFeedback>
         )
     }
 }
 
-export default DriversLicense
+export default VotersCard
