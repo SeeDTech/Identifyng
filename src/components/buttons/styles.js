@@ -3,7 +3,8 @@ import {BaseColor} from '../../styles/theme/color'
 
   
  const styles = StyleSheet.create({   
-   container: {  
+   container: {
+     textAlign:'center',  
      justifyContent:'center',                     
     alignItems:"center",
     alignContent:"center",
@@ -49,7 +50,7 @@ import {BaseColor} from '../../styles/theme/color'
    },
    whitetext:{
     fontSize: 18,
-    color:'#fff',
+    color:BaseColor.light,
     fontFamily:'HurmeGeometricSans1 Bold',
     textAlign:'center',
     alignContent:'center',
@@ -78,10 +79,17 @@ import {BaseColor} from '../../styles/theme/color'
 noBorder:{
   justifyContent:'center',
   marginBottom:'3%',
+    margin:10,
     width: 250,
     fontSize:20,
     height:55,
     color:BaseColor.dark,
+},
+animCircle: {
+  transform: [
+          {translateX:130},
+          {translateY:-10}
+       ],
 },
 circle:{
   // transform: [

@@ -1,14 +1,15 @@
 import { ACTION } from '../helpers/Constants'
 
 
-const { LOGIN_REQUEST,LOGIN_ERROR,LOGIN_SUCCESS, LOGIN,LOGOUT } = ACTION
+const { LOGIN_REQUEST,LOGIN_ERROR,LOGIN_SUCCESS,FETCH_USER_SUCCESS,FETCH_USER_ERROR, LOGIN,LOGOUT } = ACTION
 const initState = {
-    errorMessage:'authentication failed',
+    errorMessage:'',
     successMessage:null,
     isLoading:false,
     error:false,
     isLoggedIn:false,
-    userToken:''
+    userToken:'',
+    AuthUser:[],
 }
 
 const Auth = (state = initState, action) => {
@@ -25,21 +26,43 @@ const Auth = (state = initState, action) => {
                 ...state,
                 isLoading:false,
                 error:true,
+                errorMessage:action.payload.data.error
               
             }
         case LOGIN_SUCCESS:
-        console.log(JSON.stringify(action.payload._bodyText))
+       
+        return{
+            ...state,
+            isLoading:true,
+            error:false,
+            errorMessage:'',
+            userToken: action.payload.data.token
+        }
+        case FETCH_USER_ERROR:
+        return{
+            ...state,
+            AuthUser:[],
+            isLoading:false,
+            error:true,
+            isLoggedIn:false,
+            errorMessage:"Failed to login",
+        }
+        case FETCH_USER_SUCCESS:
         return{
             ...state,
             isLoading:false,
+            isLoggedIn:true,
             error:false,
-            userToken: action.payload._bodyText
+            errorMessage:'',
+            AuthUser: action.payload,
+           
         }
            case LOGOUT:
             return{
                 ...state,
                 isLoading:false,
                 error:false,
+                isLoggedIn:false,
                 userToken:'',
             }
             default:
@@ -47,4 +70,4 @@ const Auth = (state = initState, action) => {
     }
 }
 
-export default Auth;
+export default Auth; 

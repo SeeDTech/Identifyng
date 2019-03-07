@@ -99,6 +99,59 @@ const AppStacknavigator = createStackNavigator({
 
         })
     },
+
+    
+}, {
+    lazyLoad: true,
+    backBehavior: 'none',
+        navigationOptions: ({ navigation }) => ({
+            tabBarOptions: {
+                activeTintColor: BaseColor.light,
+                inactiveTintColor: '#69f0ae',
+                style: {
+                    backgroundColor: BaseColor.base,
+                    borderTopColor: BaseColor.light,
+                    borderTopWidth: 2,
+                },
+                showLabel: false,
+                animationEnabled: true,
+
+
+            },
+        }),
+    });
+
+const AppStacknavigator = createStackNavigator({
+
+    AppTabNavigator: {
+        screen: AppTabNavigator,
+
+        navigationOptions: ({ navigation }) => ({
+            title: 'Dashboard',
+            tabBarLabel: 'Browse',
+            // headerRight: searchBar ,
+
+            headerTitleStyle: {
+                alignSelf: 'center',
+                color: BaseColor.base,
+                textAlign: 'center',
+                justifyContent: 'center',
+                fontFamily: "Ubuntu-Regular",
+                
+            },
+            headerLeft:(<TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
+            <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}></View>
+        </TouchableOpacity>)
+
+                // <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+                //     <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
+                //         <Ionicon name="menu" size={27} />
+                //     </View>
+                // </TouchableOpacity>
+           
+        })
+    }
+
 },{
     transitionConfig: TransitionConfiguration,
 })

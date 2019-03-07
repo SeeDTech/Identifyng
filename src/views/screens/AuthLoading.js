@@ -11,11 +11,13 @@ export class AuthLoading extends Component {
     loading = async()=>{
       const token = this.props.userToken;
         const userToken = await AsyncStorage.getItem(token);
-    this.props.navigation.navigate(userToken ?'Auth':'App');
+    this.props.navigation.naviate(userToken ?'Auth':'App');
+
+ 
     }
     componentDidMount = () => {
        SplashScreen.hide()
-      this.loading()
+     setTimeout(()=>{this.loading()},700) 
     }
     
   render() {
@@ -29,7 +31,7 @@ export class AuthLoading extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      userToken:state.Auth.userToken,
+    isLoggedIn:state.Auth.isLoggedIn
   }
 }
 

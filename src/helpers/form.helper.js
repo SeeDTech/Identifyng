@@ -4,7 +4,7 @@ var PhoneNumber = require( 'awesome-phonenumber' );
 export const validatePhone = (newText) => {
     const phoneValue = newText;
     // this.setState({PhoneNumber:phoneValue})
-    const pn = new PhoneNumber(phoneValue,  );
+    const pn = new PhoneNumber(phoneValue, 'NG');
     const pa = pn.toJSON( );
     JSON.stringify( pa, null, 4 );
     if (pa.valid === true &&
@@ -12,11 +12,14 @@ export const validatePhone = (newText) => {
         pa.possibility === "is-possible") {
       return({
           phoneValue,
-        isValid: true
+        isValid: true,
+        error:false
       });
     } else {
       return ({
-        isValid: phoneValue,
+        isValid:false,
+        error:true,
+         phoneValue
       })
     }
 }

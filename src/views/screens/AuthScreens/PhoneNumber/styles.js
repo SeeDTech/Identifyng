@@ -18,6 +18,7 @@ const phonenumber = StyleSheet.create({
         color:BaseColor.red,
         backgroundColor:'#ffcdd2',
         width:'100%',
+        marginTop:10,
         paddingLeft:5,
         paddingRight:5,
         paddingBottom:2,
@@ -76,7 +77,9 @@ const phonenumber = StyleSheet.create({
         // border: "1px solid red",
         borderColor: BaseColor.dark,
         fontFamily: "Ubuntu-Regular",
+
         color: BaseColor.dark,
+
     },
     inputIcon:{
         position:"absolute",

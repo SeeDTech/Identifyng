@@ -238,8 +238,20 @@ export default class AnimLogo extends Component {
     }
     render () {
         let {pulsate, spinValue} = this.state
+
         const {size, color} = this.props
         // const color = this.props.color;
+
+      
+        const spina = spinValue.c.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '0deg']  //change second to 360
+          })
+        const spinb = spinValue.c.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '0deg'] //change first to 360
+          })
+
         const spinc = spinValue.b.interpolate({
             inputRange: [0, 0.5, 1],
             outputRange: ['0deg', '0deg', '0deg']
