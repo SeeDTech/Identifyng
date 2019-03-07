@@ -8,9 +8,12 @@ import { BaseColor } from '../../styles/theme/color';
 export class AuthLoading extends Component {
 
 
-    loading = ()=>{
-      const {isLoggedIn}=this.props
-    this.props.navigation.navigate(isLoggedIn ?'App':'Auth');
+    loading = async()=>{
+      const token = this.props.userToken;
+        const userToken = await AsyncStorage.getItem(token);
+    this.props.navigation.naviate(userToken ?'Auth':'App');
+
+ 
     }
     componentDidMount = () => {
        SplashScreen.hide()

@@ -7,7 +7,7 @@ import {
 } from 'react-navigation';
 import SlidingScreen from '../screens/Sliders/SlidingScreen';
 import WelcomeScreen from '../screens/welcomeScreen/WelcomeScreen';
-import SignOutRequirement from '../screens/AuthScreens/signupRequirements/SignupRequirementsPage'
+import SignUpRequirement from '../screens/AuthScreens/SignUp/SignupRequirements'
 import AccountGeneration from '../screens/AuthScreens/AccountGeneration/AccountGeneration';
 import Ionicon from '../../components/Icons/Ionicon';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
@@ -43,7 +43,7 @@ const AuthStackNavigator = createStackNavigator({
         }
     },
     Requirement: {
-        screen:SignOutRequirement,
+        screen:SignUpRequirement,
         navigationOptions: {
             headerTransparent: {},
         }
@@ -66,8 +66,11 @@ const AuthStackNavigator = createStackNavigator({
     transitionConfig: TransitionConfiguration,
 });
 
-const AppTabNavigator = createBottomTabNavigator({
 
+
+const AppStacknavigator = createStackNavigator({
+
+    
     Dashboard: {
         screen: Dashboard,
         navigationOptions: ({ navigation }) => ({
@@ -96,6 +99,7 @@ const AppTabNavigator = createBottomTabNavigator({
 
         })
     },
+
     
 }, {
     lazyLoad: true,
@@ -147,6 +151,7 @@ const AppStacknavigator = createStackNavigator({
            
         })
     }
+
 },{
     transitionConfig: TransitionConfiguration,
 })
@@ -205,6 +210,6 @@ const AppDrawerNavigator = createDrawerNavigator({
 const Routes = createSwitchNavigator({
     AuthLoading: AuthLoading,
     Auth: AuthStackNavigator,
-    App: AppDrawerNavigator
+    App: AppDrawerNavigator,
 })
 export default Routes

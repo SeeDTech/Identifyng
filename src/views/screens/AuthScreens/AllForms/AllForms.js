@@ -8,12 +8,16 @@ import ProgressBar from '../ProgressBar/ProgressBar'
 import forms from './styles';
 import Icon from "react-native-vector-icons/FontAwesome";
 import phonenumber from '../PhoneNumber/styles';
-import otp from '../OTP/styles'
+
+import otp from '../OTP/styles';
+import SignupRequirements from '../SignUp/SignupRequirements';
+=======
 import {connect} from 'react-redux'
 import { validatePhone } from '../../../../helpers/form.helper';
 import { ERROR_CONST } from '../../../../helpers/Constants';
 import { ArrowRight } from '../../../../components/Icons/SvgIcons/Icons';
 import { addPhoneBvn } from '../../../../helpers/InitSignUp.helper';
+
 
 const ScreenWidth = Dimensions.get('window').width;
 const {PHONE,OTP,BVN} = ERROR_CONST;
