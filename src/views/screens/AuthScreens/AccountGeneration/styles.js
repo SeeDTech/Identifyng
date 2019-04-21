@@ -10,6 +10,7 @@ const account = StyleSheet.create({
     },
     logoSection: {
         alignItems: "center",
+        marginTop:18,
     },
     col6:{
         width:'42%',

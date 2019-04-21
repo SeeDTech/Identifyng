@@ -7,9 +7,9 @@ import {
     StatusBar
 } from 'react-native';
 
-import { Container, Content, Form, Item, Input, Label, Spinner } from 'native-base';
+import { Container, Content, Form, Item, Input, Label, Spinner,Card,CardItem } from 'native-base';
 import { ButtonNoBorder, Btn } from '../../../components/buttons/Butons'
-import Logo, { MainIdLogoGreen, ImgLogo } from '../../../components/logo/Logo'
+import Logo, { MainIdLogoGreen } from '../../../components/logo/Logo'
 import { TextWithLetterSpacing } from '../../../components/TextWithLetterSpacing'
 import welcome from './styles'
 import { AsyncStorage } from 'react-native'
@@ -19,18 +19,23 @@ import { userLogin } from '../../../helpers/Auth.helpers';
 import { REG_EXPRESSION } from '../../../helpers/Constants';
 import { setItem } from '../../../helpers/storage.helpers';
 import AnimLogo from '../../../components/buttons/AnimatedLogo';
-
+import Modal from "react-native-modal";
+import ForgotPassword from './ForgotPassword';
 const { EMAIL, PASSWORD } = REG_EXPRESSION
 const background = require('../../../components/logo/images/whiteIdBackground.png');
+
+export const IDloader = (<View style={{ flex: 1, position: 'absolute', backgroundColor: 'rgba(46, 49, 49, .95)', height: '100%', width: '100%', top: 0, alignItems: 'center', alignSelf: 'center', justifyContent: 'center', zIndex: 1000 }}><AnimLogo color={BaseColor.light} /></View>)
 class WelcomeScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isModalVisible: false,
             error: false,
             formDanger: {
                 borderBottomColor: BaseColor.red,
                 borderWidth: 3,
             },
+            currentMail:'',
             emailValide: true,
             passwordValide: true,
             credentials: {
@@ -38,6 +43,10 @@ class WelcomeScreen extends Component {
                 password: '',
             }
         }
+    }
+
+    handleForgetPassword =(input)=>{
+        this.setState({currentMail:input})
     }
     validateLogin = (Input, type) => {
 
@@ -78,14 +87,23 @@ class WelcomeScreen extends Component {
     //     AsyncStorage.setItem('Auth_token', this.props.userToken)
     //     return this.props.navigation.navigate('AuthLoading')
     // }
-    componentDidUpdate(prevProps) {
-      if(prevProps.isLoading !==this.props.isLoggedIn){
-       if(this.props.isLoggedIn===true){
-         this.props.navigation.navigate('AuthLoading');
-       }
-      }
+
+    componentWillUnmount() {
+        this.setState({isModalVisible:false})
     }
-    
+
+    _toggleModal = () => {
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.isLoading !== this.props.isLoggedIn) {
+            if (this.props.isLoggedIn === true) {
+                this.props.navigation.navigate('AuthLoading');
+            }
+        }
+    }
+
     onSubmitForm = () => {
         const { email, password } = this.state.credentials
         if (!email || !password) {
@@ -95,17 +113,14 @@ class WelcomeScreen extends Component {
                 error: false,
             })
             this.props.userLogin(this.state.credentials)
-            if (this.props.isLoggedIn===true) {
-              
-            }
-
         }
     }
-    
+
     render() {
         const { isLoading, errorMessage, serverError } = this.props
-        const RenderLoader = isLoading && <View style={{ position: 'absolute', backgroundColor: 'rgba(46, 49, 49, .95)', height: '100%', width: '100%', top: 0, alignItems: 'center', alignSelf: 'center', justifyContent: 'center', zIndex: 1000 }}><AnimLogo color={BaseColor.light} /></View>
+        const RenderLoader = isLoading && IDloader;
         const { error, emailValide, passwordValide, formDanger } = this.state;
+     
         const renderErrorMessage = erromessage => (serverError || error) && <Text style={welcome.errorMessage}><Icon name='info-circle' style={{ marginRight: 5 }} size={15} /> {erromessage}</Text>
         return (
             <ImageBackground style={{ resizeMode: 'cover', width: '100%', height: '100%' }} source={background}>
@@ -151,7 +166,7 @@ class WelcomeScreen extends Component {
                                         <Label style={welcome.InputLabel}> identifyng@app.com</Label>
 
                                         <Input keyboardType="email-address"
-                                        autoCapitalize="none"
+                                            autoCapitalize="none"
                                             onChangeText={(newText) => this.validateLogin(newText, 'email')}
                                             style={welcome.InputField} >
                                         </Input>
@@ -167,7 +182,9 @@ class WelcomeScreen extends Component {
                                             onChangeText={(newText) => this.validateLogin(newText, 'password')}
                                             style={welcome.InputField} />
                                     </Item>
-                                    <TextWithLetterSpacing textStyle={welcome.forgotPassword} spacing={1}>FORGOT PASSWORD?</TextWithLetterSpacing>
+                                    <ButtonNoBorder onPress={this._toggleModal}>
+                                        <TextWithLetterSpacing textStyle={welcome.forgotPassword} spacing={1}>FORGOT PASSWORD?</TextWithLetterSpacing>
+                                    </ButtonNoBorder>
                                     <View style={{ marginTop: 25 }}>
                                         <Btn onPress={() => this.onSubmitForm()} title="SIGN IN" />
                                         <Text style={welcome.askForSignup}>DON'T HAVE ACCOUNT?</Text>
@@ -179,6 +196,11 @@ class WelcomeScreen extends Component {
                         </Content>
                     </Container>
                 </View>
+                <ForgotPassword toggleModal={()=>this._toggleModal()} 
+                handleForgetPassword={(newText)=>this.handleForgetPassword(newText)} 
+                isModalVisible={this.state.isModalVisible} 
+                currentMail={this.state.currentMail}
+                />
                 {RenderLoader}
             </ImageBackground>
         )
@@ -192,7 +214,7 @@ const mapStateToProps = (state) => {
         serverError: state.Auth.error,
         userToken: state.Auth.userToken,
         errorMessage: state.Auth.errorMessage,
-        isLoggedIn:state.Auth.isLoggedIn,
+        isLoggedIn: state.Auth.isLoggedIn,
     }
 }
 const mapDispatchToProps = (dispatch) => {

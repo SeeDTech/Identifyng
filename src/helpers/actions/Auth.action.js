@@ -8,6 +8,7 @@ const {
     LOGOUT_SUCCESS,
     LOGOUT_ERROR,
     LOGOUT,
+    REFRESH_REQUEST,
     FETCH_USER_ERROR,
     FETCH_USER_SUCCESS
 } = ACTION;
@@ -57,6 +58,12 @@ export const fetchedUserError = (payload)=>{
     return{
         type: FETCH_USER_ERROR,
         payload,
+    }
+}
+
+export const refreshReguest=()=>{
+    return{
+        type:REFRESH_REQUEST
     }
 }
 

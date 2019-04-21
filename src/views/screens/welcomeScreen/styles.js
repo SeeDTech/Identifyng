@@ -37,7 +37,7 @@ import {BaseColor} from '../../../styles/theme/color'
     justifyContent: 'space-evenly'
 },
 itemSection:{marginEnd:10,borderBottomColor:BaseColor.dark},
-InputLabel:{color:BaseColor.grey,marginStart:30, fontFamily: 'Ubuntu-Regular', marginBottom: 20 },
+InputLabel:{color:BaseColor.grey,marginStart:30,fontSize:16, fontFamily: 'Ubuntu-Regular', marginBottom: 20 },
 InputField:{marginTop:4, fontSize:14, borderBottomColor: BaseColor.dark,marginStart:30, fontFamily: "Ubuntu-Regular", color: BaseColor.grey},
 emailInputIcon:{position:"absolute",top:45,color:BaseColor.dark, left:20},
 passwordInputIcon:{position:"absolute",top:120,color:BaseColor.dark, left:20},    

@@ -7,6 +7,7 @@ const {
     PHONE_BVN_SUCCESS,
     PHONE_BVN_ERROR,
     ADD_PHONE_BVN,
+    REFRESH_REQUEST,
     SIGN_UP_OTP_VALIDATION_REQUEST,
     SIGN_UP_OTP_VALIDATION,
     GET_OTP,
@@ -66,6 +67,7 @@ const initState = {
                     ...state,
                     bvnData:{...state.bvnData,...action.payload},
                     bvnIsValid:true,
+                    error:false,
                 }
                 case GET_OTP:
                 return{
@@ -97,8 +99,15 @@ const initState = {
                 return{
                     ...state,
                     isLoading:false,
-                    error:false,
                     isValidOTP:true,
+                    error:false,
+                }
+
+                case REFRESH_REQUEST:
+                return{
+                    ...state,
+                    isloading:false,
+                    error:false,
                 }
                 case SIGN_UP_OTP_VALIDATION_ERROR:
                 return{

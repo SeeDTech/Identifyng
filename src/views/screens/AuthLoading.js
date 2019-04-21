@@ -20,7 +20,7 @@ export class AuthLoading extends Component {
   render() {
     return (
       <View style={{flex:1,alignItems:"center", justifyContent:'center',backgroundColor:BaseColor.dark,alignContent:'center'}}>
-         <AnimLogo/>
+         <AnimLogo color='#fff'/>
       </View>
     )
   }

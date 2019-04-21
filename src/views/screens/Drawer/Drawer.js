@@ -19,30 +19,31 @@ export class Drawer extends Component {
                 <Header style={{ width: '100%', backgroundColor: BaseColor.dark, height: 180 }}>
                     <Body>
                         <View style={{ alignItems: 'flex-start', flexDirection: "column", padding: 10 }}>
-                            <View style={{ width: 70, height: 70, borderRadius: 70, borderBottomColor: BaseColor.light, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(10,50,10,0.2)' }}>
+                            <View style={{ width: 50, height: 50, borderRadius: 50, borderBottomColor: BaseColor.light, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(10,50,10,0.2)' }}>
                                 {/* <Ionicon name='User' size={40} style={{padding:3}}/> */}
-                                <Icon name="user" size={50} style={{ color: BaseColor.light }} />
+                                <Image source={require('../../../assests/img/pp.jpg')} width={50} height={50} style={{borderRadius:50, borderColor: BaseColor.light,borderWidth:1,marginBottom:10}} alt='authUser' />
+                                {/* <Icon name="user" size={50} style={{ color: BaseColor.light }} /> */}
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5 }}>
                                 <Icon name='user-o' size={16} style={{marginEnd:10,color:BaseColor.light}}></Icon>
-                                <Text style={{ fontSize: 16, fontFamily: 'Ubuntu-Bold', color: BaseColor.light }}>Mr. Hello OluwaWorld</Text>
+                                <Text style={{ fontSize: 16, fontFamily: 'Ubuntu-Bold', color: BaseColor.light }}>Oluwaseun Ayerinde</Text>
                             </View>
-                            <View style={{ alignContent: "center", margin: 5  }}>
+                            <View style={{ alignContent: "center", margin: 2  }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                     <Icon name='envelope-o' size={16} style={{marginEnd:10,color:BaseColor.light}}></Icon>
-                                    <Text style={{ fontSize: 16, fontFamily: 'Ubuntu-Regular', color: BaseColor.light, }}>Imb@app.id.com.ng</Text>
+                                    <Text style={{ fontSize: 16, fontFamily: 'Ubuntu-Regular', color: BaseColor.light, }}>oluwaseun@gmail.com</Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-                                <Icon name="key" size={16} style={{ color: BaseColor.light }} />
-                                <Text style={{ fontSize: 16, color: BaseColor.light, fontFamily: 'Ubuntu-MediumItalic', marginLeft: 5 }}>id-001-000234</Text>
+                                <Ionicon name="card" size={16} style={{ color: BaseColor.light }} />
+                                <Text style={{ fontSize: 16, color: BaseColor.light, fontFamily: 'Ubuntu-MediumItalic', marginLeft: 5 }}>identify-0000123</Text>
                             </View>
                         </View>
                     </Body>
                 </Header>
                 <Content>
-                   <View >
-                   <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={[BaseColor.dark,'#44bba1f3','#52dabc']} style={{flex:0}}>
+                   <View style={{height:'100%'}} >
+                   <LinearGradient style={{height:'100%'}} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={[BaseColor.dark,'#44bba1f3','#52dabc']} style={{flex:0}}>
                         <DrawerItems {...this.props} />
                         </LinearGradient>
                     </View>

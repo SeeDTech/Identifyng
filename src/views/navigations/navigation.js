@@ -7,11 +7,11 @@ import {
 } from 'react-navigation';
 import SlidingScreen from '../screens/Sliders/SlidingScreen';
 import WelcomeScreen from '../screens/welcomeScreen/WelcomeScreen';
-import SignOutRequirement from '../screens/AuthScreens/signupRequirements/SignupRequirementsPage'
+import SignupRequirementsPage from '../screens/AuthScreens/signupRequirements/SignupRequirementsPage'
 import AccountGeneration from '../screens/AuthScreens/AccountGeneration/AccountGeneration';
 import Ionicon from '../../components/Icons/Ionicon';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
-import { TouchableOpacity, View,TextInput } from 'react-native'
+import { TouchableOpacity, View,TextInput,Image } from 'react-native'
 import Search from '../screens/Search/Search';
 import MyCards from '../screens/MyCards/MyCards';
 import { BaseColor } from '../../styles/theme/color';
@@ -24,13 +24,22 @@ import navigations from './styles';
 import TransitionConfiguration from './TransitionConfiguration';
 import ProfilePage from '../screens/ProfileScreens/ProfilePage';
 import SearchBar from '../../components/SearchBar';
+import { Icon } from 'native-base';
 
 
 
 const searchBar =<SearchBar/>
 
 const AuthStackNavigator = createStackNavigator({
-    
+    // Profile:{
+    //     screen:ProfilePage,
+    //     navigationOptions: ({ navigation }) => ({
+            
+    //         drawerIcon: (
+    //             <Ionicon name="book"style={{color:BaseColor.light}} size={20}  />
+    //         ),
+    //     })
+    // },
     SlideScreen: {
         screen: SlidingScreen,
         navigationOptions: {
@@ -44,7 +53,7 @@ const AuthStackNavigator = createStackNavigator({
         }
     },
     Requirement: {
-        screen:SignOutRequirement,
+        screen:SignupRequirementsPage,
         navigationOptions: {
             headerTransparent: {},
         }
@@ -54,7 +63,7 @@ const AuthStackNavigator = createStackNavigator({
         navigationOptions: {
             header: null
         }
-
+        
     },
     Registration: {
         screen: AccountGeneration,
@@ -62,17 +71,74 @@ const AuthStackNavigator = createStackNavigator({
             headerTransparent: {},
         }
     },
+    
    
 },{
     transitionConfig: TransitionConfiguration,
 });
 
-const AppTabNavigator = createBottomTabNavigator({
+// const AppTabNavigator = createBottomTabNavigator({
+
+//     Dashboard: {
+//         screen: Dashboard,
+//         navigationOptions: ({ navigation }) => ({
+//             title: 'Home',
+//             tabBarIcon: ({ tintColor }) => (
+//                 <Ionicon name="home" size={27} color={tintColor} />
+//             ),
+//             // tabBarOptions: {
+//             //   activeTintColor: BaseColor.light,
+//             //   labelStyle: {
+//             //     fontSize: 14,
+//             //   }
+//             // }
+//         })
+//     },
+    
+   
+   
+//     ID: {
+//         screen: MyCards,
+//         navigationOptions: ({ navigation }) => ({
+           
+//             tabBarIcon: ({tintColor})=> (
+//                 <Ionicon name="card" color={tintColor}  size={27} />
+//             ),
+
+//         })
+//     },
+    
+// }, {
+//     lazyLoad: true,
+//     backBehavior: 'none',
+//         navigationOptions: ({ navigation }) => ({
+//             tabBarOptions: {
+//                 activeTintColor: BaseColor.light,
+//                 inactiveTintColor: '#69f0ae',
+//                 style: {
+//                     backgroundColor: BaseColor.base,
+//                     borderTopColor: BaseColor.light,
+//                     borderTopWidth: 2,
+//                 },
+//                 showLabel: false,
+//                 animationEnabled: true,
+
+
+//             },
+//         }),
+//     });
+
+const AppStacknavigator = createStackNavigator({
 
     Dashboard: {
         screen: Dashboard,
         navigationOptions: ({ navigation }) => ({
             title: 'Home',
+            headerLeft:(<TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
+            {/* <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}> */}
+            <Image source={require('../../assests/img/ppmini.jpg')} width={40} height={40} style={{borderRadius:40, borderColor: '#333',borderWidth:1, margin:10}} alt='main-user' />
+            {/* </View> */}
+        </TouchableOpacity>),
             tabBarIcon: ({ tintColor }) => (
                 <Ionicon name="home" size={27} color={tintColor} />
             ),
@@ -102,6 +168,7 @@ const AppTabNavigator = createBottomTabNavigator({
     lazyLoad: true,
     backBehavior: 'none',
         navigationOptions: ({ navigation }) => ({
+          
             tabBarOptions: {
                 activeTintColor: BaseColor.light,
                 inactiveTintColor: '#69f0ae',
@@ -116,38 +183,34 @@ const AppTabNavigator = createBottomTabNavigator({
 
             },
         }),
-    });
+    // AppTabNavigator: {
+    //     screen: AppTabNavigator,
 
-const AppStacknavigator = createStackNavigator({
+    //     navigationOptions: ({ navigation }) => ({
+    //         title: 'Dashboard',
+    //         tabBarLabel: 'Browse',
+    //         // headerRight: searchBar ,
 
-    AppTabNavigator: {
-        screen: AppTabNavigator,
-
-        navigationOptions: ({ navigation }) => ({
-            title: 'Dashboard',
-            tabBarLabel: 'Browse',
-            // headerRight: searchBar ,
-
-            headerTitleStyle: {
-                alignSelf: 'center',
-                color: BaseColor.base,
-                textAlign: 'center',
-                justifyContent: 'center',
-                fontFamily: "Ubuntu-Regular",
+    //         headerTitleStyle: {
+    //             alignSelf: 'center',
+    //             color: BaseColor.base,
+    //             textAlign: 'center',
+    //             justifyContent: 'center',
+    //             fontFamily: "Ubuntu-Regular",
                 
-            },
-            headerLeft:(<TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
-            <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}></View>
-        </TouchableOpacity>)
+    //         },
+    //         headerLeft:(<TouchableOpacity  onPress={() => navigation.toggleDrawer()}>
+    //         <View  style={{ borderWidth: 1, width: 30, height: 30, backgroundColor: '#f4f4f4', borderRadius: 30, margin: 10, }}></View>
+    //     </TouchableOpacity>)
 
-                // <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
-                //     <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
-                //         <Ionicon name="menu" size={27} />
-                //     </View>
-                // </TouchableOpacity>
+    //             // <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+    //             //     <View style={{ paddingHorizontal: 10, color: BaseColor.grey }}>
+    //             //         <Ionicon name="menu" size={27} />
+    //             //     </View>
+    //             // </TouchableOpacity>
            
-        })
-    }
+    //     })
+    // }
 },{
     transitionConfig: TransitionConfiguration,
 })
@@ -155,11 +218,18 @@ const AppStacknavigator = createStackNavigator({
 const AppDrawerNavigator = createDrawerNavigator({
     Home: {
         screen: AppStacknavigator,
-        navigationOptions: ({ navigation }) => ({
-            drawerLabel: 'Dashboard',
-            drawerIcon: (
-                <Ionicon name='home' size={20} style={{color:BaseColor.light}} />
+         navigationOptions: ({ navigation }) => ({
+            title: 'Home',
+            tabBarIcon: ({ tintColor }) => (
+                <Ionicon name="home-outline" size={27} color={tintColor} />
             ),
+           
+            // tabBarOptions: {
+            //   activeTintColor: BaseColor.light,
+            //   labelStyle: {
+            //     fontSize: 14,
+            //   }
+            // }
         })
     },
     ID: {
@@ -168,6 +238,16 @@ const AppDrawerNavigator = createDrawerNavigator({
             drawerLabel: 'My ID',
             drawerIcon: (
                 <Ionicon name="card" style={{color:BaseColor.light}}  size={20} />
+            ),
+
+        })
+    },
+    Feeds: {
+        screen: MyCards,
+        navigationOptions: ({ navigation }) => ({
+            drawerLabel: 'Social Feeds',
+            drawerIcon: (
+                <Icon name="people" style={{color:BaseColor.light}}  size={20} />
             ),
 
         })
@@ -183,11 +263,12 @@ const AppDrawerNavigator = createDrawerNavigator({
     },
     Settings: {
         screen: SettingsScreen,
-        title:'Settings',
+        
         navigationOptions: ({ navigation }) => ({
+            drawerLabel:'Logout',
             
             drawerIcon:(
-                <Ionicon name="settings"style={{color:BaseColor.light}} size={20}  />
+                <Ionicon name="log-out"style={{color:BaseColor.light}} size={20}  />
             ),
 
         })

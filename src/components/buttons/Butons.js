@@ -71,11 +71,12 @@ export const ButtonNoBorder = (props) => {
     handleOnPress = (e) => {
         props.onPress();
     }
-    const { title, txtStyle, btnStyle } = props;
+    const { title, txtStyle, btnStyle,children } = props;
     return (
         <View style={styles.container}>
             <Button Button transparent success onPress={handleOnPress} style={[buttons.noBorder, btnStyle]} >
             <Text style={[buttons.greenText, txtStyle]} >{title}</Text>
+            {children}
             </Button>
         </View>
     )

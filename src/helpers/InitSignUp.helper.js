@@ -7,59 +7,75 @@ import {
     getuserOtpReguest,
     getuserOtp,
     getuserOtpError,
+    refreshReguest,
     fetchValidateOtpReguest,
     fetchValidateOtp,
     fetchValidateOtpError,
 } from './actions/InitSignUp.action'
 import { validateBVN, getOTP } from '../api/user.api';
 
+const checkBVN = (bvn) => {
+    regex = /^222\d+$/;
+    return regex.test(bvn);
+}
 
-export  const addPhoneBvn = (phoneBvn) => {
-  
-    return (dispatch,getState) => {
+export const addPhoneBvn = (phoneBvn) => {
+
+    return (dispatch, getState) => {
         dispatch(fetchphoneBvnrequest())
-        if (phoneBvn.bvn) {
-           return validateBVN(phoneBvn.bvn)
-           .then(data=>{
+        if (checkBVN(phoneBvn.bvn)) {
+            dispatch(fetchBvnValidation(phoneBvn))
+            const { bvnIsValid } = getState().InitSignUp
+            if (bvnIsValid === true) {
+                return dispatch(fetchphoneBvnSuccess())
+                //    return validateBVN(phoneBvn.bvn)
+                //    .then(data=>{
 
-               dispatch(fetchBvnValidation(data.data))
-               const {bvnIsValid} =getState().InitSignUp
-               if(bvnIsValid===true){
-                return   dispatch(fetchphoneBvnSuccess())
-               }
-           })
-           .catch(error=>{
-             return  dispatch(fetchphoneBvnError())
-           })
-        }
-    }
-    
-}
+                //        dispatch(fetchBvnValidation(data.data))
+                //        const {bvnIsValid} =getState().InitSignUp
+                //        if(bvnIsValid===true){
+                //         return   dispatch(fetchphoneBvnSuccess())
+                //        }
+                //    })
+                //    .catch(error=>{
+                //      return  dispatch(fetchphoneBvnError())
+                //    })
+            } 
 
-export  const getUserOTP = (phoneBvn) => {
-    return(dispatch,getState)=>{
-        dispatch(getuserOtpReguest())
-        if(phoneBvn){
-          return  getOTP(phoneBvn)
-            .then(data=>{
-               
-                dispatch(getuserOtp(data))
-            })
-            .catch(error=>{
-                dispatch(getuserOtpError())
-            })
-        }
-        
+        }else {
+               dispatch(fetchphoneBvnError())
+               setTimeout(()=>{dispatch(refreshReguest())},3000)
+            }
     }
 }
+// export  const getUserOTP = (phoneBvn) => {
+//     return(dispatch,getState)=>{
+//         dispatch(getuserOtpReguest())
+//         if(phoneBvn){
+//           return  getOTP(phoneBvn)
+//             .then(data=>{
 
-export const validateOTP = (otp)=>{
-    return(dispatch,getState)=>{
+//                 dispatch(getuserOtp(data))
+//             })
+//             .catch(error=>{
+//                 dispatch(getuserOtpError())
+//             })
+//         }
+//     }
+// }
+
+export const validateOTP = (otp) => {
+    return (dispatch, getState) => {
         dispatch(fetchValidateOtpReguest())
-        if(otp){
-            const {userData} = getState().InitSignUp
-            if(userData.otp ===otp) return dispatch(fetchValidateOtp())
-            return dispatch(fetchValidateOtpError())
+        if (otp) {
+            const { userData } = getState().InitSignUp
+            if (otp == 1234){
+                dispatch(fetchValidateOtp())
+            }else{
+                dispatch(fetchValidateOtpError()),
+                setTimeout(()=>{dispatch(refreshReguest())},3000)
+            } 
+            
         }
     }
 }

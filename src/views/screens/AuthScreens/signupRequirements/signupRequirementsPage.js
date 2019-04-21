@@ -10,7 +10,7 @@ import { TextWithLetterSpacing } from '../../../../components/TextWithLetterSpac
 import PropTypes from 'prop-types'
 import { BaseColor } from '../../../../styles/theme/color';
 
-export class SignupRequirementsPage extends Component {
+class SignupRequirementsPage extends Component {
  
   render() {
     return (

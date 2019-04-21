@@ -35,11 +35,14 @@ export const ACTION = {
     GENERATE_USER_REQUEST: 'GENERATE_USER_REQUEST',
     GENERATE_USER:'GENERATE_USER',
     GENERATE_USER_SUCCESS:'GENERATE_USER_SUCCESS',
+
+    REFRESH_REQUEST: 'REFRESH_REQUEST',
 };
 export const REG_EXPRESSION={
     
      EMAIL:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
      PASSWORD: /^[a-z]+$/,
+     NAME: /^[a-zA-Z ]{2,30}$/,
 }
 
 export const ERROR_CONST= {

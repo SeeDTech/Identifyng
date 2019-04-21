@@ -4,6 +4,59 @@ import Svg, { G, Path } from 'react-native-svg'
 
 const AnimatedPath = Animated.createAnimatedComponent(Path)
 const AnimatedG = Animated.createAnimatedComponent(G)
+const AnimatedSvg = Animated.createAnimatedComponent(Svg)
+
+
+class Dot extends Component {
+constructor(props){
+    super(props)
+    this.state = {
+        spin: new Animated.Value(0)
+    }
+}
+
+componentDidMount(){
+    this.spin()
+}
+spin = ()=> {
+    this.state.spin.setValue(0)
+    Animated.timing(this.state.spin, {
+        toValue: 1,
+        duration:1000,
+        easing: Easing.linear,
+        useNativeDriver:true
+    }).start(()=>this.spin())
+}
+render () {
+    const intSpin = this.state.spin.interpolate({
+        inputRange: [0, 1],
+        outputRange: ["0deg", "360deg"]
+    })
+
+    const intSpinb = this.state.spin.interpolate({
+        inputRange: [0, 1],
+        outputRange: ["360deg", "0deg"]
+    })
+
+    return (
+        <Animated.View>
+        <AnimatedSvg  height={3} width={3}>
+        <G x="38.4" y="56.28" >
+        <AnimatedG  style={{transform:[{rotate:intSpin}, {translateX: -38.4}, {translateY: -56.28}]}}>
+        <AnimatedPath fill={this.props.fill}  d="M40.74,59.57a3.37,3.37,0,0,0,2.42-2A3.18,3.18,0,0,0,42.59,54a3.6,3.6,0,0,0-6.22,1.56A1.63,1.63,0,0,1,35,57a1.56,1.56,0,0,1-1.79-1.92,6.44,6.44,0,0,1,1.36-2.92,6.76,6.76,0,0,1,11.68,2,6.6,6.6,0,0,1-3.69,8.15,7.34,7.34,0,0,1-3.14.55,6.55,6.55,0,0,1-4.77-2.46,1.51,1.51,0,0,1,.22-2.29,1.54,1.54,0,0,1,2.19.23A3.48,3.48,0,0,0,40.74,59.57Z"/>
+        </AnimatedG>
+        <AnimatedG  style={{transform:[{rotate:intSpinb}, {translateX: -38.4}, {translateY: -56.28}]}}>
+        <AnimatedPath   fill={this.props.fill}  d="M27.88,55.54a12,12,0,0,1,2.26-6.24,11.81,11.81,0,0,1,4.64-3.83,11.6,11.6,0,0,1,3.37-1,12.78,12.78,0,0,1,3.42,0A12.42,12.42,0,0,1,47.42,47,12,12,0,0,1,50,50a12.46,12.46,0,0,1,1.27,2.71,11.14,11.14,0,0,1,.39,5.46A15.71,15.71,0,0,1,51,60.64a1.56,1.56,0,0,1-2.06.89,1.63,1.63,0,0,1-.9-2.08c.23-.67.4-1.37.57-2.05a5.92,5.92,0,0,0,0-2.68,8.74,8.74,0,0,0-5.3-6.52,8.14,8.14,0,0,0-4.79-.56,9,9,0,0,0-4,1.7,8.74,8.74,0,0,0-2.53,3.15,8.89,8.89,0,0,0-.85,3.38,1.71,1.71,0,0,1-.56,1.18,1.76,1.76,0,0,1-2,0,1.68,1.68,0,0,1-.49-.66A1.78,1.78,0,0,1,27.88,55.54Z"/>
+        </AnimatedG>
+        <AnimatedG  style={{transform:[{rotate:intSpinb}, {translateX: -38.4}, {translateY: -56.28}]}}>
+        <AnimatedPath  fill={this.props.fill}  d="M42.7,67.72A13.91,13.91,0,0,1,33.09,66a12.88,12.88,0,0,1-3.68-4.06,1.74,1.74,0,0,1-.29-1.36,1.64,1.64,0,0,1,1.32-1.22,1.44,1.44,0,0,1,1.53.74,11.22,11.22,0,0,0,1.55,2.14,8.84,8.84,0,0,0,12.14.53,1.58,1.58,0,0,1,1.84-.3A1.56,1.56,0,0,1,48.35,64a1.53,1.53,0,0,1-.58,1.12A12.67,12.67,0,0,1,42.7,67.72Z"/>
+        </AnimatedG>
+        </G>
+        </AnimatedSvg>
+        </Animated.View>
+    )
+}
+}
 export default class AnimLogo extends Component {
     constructor(props){
         super(props) 
@@ -38,7 +91,8 @@ export default class AnimLogo extends Component {
                 {
                   toValue: 1,
                   duration: 1000,
-                  easing: Easing.linear
+                  easing: Easing.linear,
+                  useNativeDriver:true
                 }
               ),
               
@@ -56,7 +110,8 @@ export default class AnimLogo extends Component {
                 {
                   toValue: 1,
                   duration: 1000,
-                  easing: Easing.linear
+                  easing: Easing.linear,
+                  useNativeDriver:true
                 }
               ),
         ]).start(() => {
@@ -183,15 +238,8 @@ export default class AnimLogo extends Component {
     }
     render () {
         let {pulsate, spinValue} = this.state
-        const color = this.props.color;
-        const spina = spinValue.c.interpolate({
-            inputRange: [0, 1],
-            outputRange: ['0deg', '0deg']  //change second to 360
-          })
-        const spinb = spinValue.c.interpolate({
-            inputRange: [0, 1],
-            outputRange: ['0deg', '0deg'] //change first to 360
-          })
+        const {size, color} = this.props
+        // const color = this.props.color;
         const spinc = spinValue.b.interpolate({
             inputRange: [0, 0.5, 1],
             outputRange: ['0deg', '0deg', '0deg']
@@ -203,7 +251,7 @@ export default class AnimLogo extends Component {
           
         return (
             <Animated.View >
-            <Svg viewBox="0 0 149.73 164.38" height={130} width={130} >
+            <Svg viewBox="0 0 149.73 164.38" height={size?size:130} width={size?size:130} >
             <G id="Layer_2" data-name="Layer 2">
                 <G id="Layer_1-2" data-name="Layer 1">
                     <AnimatedG style={{...this.props.style, opacity:pulsate.a}}>
@@ -280,14 +328,7 @@ export default class AnimLogo extends Component {
                     <Path fill={color}  d="M108,59.88l0-.07h0Z"/>
                     <Path fill={color}  d="M108.5,61.12l.08,0v0h-.07Z"/>
                     
-                    <G x="39.8" y ="56.25">
-                    <AnimatedG >
-                    <AnimatedPath style={{backgroundColor:"transparent", transform: [{rotate: spina}, {translateX: -39.8}, {translateY: -56.25},  ] }}  fill={color}  transform="translate(0 0)" d="M27.88,55.54a12,12,0,0,1,2.26-6.24,11.81,11.81,0,0,1,4.64-3.83,11.6,11.6,0,0,1,3.37-1,12.78,12.78,0,0,1,3.42,0A12.42,12.42,0,0,1,47.42,47,12,12,0,0,1,50,50a12.46,12.46,0,0,1,1.27,2.71,11.14,11.14,0,0,1,.39,5.46A15.71,15.71,0,0,1,51,60.64a1.56,1.56,0,0,1-2.06.89,1.63,1.63,0,0,1-.9-2.08c.23-.67.4-1.37.57-2.05a5.92,5.92,0,0,0,0-2.68,8.74,8.74,0,0,0-5.3-6.52,8.14,8.14,0,0,0-4.79-.56,9,9,0,0,0-4,1.7,8.74,8.74,0,0,0-2.53,3.15,8.89,8.89,0,0,0-.85,3.38,1.71,1.71,0,0,1-.56,1.18,1.76,1.76,0,0,1-2,0,1.68,1.68,0,0,1-.49-.66A1.78,1.78,0,0,1,27.88,55.54Z">
-                    </AnimatedPath >
-                    <AnimatedPath style={{transform: [{rotate: spina}, {translateX: -39.8}, {translateY: -56.25},  ] }} fill={color}  d="M42.7,67.72A13.91,13.91,0,0,1,33.09,66a12.88,12.88,0,0,1-3.68-4.06,1.74,1.74,0,0,1-.29-1.36,1.64,1.64,0,0,1,1.32-1.22,1.44,1.44,0,0,1,1.53.74,11.22,11.22,0,0,0,1.55,2.14,8.84,8.84,0,0,0,12.14.53,1.58,1.58,0,0,1,1.84-.3A1.56,1.56,0,0,1,48.35,64a1.53,1.53,0,0,1-.58,1.12A12.67,12.67,0,0,1,42.7,67.72Z"/>
-                    <AnimatedPath style={{transform: [{rotate: spinb}, {translateX: -39.8}, {translateY: -56.25},  ] }} fill={color}  d="M40.74,59.57a3.37,3.37,0,0,0,2.42-2A3.18,3.18,0,0,0,42.59,54a3.6,3.6,0,0,0-6.22,1.56A1.63,1.63,0,0,1,35,57a1.56,1.56,0,0,1-1.79-1.92,6.44,6.44,0,0,1,1.36-2.92,6.76,6.76,0,0,1,11.68,2,6.6,6.6,0,0,1-3.69,8.15,7.34,7.34,0,0,1-3.14.55,6.55,6.55,0,0,1-4.77-2.46,1.51,1.51,0,0,1,.22-2.29,1.54,1.54,0,0,1,2.19.23A3.48,3.48,0,0,0,40.74,59.57Z"/>
-                    </AnimatedG>
-                    </G>
+                   <Dot fill={color} />
                     <Path fill={color}  d="M38.29,56.22a1.58,1.58,0,1,1,3.16,0,1.58,1.58,0,1,1-3.16,0Z"/>
                     <Path fill={color}  d="M26.24,66.16a1.59,1.59,0,0,1,3.17,0,1.59,1.59,0,0,1-3.17,0Z"/>
                     <Path fill={color}  d="M32.12,125.82a1.58,1.58,0,0,1,0-3.16,1.53,1.53,0,0,1,1.57,1.59A1.55,1.55,0,0,1,32.12,125.82Z"/>

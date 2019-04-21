@@ -5,6 +5,7 @@ import {
     loginError,
     logoutErrorMessage,
     fetchLoginrequest,
+    refreshReguest,
     fetchLogout,
     loginSuccessMessage,
     fetchedUserSuccess,
@@ -38,7 +39,7 @@ const handleFetchUser = (userToken) => {
       return (dispatch,getState) => {
           dispatch(fetchLoginrequest())
           if (credentials) {
-              if(credentials.email=='id@app.com' && credentials.password=='password'){
+              if(credentials.email=='oluwaseun@gmail.com' && credentials.password=='password'){
                  dispatch(fetchedUserSuccess(credentials)) 
               }else{
 
@@ -59,8 +60,8 @@ const handleFetchUser = (userToken) => {
                       })
                      
                       .catch(err => {
-                  
-                          return dispatch(fetchedUserError(err))
+                           dispatch(fetchedUserError(err))
+                          setTimeout(()=>{dispatch(refreshReguest())},3000)
                       })
               }
           }

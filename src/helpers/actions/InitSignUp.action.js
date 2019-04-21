@@ -8,6 +8,7 @@ const {
     ADD_PHONE_BVN,
     GET_OTP_REQUEST,
     GET_OTP,
+    REFRESH_REQUEST,
     SIGN_UP_OTP_VALIDATION_REQUEST,
     SIGN_UP_OTP_VALIDATION,
     SIGN_UP_OTP_VALIDATION_ERROR,
@@ -79,7 +80,15 @@ export const getuserOtpReguest =()=>{
     return{
         type:GET_OTP_REQUEST,
     }
+
 }
+
+export const refreshReguest=()=>{
+    return{
+        type:REFRESH_REQUEST
+    }
+}
+
 export const getuserOtpError=()=>{
     return{
       type:  GET_OTP_ERROR

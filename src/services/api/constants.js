@@ -1,5 +1,5 @@
 export const API = {
-url:' https://046af74b.ngrok.io/api/v1',
+url:'https://c156ae6a.ngrok.io/api/v1',
 paths:{
     TEST:'/test',
     LOGIN:'/login',

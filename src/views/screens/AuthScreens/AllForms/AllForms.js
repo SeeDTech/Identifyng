@@ -14,6 +14,9 @@ import { validatePhone } from '../../../../helpers/form.helper';
 import { ERROR_CONST } from '../../../../helpers/Constants';
 import { ArrowRight } from '../../../../components/Icons/SvgIcons/Icons';
 import { addPhoneBvn, getUserOTP, validateOTP } from '../../../../helpers/InitSignUp.helper';
+import { Loader } from '../../../../../App';
+import AnimLogo from '../../../../components/buttons/AnimatedLogo';
+import { IDloader } from '../../welcomeScreen/WelcomeScreen';
 
 const ScreenWidth = Dimensions.get('window').width;
 const {PHONE,OTP,BVN} = ERROR_CONST;
@@ -101,19 +104,23 @@ class AllForms extends Component {
                     isCheck: isCheck + 1,
                     error: false,
                     formKey: formKey + 1,
-                }, () => {this.animate(),
-                    this.callOTP()}
+                }, () => {this.animate()
+                    // this.callOTP()
+                }
                 );
             }
         }
         if(prevProps.bvnError!==this.props.bvnError){
             if(this.props.bvnError===true){
-                this.setState({error:this.props.bvnError})
+                this.setState({error:true})
             }
         }
         if(prevProps.isValidOTP !==this.props.isValidOTP){
-            if(this.props.isValidOTP===true)
-            this.props.navigation.navigate('Registration');
+            if(this.props.isValidOTP===true){
+                this.props.navigation.navigate('Registration');
+            }else{
+
+            }
         }
     }
 
@@ -162,9 +169,9 @@ class AllForms extends Component {
             }, () => this.animate());
             
         }
-        setTimeout(()=>this.setState({loader:false}),750) 
+        setTimeout(()=>this.setState({loader:false}),850) 
     }
-    RenderErrorMessage = (message) => { this.spring(); return ((this.state.error)&& <Text style={[phonenumber.errorMessage, { transform: [{ scale: 0.8 }] }]}><Text style={{ marginRight: 15 }}><Icon name='info-circle' size={12} /></Text> {message}</Text>) }
+    RenderErrorMessage = (message) => { this.spring(); return ((this.state.error ||this.props.bvnError)&& <Text style={[phonenumber.errorMessage, { transform: [{ scale: 0.8 }] }]}><Text style={{ marginRight: 15 }}><Icon name='info-circle' size={12} /></Text> {message}</Text>) }
 
     handleBvnSubmit = () => {
        setTimeout(()=>this.setState({loader:false}),750) 
@@ -174,7 +181,12 @@ class AllForms extends Component {
             phone:this.state.phoneNumber,
             bvn:this.state.bvn,
         }
-         this.props.addPhoneBvn(phoneBvn)
+        this.setState({
+            isCheck: isCheck + 1,
+            error: false,
+            formKey: formKey + 1,
+        }, () => {this.animate()})
+        //  this.props.addPhoneBvn(phoneBvn)
     
         
     }
@@ -326,9 +338,12 @@ class AllForms extends Component {
                                 {RenderBvnForm}
                                 {RenderOtpForm}
                             </View>
-                           <View style={{position:'absolute',top:'30%'}}>
+                           {/* <View style={{position:'absolute',top:'30%'}}>
                                 {(loader ||isLoading)&& <Spinner color={BaseColor.base}/>}
-                            </View>
+                                {(loader ||isLoading)&& IDloader}
+                            
+                            </View> */}
+                           
                             <View style={Platform.OS === "ios" ? [forms.button, forms.shadowIOs] : [forms.button, forms.shadowAndroid]}>
                                 <NextButton onPress={() => this.formhandler()} >
                                 {loader? <Spinner color={BaseColor.light}/>:<ArrowRight/>}
@@ -338,6 +353,7 @@ class AllForms extends Component {
                     </Content>
                    
                 </Container>
+                {(loader ||isLoading)&& IDloader}
             </ImageBackground>
 
         )

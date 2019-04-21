@@ -1,7 +1,7 @@
 import { ACTION } from '../helpers/Constants'
 
 
-const { LOGIN_REQUEST,LOGIN_ERROR,LOGIN_SUCCESS,FETCH_USER_SUCCESS,FETCH_USER_ERROR, LOGIN,LOGOUT } = ACTION
+const { LOGIN_REQUEST, REFRESH_REQUEST, LOGIN_ERROR,LOGIN_SUCCESS,FETCH_USER_SUCCESS,FETCH_USER_ERROR, LOGIN,LOGOUT } = ACTION
 const initState = {
     errorMessage:'',
     successMessage:null,
@@ -56,6 +56,13 @@ const Auth = (state = initState, action) => {
             errorMessage:'',
             AuthUser: action.payload,
            
+        }
+        case REFRESH_REQUEST:
+        return{
+            ...state,
+            isloading:false,
+            error:false,
+            errorMessage:'',
         }
            case LOGOUT:
             return{
