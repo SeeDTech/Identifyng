@@ -10,7 +10,7 @@ export class AuthLoading extends Component {
 
     loading = ()=>{
       const {isLoggedIn}=this.props
-    this.props.navigation.navigate(isLoggedIn ?'App':'Auth');
+    this.props.navigation.navigate(isLoggedIn ? 'App':'Auth');
     }
     componentDidMount = () => {
        SplashScreen.hide()

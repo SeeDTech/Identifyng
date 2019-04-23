@@ -5,6 +5,7 @@ import {Header, Container, Content, Button,} from 'native-base'
 import DashboardStyle from './style'
 import Cards from '../../../components/Cards/Cards'
 import NimcCard from '../../../components/Cards/NimcCard';
+import LasrraCard from '../../../components/Cards/LasrraCard'
 import DriversLicense from '../../../components/Cards/DriversLicense';
 import Passport from '../../../components/Cards/Passport';
 import VotersCard from '../../../components/Cards/VotersCard';
@@ -67,9 +68,9 @@ export class Dashboard extends Component {
         <Content contentContainerStyle={{flex: 1, justifyContent:"space-around", paddingTop:20, paddingBottom:20}}>
  
       
-        <NimcCard hidden={activeCard<5 && activeCard!==1} setActiveCard={(activeCard)=>this.setActiveCard(activeCard)} setWebUrl={(webUrl)=>this.setWebUrl(webUrl)}  style={{position:"fixed", opacity: 0}}/>
-        <DriversLicense hidden={activeCard<5 && activeCard!==2} setActiveCard={(activeCard)=>this.setActiveCard(activeCard)} setWebUrl={(webUrl)=>this.setWebUrl(webUrl)} style={{position:"absolute"}}/>
-        <Passport hidden={activeCard<5 && activeCard!==3} setActiveCard={(activeCard)=>this.setActiveCard(activeCard)} setWebUrl={(webUrl)=>this.setWebUrl(webUrl)} style={{position:"absolute"}}/>
+        <LasrraCard hidden={activeCard<5 && activeCard!==1} setActiveCard={(activeCard)=>this.setActiveCard(activeCard)} setWebUrl={(webUrl)=>this.setWebUrl(webUrl)}  style={{position:"fixed", opacity: 0}}/>
+        <NimcCard hidden={activeCard<5 && activeCard!==2} setActiveCard={(activeCard)=>this.setActiveCard(activeCard)} setWebUrl={(webUrl)=>this.setWebUrl(webUrl)}  style={{position:"fixed", opacity: 0}}/>
+        <DriversLicense hidden={activeCard<5 && activeCard!==3} setActiveCard={(activeCard)=>this.setActiveCard(activeCard)} setWebUrl={(webUrl)=>this.setWebUrl(webUrl)} style={{position:"fixed"}}/>
         <VotersCard hidden={activeCard<5 && activeCard!==4} setActiveCard={(activeCard)=>this.setActiveCard(activeCard)} setWebUrl={(webUrl)=>this.setWebUrl(webUrl)} style={{position:"absolute"}}/>
       {
       //   [1, 2, 3, 4].map(i => (

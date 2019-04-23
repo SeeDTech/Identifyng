@@ -111,7 +111,8 @@ class VotersCard extends Component {
             inputRange: [0, 0.25, 1],
             outputRange: [0, 4, 4]
         })
-        const avatar = '../../assests/img/avatar.png'
+        const avatar = '../../assests/img/avatar.png';
+        const logo = '../../assests/img/inec.png'
         return (
             <Animated.View>
             <AnimatedCard scaleY={cardScale} height={cardHeight} margin={margin} bgColor="#009688">

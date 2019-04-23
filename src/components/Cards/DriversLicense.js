@@ -7,7 +7,8 @@ import {CardStyle, InfoText} from './style'
 import StyledCard from './StyledCard'
 // import AnimLogo from '../buttons/AnimatedLogo';
 // import IDBackground from '../Backgrounds/Spiral';
-
+import QRCode from 'react-native-qrcode-svg';
+import { BaseColor } from '../../styles/theme/color';
 const AnimatedCard = Animated.createAnimatedComponent(StyledCard)
 const AnimatedView = Animated.createAnimatedComponent(View)
 const AnimatedRow = Animated.createAnimatedComponent(Row)
@@ -77,7 +78,7 @@ class DriversLicense extends Component {
 
     expandCard = () => {
         this.setState(prevState=>({isOpen: !prevState.isOpen,}))
-        const activeCard=this.state.isOpen ? 6 : 2;
+        const activeCard=this.state.isOpen ? 6 : 3;
         this.props.setActiveCard(activeCard);
         Animated.timing(
             this.state.cardHeight,
@@ -115,8 +116,8 @@ class DriversLicense extends Component {
             inputRange: [0, 0.25, 1],
             outputRange: [0, 0, -((height-650)/5) ]
         })
-        const avatar = '../../assests/img/avatar.png';
-        const qr = '../../assests/img/qr.png'
+        const avatar = '../../assests/img/passport.png';
+        const logo = '../../assests/img/frsc.png'
         return (
             <TouchableWithoutFeedback onPress={()=> !isOpen && this.expandCard()}>
             <Animated.View>
@@ -129,7 +130,7 @@ class DriversLicense extends Component {
             <Grid>
             <Row style={{...CardStyle.row, paddingBottom:0}}>
             <Text style={{...CardStyle.cardHeader}}>{"Driver's License"}</Text>
-            <Thumbnail style={{ marginLeft: "auto"}} square resizeMode="contain"  source={require('../../assests/img/frsc.png')}/>
+            <Image style={{...CardStyle.logo, }} source={require(logo)} resizeMode="contain" />
             </Row>
             <AnimatedView style={{ opacity:itemOpacityb, height:"auto", }}>
             <Row style={{...CardStyle.rowb}}>
@@ -141,38 +142,74 @@ class DriversLicense extends Component {
                 </Row>
             }
             </AnimatedView>
-            <AnimatedView style={{ opacity:itemOpacity, height:"auto", }}>
-            <Image style={CardStyle.avatar} source={require(avatar)} resizeMode="contain"/>
-            
-            <Row style={{...CardStyle.row,}}>
-            <Col style={CardStyle.col}><InfoText isKey>SURNAME:</InfoText><InfoText>Ayerinde</InfoText></Col>
-            <Col style={CardStyle.col}><InfoText isKey>FIRSTNAME:</InfoText><InfoText>Oluwaseun</InfoText></Col>
-            
-            </Row>
-            <Row style={{...CardStyle.row}}>
-            <Col style={CardStyle.col}><InfoText isKey>DOB:</InfoText><InfoText>01/10/60</InfoText></Col>
-            <Col style={CardStyle.col}><InfoText isKey>ISSUED:</InfoText><InfoText>28/8/14</InfoText></Col>
-            <Col style={CardStyle.col}><InfoText isKey>EXPIRY:</InfoText><InfoText>01/19</InfoText></Col>
-            </Row>
-            <Row style={{...CardStyle.row}}>
-            <Col style={CardStyle.col}><InfoText isKey>NATIONALITY:</InfoText><InfoText>NGA</InfoText></Col>
-            <Col style={{...CardStyle.col, justifyContent:"center"}}><InfoText isKey>SEX:</InfoText><InfoText>M</InfoText></Col>
-            <Col style={CardStyle.col}><InfoText isKey>HEIGHT:</InfoText><InfoText>{"178cm"}</InfoText></Col>
-            </Row>
-            <Row style={{...CardStyle.rowb}}>
-            <InfoText isKey>DOCUMENT NUMBER:</InfoText><InfoText>4812640614</InfoText>
-            </Row>
-            <Row style={{...CardStyle.row, paddingTop: 20}}>
-            <Col style={CardStyle.col}><H1 style={CardStyle.cardHeader}>5394</H1></Col>
-            <Col style={CardStyle.col}><H1 style={CardStyle.cardHeader}>5394</H1></Col>
-            <Col style={CardStyle.col}><H1 style={CardStyle.cardHeader}>5394</H1></Col>
-            <Col style={CardStyle.col}><H1 style={CardStyle.cardHeader}>5394</H1></Col>
-            </Row>
+            <AnimatedView style={{ opacity: itemOpacity, height:'auto', flex: 0,
+                paddingTop: 25,
+                paddingBottom:25,
+                marginLeft:-10, marginRight:-10,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'stretch',  backgroundColor:'#01579b'   }}>
+                <View style={{width: "55%", }}>
+                    <View style={CardStyle.infoContainer}>
+                        <View style={CardStyle.infoView}>
+                        <InfoText isKey>SURNAME</InfoText>
+                        <InfoText >Ayerindee</InfoText>
+                        </View>
+                        <View style={CardStyle.infoView}>
+                        <InfoText isKey>FIRSTNAME</InfoText>
+                        <InfoText >Oluwaseun</InfoText>
+                        </View>
+                    </View>
 
-            <Row>
-            <Image style={{...CardStyle.avatar, height: 50}} source={require(qr)} resizeMode="contain"/>
-            </Row>
-            
+                    
+
+                    <View style={CardStyle.infoContainer}>
+                        <View style={CardStyle.infoView}>
+                        <InfoText isKey>DOB:</InfoText>
+                        <InfoText >01/10/60</InfoText>
+                        </View>
+                        <View style={CardStyle.infoView}>
+                        <InfoText isKey>NATIONALITY:</InfoText>
+                        <InfoText >NGA</InfoText>
+                        </View>
+                    </View>
+                    
+                    <View style={CardStyle.infoContainer}>
+                        <View style={CardStyle.infoView}>
+                        <InfoText isKey>SEX:</InfoText>
+                        <InfoText >M</InfoText>
+                        </View>
+                        <View style={CardStyle.infoView}>
+                        <InfoText isKey>HEIGHT:</InfoText>
+                        <InfoText >178</InfoText>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                <Image style={CardStyle.avatar} source={require(avatar)} resizeMode="contain" />
+                <View style={CardStyle.infoContainerb}>
+                        <View style={CardStyle.infoViewb}>
+                        <InfoText isKey>ISSUED:</InfoText>
+                        <InfoText >28/8/14</InfoText>
+                        </View>
+                        <View style={CardStyle.infoViewb}>
+                        <InfoText isKey>EXPIRY:</InfoText>
+                        <InfoText >28/8/21</InfoText>
+                        </View>
+                    </View>
+                </View>
+                
+            </AnimatedView>
+            <AnimatedView style={{ ...CardStyle.qr, opacity: itemOpacity, flex: 0,  flexDirection: 'column',
+            justifyContent: 'center',}}>
+                <QRCode
+                    color={BaseColor.light}
+                    activeOpacity={0.7}
+                    value='Anything would do!'
+                    backgroundColor='transparent'
+                    size={110}
+                />
+                <InfoText style={{alignSelf: 'center'}}>4812640614</InfoText>
             </AnimatedView>
             </Grid>
             {

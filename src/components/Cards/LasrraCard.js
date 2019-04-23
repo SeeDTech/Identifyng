@@ -17,7 +17,7 @@ const AnimatedView = Animated.createAnimatedComponent(View)
 const AnimatedRow = Animated.createAnimatedComponent(Row)
 
 let cardScale = new Animated.Value(1)
-class NimcCard extends Component {
+class LasrraCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -59,7 +59,7 @@ class NimcCard extends Component {
     expandCard = () => {
         console.log("expanding card")
         this.setState(prevState => ({ isOpen: !prevState.isOpen, }))
-        const activeCard = this.state.isOpen ? 6 : 2;
+        const activeCard = this.state.isOpen ? 6 : 1;
         this.props.setActiveCard(activeCard);
         Animated.timing(
             this.state.cardHeight,
@@ -108,13 +108,13 @@ class NimcCard extends Component {
             outputRange: [0, 0, 50]
         })
         // const avatar = '../../assests/img/avatar.png'
-        const avatar = '../../assests/img/passport.png'
-        const logo = '../../assests/img/nimc.png'
-        const qr = '../../assests/img/qr.png'
+        const avatar = '../../assests/img/passport.png';
+        const logo = '../../assests/img/lasrra.png';
+        const qr = '../../assests/img/qr.png';
         return (
             <TouchableWithoutFeedback onPress={() => !isOpen && this.expandCard()}>
                 <Animated.View>
-                    <AnimatedCard height={cardHeight} translateY={translateValue} scaleY={cardScale} elavation={9} margin={margin} bgColor="#4db6ac">
+                    <AnimatedCard height={cardHeight} translateY={translateValue} scaleY={cardScale} elavation={9} margin={margin} bgColor="#43a047">
                         {
                             // <View style={{ flex:1, position: 'absolute',  opacity: 0.3}}>
                             // <IDBackground/>
@@ -122,8 +122,8 @@ class NimcCard extends Component {
                         }
                         <Grid>
                             <Row style={{ ...CardStyle.row, paddingBottom: 0 }}>
-                                <Text style={{ ...CardStyle.cardHeader, }}>National Identity Card</Text>
-                                <Image style={{...CardStyle.logo, }} source={require(logo)} resizeMode="contain" />
+                                <Text style={{ ...CardStyle.cardHeader, fontSize: 17}}>Lagos State Residents Registration Agency</Text>
+                                <Image style={{...CardStyle.logob, }} source={require(logo)} resizeMode="contain" />
                             </Row>
 
                             <AnimatedView style={{ opacity: itemOpacityb, height: "auto", }}>
@@ -143,7 +143,7 @@ class NimcCard extends Component {
                                 marginLeft:-10, marginRight:-10,
                                 flexDirection: 'row',
                                 justifyContent: 'center',
-                                alignItems: 'stretch',  backgroundColor:'#00897b'   }}>
+                                alignItems: 'stretch',  backgroundColor:'#1b5e20'   }}>
                                 <View style={{width: "55%", }}>
                                     <View style={CardStyle.infoContainer}>
                                         <View style={CardStyle.infoView}>
@@ -219,4 +219,4 @@ class NimcCard extends Component {
     }
 }
 
-export default NimcCard
+export default LasrraCard

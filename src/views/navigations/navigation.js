@@ -7,7 +7,7 @@ import {
 } from 'react-navigation';
 import SlidingScreen from '../screens/Sliders/SlidingScreen';
 import WelcomeScreen from '../screens/welcomeScreen/WelcomeScreen';
-import SignupRequirementsPage from '../screens/AuthScreens/signupRequirements/SignupRequirementsPage'
+import SignupRequirementsPage from '../screens/AuthScreens/signupRequirements/signupRequirementsPage'
 import AccountGeneration from '../screens/AuthScreens/AccountGeneration/AccountGeneration';
 import Ionicon from '../../components/Icons/Ionicon';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
